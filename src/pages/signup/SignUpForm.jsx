@@ -15,7 +15,7 @@ function SignUpForm() {
           ></InputField>
           <InputField
             type="email"
-            placeholder="Email/Số điện thoại/Tên đăng nhập"
+            placeholder="Email/Số điện thoại"
             icon="mail"
           ></InputField>
           <InputField
