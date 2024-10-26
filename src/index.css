@@ -1,6 +1,6 @@
 /* Importing Google Fonts - Montserrat */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +14,8 @@
 }
 
 :root {
-  --theme-color: #387478;
+  --theme-color: rgb(15, 118, 91);
+  --button-color: linear-gradient(135deg, #ff934b 0%, #ff5e62 100%);
 }
 
 body {
@@ -22,14 +23,24 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--theme-color);
+  /* background: linear-gradient(135deg, #0cc5b7 0%, #2bd891 100%); */
+  background: url(assets/images/GreenFood.png);
+  background-size: cover;
+}
+
+h1 {
+  font-family: "Playwrite GB S", cursive;
+  text-align: center;
+  padding-bottom: 1.2rem;
+  font-size: 4rem;
+  color: var(--theme-color);
 }
 
 .login-container {
   margin: 0 auto;
   max-width: 510px;
   padding: 2rem 2rem;
-  /* border-radius: 0.5rem; */
+  border-radius: 0.5rem;
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
@@ -54,7 +65,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   padding: 0.55rem 0;
-  /* border-radius: 0.31rem; */
+  border-radius: 0.31rem;
   align-items: center;
   justify-content: center;
   background: #fff;
@@ -110,7 +121,7 @@ body {
   height: 100%;
   outline: none;
   font-size: 1.06rem;
-  /* border-radius: 0.31rem; */
+  border-radius: 0.31rem;
   border: 1px solid #ccc;
   padding: 0px 1.25rem 0 3.12rem;
   transition: 0.2s ease;
@@ -172,13 +183,13 @@ body {
   font-weight: 500;
   cursor: pointer;
   margin-top: 2.19rem;
-  /* border-radius: 0.31rem; */
-  background: var(--theme-color);
+  border-radius: 0.31rem;
+  background: var(--button-color);
   transition: 0.3s ease;
 }
 
 .login-form .login-button:hover {
-  background: #4b7265;
+  background: linear-gradient(135deg, #ff8b3d 0%, #fd4a4d 100%);
 }
 
 .login-container .signup-prompt {
@@ -190,6 +201,13 @@ body {
 
 .login-container .signup-prompt .signup-link {
   padding: 0.6rem;
+}
+
+.login-container .policy-prompt {
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 500;
+  margin: 1.75rem 0 0.31rem;
 }
 
 .login-container a {
