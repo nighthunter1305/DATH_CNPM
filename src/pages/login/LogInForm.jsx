@@ -1,5 +1,6 @@
 import InputField from "../../components/InputField";
 import SocialLogIn from "../../components/SocialLogIn";
+import { Link } from "react-router-dom";
 
 function LogInForm() {
   return (
@@ -34,9 +35,9 @@ function LogInForm() {
         <p className="signup-prompt">
           Chưa có tài khoản?
           {/* eslint-disable-next-line */}
-          <a href="#" className="signup-link">
+          <Link to="/signup" className="signup-link">
             Đăng ký
-          </a>
+          </Link>
         </p>
       </div>
     </>
