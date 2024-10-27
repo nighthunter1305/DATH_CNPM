@@ -1,14 +1,38 @@
 import InputField from "../../components/InputField";
 import SocialLogIn from "../../components/SocialLogIn";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 function SignUpForm() {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setErrorMessage("");
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setErrorMessage("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (confirmPassword !== password)
+      setErrorMessage("Mật khẩu xác nhận không khớp.");
+    else {
+      console.log("Đăng ký thành công");
+    }
+  };
+
   return (
     <>
       <h1>GreenFood</h1>
       <div className="login-container">
         <h2 className="form-title">Đăng ký</h2>
 
-        <form action="#" className="login-form">
+        <form action="#" onSubmit={handleSubmit} className="login-form">
           <InputField
             type="text"
             placeholder="Tên người dùng"
@@ -23,7 +47,17 @@ function SignUpForm() {
             type="password"
             placeholder="Mật khẩu"
             icon="lock"
+            value={password}
+            onChange={handlePasswordChange}
           ></InputField>
+          <InputField
+            type="password"
+            placeholder="Xác nhận lại mật khẩu"
+            icon="lock"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          ></InputField>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit" className="login-button">
             Đăng ký
           </button>
