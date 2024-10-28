@@ -1,0 +1,98 @@
+.header {
+    background-color: #4EEE94;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    text-align: left;
+    padding: 10px;
+}
+
+.logo-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 0 20px;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 8px;
+    font-size: 16px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+}
+
+.user-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-options a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.user-options a:hover {
+    background-color: #45a049;
+}
+
+.notification-icon,
+.message-icon,
+.cart {
+    position: relative;
+    font-size: 24px;
+}
+
+.notification-count,
+.message-count,
+.cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
