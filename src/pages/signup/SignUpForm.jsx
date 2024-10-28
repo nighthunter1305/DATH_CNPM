@@ -1,5 +1,6 @@
-import InputField from "../../components/InputField";
-import SocialLogIn from "../../components/SocialLogIn";
+import InputField from "../../components/InputField/InputField";
+import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
+import styles from "./SignUpForm.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 function SignUpForm() {
@@ -29,10 +30,10 @@ function SignUpForm() {
   return (
     <>
       <h1>GreenFood</h1>
-      <div className="login-container">
-        <h2 className="form-title">Đăng ký</h2>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Đăng ký</h2>
 
-        <form action="#" onSubmit={handleSubmit} className="login-form">
+        <form action="#" onSubmit={handleSubmit}>
           <InputField
             type="text"
             placeholder="Tên người dùng"
@@ -57,30 +58,26 @@ function SignUpForm() {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           ></InputField>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <button type="submit" className="login-button">
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          <button type="submit" className={styles.button}>
             Đăng ký
           </button>
-          <p className="separator">
+          <p className={styles.separator}>
             <span>Hoặc</span>
           </p>
           <SocialLogIn />
         </form>
-        <p className="policy-prompt">
+        <p className={styles.policy}>
           Bằng việc đăng ký, bạn đã đồng ý về
-          {/* eslint-disable-next-line */}{" "}
-          <a href="#" className="policy-link">
-            Điều khoản dịch vụ
-          </a>
-          {/* eslint-disable-next-line */} &{" "}
-          <a href="#" className="policy-link">
-            Chính sách bảo mật
-          </a>
+          {/* eslint-disable-next-line */} {""}
+          <a href="#">Điều khoản dịch vụ</a>
+          {/* eslint-disable-next-line */} & {""}
+          <a href="#">Chính sách bảo mật</a>
         </p>
 
-        <p className="signup-prompt">
+        <p className={styles.login}>
           Bạn đã có tài khoản?
-          <Link to="/login" className="signup-link">
+          <Link to="/login" className={styles.link}>
             Đăng nhập
           </Link>
         </p>
