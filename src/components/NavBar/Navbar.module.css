@@ -1,0 +1,102 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #4eee94;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  text-align: left;
+  padding: 10px;
+}
+
+.logoButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0 20px;
+  gap: 10px;
+}
+
+.searchBar input {
+  padding: 8px;
+  font-size: 16px;
+  width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchBar button {
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.searchBar button:hover {
+  background-color: #45a049;
+}
+
+.userOptions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userOptions a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.userOptions a:hover {
+  background-color: #45a049;
+}
+
+.notificationIcon,
+.messageIcon,
+.cart {
+  position: relative;
+  font-size: 24px;
+}
+
+.notificationCount,
+.messageCount,
+.cartCount {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}

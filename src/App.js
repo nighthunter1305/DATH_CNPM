@@ -1,6 +1,7 @@
 import "./App.css";
 import LogInForm from "./pages/login/LogInForm";
 import SignUpForm from "./pages/signup/SignUpForm";
+import Cart from "./pages/cart/Cart";
 
 import {
   BrowserRouter as Router,
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LogInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/cart" element={<Cart />} />
 
         {/* Route cho dashboard */}
       </Routes>
