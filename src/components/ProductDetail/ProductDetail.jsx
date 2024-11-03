@@ -9,12 +9,39 @@ const ProductDetail = ({
   quantity = 1,
   onQuantityChange,
   onRemove,
+  checked,
+  onCheck,
 }) => {
   const formattedPrice = price.toLocaleString();
   const formattedTotal = (price * quantity).toLocaleString();
 
+  const handleIncrease = () => {
+    onQuantityChange(quantity + 1);
+  };
+
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      onQuantityChange(quantity - 1);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value) && (value === "" || Number(value) >= 1)) {
+      onQuantityChange(value === "" ? 1 : Number(value));
+    }
+  };
+
   return (
     <div className={styles.productDetail}>
+      <div>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onCheck}
+          className={styles.productCheckbox}
+        />
+      </div>
       <div className={styles.productName}>
         <img
           src={image}
@@ -25,13 +52,18 @@ const ProductDetail = ({
       </div>
       <div className={styles.productPrice}>{formattedPrice} VNĐ</div>
       <div className={styles.productQuantity}>
+        <button onClick={handleDecrease} className={styles.subButton}>
+          -
+        </button>
         <input
-          type="number"
+          type="text"
           value={quantity}
-          min="1"
-          onChange={onQuantityChange}
+          onChange={handleInputChange}
           className={styles.quantityInput}
         />
+        <button onClick={handleIncrease} className={styles.plusButton}>
+          +
+        </button>
       </div>
       <div className={styles.productTotal}>{formattedTotal} VNĐ</div>
       <div className={styles.productActions}>

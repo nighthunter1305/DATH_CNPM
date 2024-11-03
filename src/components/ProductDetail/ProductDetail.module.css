@@ -19,14 +19,27 @@
 }
 
 .productDetail div:nth-child(1) {
+  flex: 0;
+}
+
+.productDetail div:nth-child(2) {
   flex: 3;
 }
 
 .productName {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   height: 70px;
+}
+
+.productCheckbox {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  box-shadow: inset 0 2px 0 0 rgba(0, 0, 0, 0.02);
+  height: 16px;
+  width: 16px;
+  margin-left: 16px;
+  margin-right: 8px;
 }
 
 .productImage {
@@ -37,15 +50,39 @@
 }
 
 .productName span {
-  flex-grow: 1;
+  flex-grow: 0;
+  margin-left: 24px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .quantityInput {
-  width: 100px;
-  padding-left: 8px;
+  width: 50px;
+  padding: 5px 10px;
+  text-align: center;
+  border: 1px solid #cccccc;
+  outline: none;
+}
+
+.quantityInput:focus {
+  border-color: #007bff;
+}
+
+.subButton,
+.plusButton {
+  padding: 5px 12px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  background-color: white;
+}
+
+.subButton {
+  border-right: none;
+}
+
+.plusButton {
+  border-left: none;
 }
 
 .productActions {
@@ -78,26 +115,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.quantityButton {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.quantityButton:hover {
-  background-color: #e0e0e0;
-}
-
-.quantityInput {
-  width: 100px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 3px;
 }

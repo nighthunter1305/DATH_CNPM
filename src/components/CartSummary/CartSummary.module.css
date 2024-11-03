@@ -61,3 +61,10 @@ h3 {
 .checkoutButton:hover {
   background-color: #0056b3;
 }
+
+.noProductsMessage {
+  color: #777;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
