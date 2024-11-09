@@ -1,6 +1,7 @@
 // src/components/ProductDetail/ProductDetail.jsx
 import React from "react";
 import styles from "./ProductDetail.module.css";
+import { Icon } from "@iconify/react";
 
 const ProductDetail = ({
   image,
@@ -11,6 +12,10 @@ const ProductDetail = ({
   onRemove,
   checked,
   onCheck,
+  shopName,
+  onShopCheck,
+  isShopChecked,
+  category,
 }) => {
   const formattedPrice = price.toLocaleString();
   const formattedTotal = (price * quantity).toLocaleString();
@@ -33,45 +38,60 @@ const ProductDetail = ({
   };
 
   return (
-    <div className={styles.productDetail}>
-      <div>
+    <>
+      <div className={styles.shopInfo}>
         <input
           type="checkbox"
-          checked={checked}
-          onChange={onCheck}
-          className={styles.productCheckbox}
+          checked={isShopChecked}
+          onChange={() => onShopCheck(shopName)}
+          className={styles.shopCheckbox}
         />
+        <button className={styles.shopCategory}>{category}</button>
+        <span>
+          <p>{shopName}</p>
+        </span>
+        <Icon icon="ph:chat-text-fill" className={styles.iconify} />
       </div>
-      <div className={styles.productName}>
-        <img
-          src={image}
-          alt={`Hình ảnh ${name}`}
-          className={styles.productImage}
-        />
-        <span>{name}</span>
+      <div className={styles.productDetail}>
+        <div>
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onCheck}
+            className={styles.productCheckbox}
+          />
+        </div>
+        <div className={styles.productName}>
+          <img
+            src={image}
+            alt={`Hình ảnh ${name}`}
+            className={styles.productImage}
+          />
+          <span>{name}</span>
+        </div>
+        <div className={styles.productPrice}>{formattedPrice} VNĐ</div>
+        <div className={styles.productQuantity}>
+          <button onClick={handleDecrease} className={styles.subButton}>
+            -
+          </button>
+          <input
+            type="text"
+            value={quantity}
+            onChange={handleInputChange}
+            className={styles.quantityInput}
+          />
+          <button onClick={handleIncrease} className={styles.plusButton}>
+            +
+          </button>
+        </div>
+        <div className={styles.productTotal}>{formattedTotal} VNĐ</div>
+        <div className={styles.productActions}>
+          <button className={styles.actionButton} onClick={onRemove}>
+            Xóa
+          </button>
+        </div>
       </div>
-      <div className={styles.productPrice}>{formattedPrice} VNĐ</div>
-      <div className={styles.productQuantity}>
-        <button onClick={handleDecrease} className={styles.subButton}>
-          -
-        </button>
-        <input
-          type="text"
-          value={quantity}
-          onChange={handleInputChange}
-          className={styles.quantityInput}
-        />
-        <button onClick={handleIncrease} className={styles.plusButton}>
-          +
-        </button>
-      </div>
-      <div className={styles.productTotal}>{formattedTotal} VNĐ</div>
-      <div className={styles.productActions}>
-        <button className={styles.actionButton} onClick={onRemove}>
-          Xóa
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

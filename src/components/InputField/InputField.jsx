@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./InputField.module.css";
+import { Icon } from "@iconify/react";
 
 const InputField = ({ type, placeholder, icon, value, onChange }) => {
   // State to toggle password visibility
@@ -15,14 +16,18 @@ const InputField = ({ type, placeholder, icon, value, onChange }) => {
         onChange={onChange}
         required
       />
-      <i className="material-symbols-rounded">{icon}</i>
+      <Icon icon={icon} className={styles.icon} />
       {type === "password" && (
-        <i
+        <Icon
+          className={styles.eyeIcon}
           onClick={() => setIsPasswordShown((prevState) => !prevState)}
-          className="material-symbols-rounded eye-icon"
-        >
-          {isPasswordShown ? "visibility" : "visibility_off"}
-        </i>
+          icon={
+            isPasswordShown
+              ? "fluent:eye-20-filled"
+              : "fluent:eye-off-20-filled"
+          }
+          style={{ cursor: "pointer" }}
+        />
       )}
     </div>
   );

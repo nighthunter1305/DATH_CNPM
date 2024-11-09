@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import logo from "../../assets/images/trolley.png";
-import bell from "../../assets/images/bell.png";
-import email from "../../assets/images/email.png";
-import grocery from "../../assets/images/grocery-store.png";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -15,25 +13,26 @@ function Navbar() {
         >
           {/* eslint-disable-next-line */}
           <a href="#">
-            <img src={logo} alt="Logo" className={styles.logoImage} />
+            <Icon className={styles.logo} icon="noto:leafy-green" />
           </a>{" "}
-          CleanFoods
+          <p className={styles.shopName}>GreenFood</p>
         </button>
       </div>
 
       <div className={styles.searchBar}>
-        <input type="text" placeholder="Tìm kiếm" />
-        <button>🔎</button>
+        <input type="text" placeholder="Nhập từ khoá..." />
+        <button className={styles.searchBtn}>
+          <Icon icon="fe:search" />
+        </button>
       </div>
 
       <div className={styles.userOptions}>
         <div className={styles.notificationIcon}>
           {/* eslint-disable-next-line */}
           <a href="#">
-            <img
-              src={bell}
-              alt="notification"
-              className={styles.notificationIcon}
+            <Icon
+              icon="mingcute:notification-fill"
+              className={styles.iconify}
             />
             <span className={styles.notificationCount}>3</span>
           </a>
@@ -42,7 +41,7 @@ function Navbar() {
         <div className={styles.messageIcon}>
           {/* eslint-disable-next-line */}
           <a href="#">
-            <img src={email} alt="message" className={styles.messageIcon} />
+            <Icon icon="tabler:mail-filled" className={styles.iconify} />
             <span className={styles.messageCount}>5</span>
           </a>
         </div>
@@ -50,14 +49,14 @@ function Navbar() {
         <div className={styles.cart}>
           {/* eslint-disable-next-line */}
           <a href="#">
-            <img src={grocery} alt="cart" className={styles.cartIcon} />
+            <Icon icon="mdi:cart" className={styles.iconify} />
+            <span className={styles.cartCount}>10</span>
           </a>
-          <span className={styles.cartCount}>10</span>
         </div>
         {/* eslint-disable-next-line */}
-        <a href="#">Đăng nhập</a>
+        <Link to="/login">Đăng nhập</Link>
         {/* eslint-disable-next-line */}
-        <a href="#">Đăng ký</a>
+        <Link to="/signup">Đăng ký</Link>
       </div>
     </div>
   );

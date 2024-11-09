@@ -19,6 +19,8 @@ const initialCart = [
     price: 100000,
     quantity: 1,
     checked: false,
+    shopName: "Dalat FreshFruit Store",
+    category: "Yêu thích",
   },
   {
     id: 2,
@@ -27,6 +29,8 @@ const initialCart = [
     price: 121000,
     quantity: 3,
     checked: false,
+    shopName: "Bach Hoa Xanh Market",
+    category: "Mall",
   },
   {
     id: 3,
@@ -35,6 +39,8 @@ const initialCart = [
     price: 56000,
     quantity: 4,
     checked: false,
+    shopName: "Coop Mart",
+    category: "Hot sale",
   },
 ];
 
@@ -100,6 +106,16 @@ function Cart() {
     );
   };
 
+  const handleShopCheck = (shopName) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.shopName === shopName
+          ? { ...product, checked: !product.checked }
+          : product
+      )
+    );
+  };
+
   const handleCheckAll = (event) => {
     const isChecked = event.target.checked;
     setProducts((prevProducts) =>
@@ -156,6 +172,12 @@ function Cart() {
               handleQuantityChange(product.id, newQuantity)
             }
             onRemove={() => handleRemove(product.id)}
+            shopName={product.shopName}
+            category={product.category}
+            onShopCheck={handleShopCheck}
+            isShopChecked={products.some(
+              (item) => item.shopName === product.shopName && item.checked
+            )}
           />
         ))}
       </section>

@@ -8,36 +8,34 @@ function LogInForm() {
     <>
       <h1>GreenFood</h1>
       <div className={styles.container}>
-        <h2 className={styles.title}>Đăng nhập</h2>
+        <h2 className={styles.title}>Welcome !</h2>
+        <p className={styles.subTitle}>Sign in to your account</p>
 
         <form action="#">
           <InputField
             type="email"
-            placeholder="Email/Số điện thoại/Tên đăng nhập"
-            icon="mail"
+            placeholder="Username, email or phone number"
           ></InputField>
-          <InputField
-            type="password"
-            placeholder="Mật khẩu"
-            icon="lock"
-          ></InputField>
+          <InputField type="password" placeholder="Password"></InputField>
           {/* eslint-disable-next-line */}
           <a href="#" className={styles.forgot}>
-            Quên mật khẩu
+            Forgot password?
           </a>
+
           <button type="submit" className={styles.button}>
-            Đăng nhập
+            SIGN IN
           </button>
+
           <p className={styles.separator}>
-            <span>Hoặc</span>
+            <span>OR Continue with</span>
           </p>
           <SocialLogIn />
         </form>
         <p className={styles.signup}>
-          Chưa có tài khoản?
+          Don't have an account?
           {/* eslint-disable-next-line */}
           <Link to="/signup" className={styles.link}>
-            Đăng ký
+            Sign up
           </Link>
         </p>
       </div>

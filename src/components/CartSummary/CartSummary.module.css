@@ -1,6 +1,6 @@
 .cartSummary {
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 400px;
+  margin-right: 400px;
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
@@ -40,7 +40,7 @@ h3 {
   justify-content: space-between;
   font-size: 18px;
   font-weight: bold;
-  color: #007bff;
+  color: #15b392;
   margin-top: 10px;
 }
 
@@ -48,7 +48,7 @@ h3 {
   width: 20%;
   float: right;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #15b392;
   color: #fff;
   font-size: 18px;
   border: none;
@@ -59,7 +59,7 @@ h3 {
 }
 
 .checkoutButton:hover {
-  background-color: #0056b3;
+  background-color: #12977a;
 }
 
 .noProductsMessage {

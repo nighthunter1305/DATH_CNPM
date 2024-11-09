@@ -33,7 +33,9 @@ const CartSummary = ({ products, totalPrice, shippingFee, onCheckout }) => {
           ))}
         </div>
       ) : (
-        <div className={styles.noProductsMessage}>Bạn chưa chọn sản phẩm.</div>
+        <div className={styles.noProductsMessage}>
+          Bạn hiện chưa chọn sản phẩm nào.
+        </div>
       )}
       <div className={styles.summaryRow}>
         <span>Tạm tính:</span>

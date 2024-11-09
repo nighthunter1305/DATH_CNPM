@@ -1,22 +1,21 @@
 .header {
   position: fixed;
   width: 100%;
+  min-height: 85px;
   top: 0;
   left: 0;
-  background-color: #4eee94;
+  background-color: rgba(21, 179, 146, 0.9);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
 }
 
-.logo {
-  text-align: left;
-  padding: 10px;
+.shopName {
+  font-family: "Playwrite GB S", cursive;
 }
-
 .logoButton {
+  color: #dedede;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -26,41 +25,40 @@
   align-items: center;
 }
 
-.logoImage {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+.logo {
+  font-size: 2.4rem;
+  margin-left: 1.5rem;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  margin: 0 20px;
-  gap: 10px;
 }
 
 .searchBar input {
-  padding: 8px;
-  font-size: 16px;
-  width: 500px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+  padding: 12px 12px;
+  font-size: 14px;
+  width: 650px;
+  font-style: italic;
+  border: none;
 }
 
-.searchBar button {
-  padding: 8px 12px;
-  font-size: 16px;
-  background-color: #4caf50;
+.searchBar input:focus {
+  outline: none;
+}
+
+.searchBtn {
+  padding: 12px 16px;
+  font-size: 14px;
+  background-color: #54c392;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 0 4px 4px 0;
+  border-radius: 2px;
 }
 
 .searchBar button:hover {
-  background-color: #45a049;
+  background-color: #50b98c;
 }
 
 .userOptions {
@@ -77,8 +75,8 @@
   border-radius: 5px;
 }
 
-.userOptions a:hover {
-  background-color: #45a049;
+.iconify {
+  font-size: 1.3rem;
 }
 
 .notificationIcon,
@@ -88,10 +86,19 @@
   font-size: 24px;
 }
 
+.notificationIcon:hover,
+.messageIcon:hover,
+.cart:hover {
+  position: relative;
+  font-size: 24px;
+  background-color: #54c392;
+  border-radius: 5px;
+}
+
 .notificationCount,
 .messageCount,
 .cartCount {
-  background-color: red;
+  background-color: #54c392;
   color: white;
   border-radius: 50%;
   padding: 2px 6px;

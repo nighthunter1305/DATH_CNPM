@@ -1,15 +1,57 @@
+.shopInfo {
+  display: flex;
+  align-items: center;
+  margin-left: 400px;
+  margin-right: 400px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  padding: 15px 10px;
+  margin-bottom: 2px;
+}
+
+.shopCheckbox {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  box-shadow: inset 0 2px 0 0 rgba(0, 0, 0, 0.02);
+  height: 16px;
+  width: 16px;
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+.shopInfo span {
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.shopCategory {
+  padding: auto;
+  border: none;
+  background-color: #15b392;
+  color: #fff;
+  height: 16px;
+  width: 64px;
+  margin-left: 12px;
+  margin-right: 8px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 450;
+}
+
 .productDetail {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-left: 300px;
-  margin-right: 300px;
+  font-weight: 500;
+  margin-left: 400px;
+  margin-right: 400px;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  margin-bottom: 4px;
+  margin-bottom: 16px;
 }
 
 .productDetail div {
@@ -30,6 +72,7 @@
   display: flex;
   align-items: center;
   height: 70px;
+  color: #303030;
 }
 
 .productCheckbox {
@@ -45,7 +88,7 @@
 .productImage {
   width: 50px;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 6px;
   object-fit: cover;
 }
 
@@ -66,7 +109,7 @@
 }
 
 .quantityInput:focus {
-  border-color: #007bff;
+  border-color: #15b392;
 }
 
 .subButton,
@@ -92,7 +135,7 @@
 
 .actionButton {
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #15b392;
   color: white;
   border: none;
   border-radius: 4px;
@@ -100,7 +143,7 @@
 }
 
 .actionButton:hover {
-  background-color: #0056b3;
+  background-color: #12977a;
 }
 
 .productPrice,
@@ -115,4 +158,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.iconify {
+  color: #15b392;
+  font-size: 1.4rem;
+  margin-left: 8px;
+  cursor: pointer;
 }

@@ -29,11 +29,12 @@
 
 .nav a {
   text-decoration: none;
-  color: #007bff;
+  font-weight: 500;
+  color: #15b392;
 }
 
 .nav a:hover {
-  color: #0056b3;
+  text-decoration: underline;
 }
 .product {
   display: flex;
@@ -43,12 +44,12 @@
 }
 
 .productInfo {
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 400px;
+  margin-right: 400px;
   display: flex;
   background-color: #fff;
   border-radius: 3px;
-  font-weight: 400;
+  font-weight: 500;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 0;
   margin-bottom: 10px;
@@ -67,7 +68,7 @@
 
 .productInfo div:nth-child(2) {
   flex: 3;
-  color: #000000;
+  color: #303030;
   text-align: left;
   margin-left: 20px;
   font-weight: 500;
@@ -84,7 +85,7 @@
 
 .button {
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #15b392;
   color: white;
   border: none;
   border-radius: 4px;
@@ -92,18 +93,18 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #12977a;
 }
 
 .coupon {
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 400px;
+  margin-right: 400px;
   display: flex;
   background-color: #fff;
   border-radius: 3px;
   font-weight: 500;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  padding: 20px;
+  padding: 10px 20px;
   margin-bottom: 2px;
   align-items: center;
   justify-content: flex-end; /* Đẩy nội dung sang phải */
@@ -128,14 +129,14 @@
 }
 
 .icon {
-  color: #007bff;
+  color: #15b392;
 }
 
 .voucherButton {
   background: none;
   border: none;
   cursor: pointer;
-  color: #05a;
+  color: #0f866d;
   font-size: 0.9rem;
 }
 
@@ -163,7 +164,7 @@
 .applyButton {
   padding: 10px;
   white-space: nowrap;
-  background-color: #007bff;
+  background-color: #15b392;
   color: white;
   border: none;
   border-radius: 2px;
@@ -171,7 +172,7 @@
 }
 
 .applyButton:hover {
-  background-color: #0056b3;
+  background-color: #12977a;
 }
 
 .voucherList {

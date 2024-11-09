@@ -21,9 +21,9 @@ function SignUpForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (confirmPassword !== password)
-      setErrorMessage("Mật khẩu xác nhận không khớp.");
+      setErrorMessage("The confirm password does not match!");
     else {
-      console.log("Đăng ký thành công");
+      console.log("Sign up successfully.");
     }
   };
 
@@ -31,54 +31,40 @@ function SignUpForm() {
     <>
       <h1>GreenFood</h1>
       <div className={styles.container}>
-        <h2 className={styles.title}>Đăng ký</h2>
+        <h2 className={styles.title}>Welcome !</h2>
+        <p className={styles.subTitle}>Sign up to create new account</p>
 
         <form action="#" onSubmit={handleSubmit}>
-          <InputField
-            type="text"
-            placeholder="Tên người dùng"
-            icon="person"
-          ></InputField>
+          <InputField type="text" placeholder="Username"></InputField>
           <InputField
             type="email"
-            placeholder="Email/Số điện thoại"
-            icon="mail"
+            placeholder="Emai or phone number"
           ></InputField>
           <InputField
             type="password"
-            placeholder="Mật khẩu"
-            icon="lock"
+            placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
           ></InputField>
           <InputField
             type="password"
-            placeholder="Xác nhận lại mật khẩu"
-            icon="lock"
+            placeholder="Confirm password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           ></InputField>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
           <button type="submit" className={styles.button}>
-            Đăng ký
+            SIGN UP
           </button>
           <p className={styles.separator}>
-            <span>Hoặc</span>
+            <span>OR Continue with</span>
           </p>
           <SocialLogIn />
         </form>
-        <p className={styles.policy}>
-          Bằng việc đăng ký, bạn đã đồng ý về
-          {/* eslint-disable-next-line */} {""}
-          <a href="#">Điều khoản dịch vụ</a>
-          {/* eslint-disable-next-line */} & {""}
-          <a href="#">Chính sách bảo mật</a>
-        </p>
-
         <p className={styles.login}>
-          Bạn đã có tài khoản?
+          Already have an account?
           <Link to="/login" className={styles.link}>
-            Đăng nhập
+            Sign in
           </Link>
         </p>
       </div>
