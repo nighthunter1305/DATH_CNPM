@@ -12,7 +12,7 @@
 }
 
 .modalContent {
-  background-color: white;
+  background-color: #FBFBFB;
   width: 90%;
   max-width: 600px;
   border-radius: 0.5rem;
@@ -79,6 +79,6 @@
 
 .okButton {
   background-color: #15b392;
-  color: white;
+  color: #FBFBFB;
   margin-left: 8px;
 }

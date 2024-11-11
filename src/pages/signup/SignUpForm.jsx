@@ -1,8 +1,10 @@
 import InputField from "../../components/InputField/InputField";
 import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
+import loginPic from "../../assets/images/login_pic.png";
 import styles from "./SignUpForm.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
 function SignUpForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -20,55 +22,62 @@ function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (confirmPassword !== password)
-      setErrorMessage("The confirm password does not match!");
-    else {
-      console.log("Sign up successfully.");
+
+    if (confirmPassword !== password) {
+      setErrorMessage("Mật khẩu xác nhận không khớp!");
+      setPassword("");
+      setConfirmPassword("");
+    } else {
+      console.log("Đăng ký thành công.");
     }
   };
 
   return (
-    <>
-      <h1>GreenFood</h1>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Welcome !</h2>
-        <p className={styles.subTitle}>Sign up to create new account</p>
+        <h1>GreenFood</h1>
+        <h2 className={styles.title}>Đăng ký</h2>
+        <p className={styles.subTitle}>
+          Tạo tài khoản và tham gia mua sắm ngay
+        </p>
 
         <form action="#" onSubmit={handleSubmit}>
-          <InputField type="text" placeholder="Username"></InputField>
           <InputField
             type="email"
-            placeholder="Emai or phone number"
+            placeholder="Email hoặc số điện thoại"
           ></InputField>
           <InputField
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             value={password}
             onChange={handlePasswordChange}
           ></InputField>
           <InputField
             type="password"
-            placeholder="Confirm password"
+            placeholder="Xác nhận lại mật khẩu"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           ></InputField>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
           <button type="submit" className={styles.button}>
-            SIGN UP
+            ĐĂNG KÝ
           </button>
           <p className={styles.separator}>
-            <span>OR Continue with</span>
+            <span>HOẶC</span>
           </p>
           <SocialLogIn />
         </form>
         <p className={styles.login}>
-          Already have an account?
+          Đã có tài khoản?
           <Link to="/login" className={styles.link}>
-            Sign in
+            Đăng nhập
           </Link>
         </p>
       </div>
-    </>
+      <div className={styles.imageContainer}>
+        <img src={loginPic} alt="Login pic" className={styles.image} />
+      </div>
+    </div>
   );
 }
 

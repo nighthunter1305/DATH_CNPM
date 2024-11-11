@@ -1,9 +1,9 @@
 .shopInfo {
   display: flex;
   align-items: center;
-  margin-left: 400px;
-  margin-right: 400px;
-  background-color: #fff;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: #FBFBFB;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 15px 10px;
@@ -30,7 +30,7 @@
   padding: auto;
   border: none;
   background-color: #15b392;
-  color: #fff;
+  color: #FBFBFB;
   height: 16px;
   width: 64px;
   margin-left: 12px;
@@ -45,9 +45,9 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  margin-left: 400px;
-  margin-right: 400px;
-  background-color: #fff;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: #FBFBFB;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 0;
@@ -117,7 +117,7 @@
   padding: 5px 12px;
   border: 1px solid #cccccc;
   cursor: pointer;
-  background-color: white;
+  background-color: #FBFBFB;
 }
 
 .subButton {
@@ -136,7 +136,7 @@
 .actionButton {
   padding: 8px 12px;
   background-color: #15b392;
-  color: white;
+  color: #FBFBFB;
   border: none;
   border-radius: 4px;
   cursor: pointer;
