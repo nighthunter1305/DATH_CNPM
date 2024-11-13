@@ -58,7 +58,6 @@ END;
 //
 DELIMITER ;
 
-
 -- Tạm thời tắt kiểm tra khoá ngoại
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -69,52 +68,8 @@ CREATE TABLE Branch (
     district VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     region VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    employeeID CHAR(12) NOT NULL -- FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)  -- Khoá ngoại sẽ thêm sau
+    email VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE Employee (
-    employeeID CHAR(36) PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    birthDate DATE NOT NULL,
-    employeeNo INT UNSIGNED NOT NULL,
-    street VARCHAR(255) NOT NULL,
-    district VARCHAR(255) NOT NULL,
-    city VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    branchName VARCHAR(255) NOT NULL,
-    FOREIGN KEY (branchName) REFERENCES Branch(branchName)
-);
-
-DELIMITER //
-CREATE TRIGGER check_employee_age
-BEFORE INSERT ON Employee
-FOR EACH ROW
-BEGIN
-    IF DATEDIFF(CURDATE(), NEW.birthDate) / 365.25 < 18 THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Nhân viên phải từ 18 tuổi trở lên.';
-    END IF;
-END;
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE TRIGGER check_employee_age_update
-BEFORE UPDATE ON Employee
-FOR EACH ROW
-BEGIN
-    IF DATEDIFF(CURDATE(), NEW.birthDate) / 365.25 < 18 THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Nhân viên phải từ 18 tuổi trở lên.';
-    END IF;
-END;
-//
-DELIMITER ;
-
-ALTER TABLE Branch
-ADD CONSTRAINT FK_Branch_Employee FOREIGN KEY (employeeID) REFERENCES Employee(employeeID);
 
 CREATE TABLE BranchPhone(
     branchName VARCHAR(255) NOT NULL,
@@ -130,53 +85,10 @@ CREATE TABLE BranchFax(
     FOREIGN KEY (branchName) REFERENCES Branch(branchName)
 );
 
-CREATE TABLE EmployeePhone(
-    employeeID CHAR(36) NOT NULL,
-    phoneNumber CHAR(10) NOT NULL,
-    PRIMARY KEY (employeeID, phoneNumber),
-    FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
-);
 SET FOREIGN_KEY_CHECKS = 1;
 
--- Khởi tạo một vài giá trị ban đầu để tránh lỗi tham chiếu khoá ngoại
+-- Thêm dữ liệu mẫu cho Branch
 SET FOREIGN_KEY_CHECKS = 0;
-
-INSERT INTO Employee (
-        employeeID,
-        firstName,
-        lastName,
-        birthDate,
-        employeeNo,
-        street,
-        district,
-        city,
-        email,
-        branchName
-    )
-VALUES (
-        'E001',
-        'John',
-        'Doe',
-        '1985-06-15',
-        12345,
-        '123 Elm St',
-        'District 1',
-        'City A',
-        'johndoe@example.com',
-        'Branch A'
-    ),
-    (
-        'E002',
-        'Jane',
-        'Smith',
-        '1990-09-10',
-        12346,
-        '456 Oak St',
-        'District 2',
-        'City B',
-        'janesmith@example.com',
-        'Branch B'
-    );
 
 INSERT INTO Branch (
         branchName,
@@ -185,8 +97,7 @@ INSERT INTO Branch (
         district,
         city,
         region,
-        email,
-        employeeID
+        email
     )
 VALUES (
         'Branch A',
@@ -195,8 +106,7 @@ VALUES (
         'District 1',
         'City A',
         'Region 1',
-        'branchA@example.com',
-        'E001'
+        'branchA@example.com'
     ),
     (
         'Branch B',
@@ -205,8 +115,7 @@ VALUES (
         'District 2',
         'City B',
         'Region 2',
-        'branchB@example.com',
-        'E002'
+        'branchB@example.com'
     );
 
 INSERT INTO BranchPhone (branchName, phoneNumber)
@@ -217,8 +126,18 @@ INSERT INTO BranchFax (branchName, faxNumber)
 VALUES ('Branch A', '1112223333'),
     ('Branch B', '4445556666');
 
-INSERT INTO EmployeePhone (employeeID, phoneNumber)
-VALUES ('E001', '1234567890'),
-    ('E002', '0987654321');
-
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- USER
+CREATE TABLE user (
+	id 			int not null auto_increment,
+    email 		varchar(50) not null UNIQUE CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
+    password 	varchar(128) not null,
+    role		varchar(50) not null default 'user',
+    primary 	key (id)
+);
+
+-- Tài khoản mẫu cho bảng user
+INSERT INTO user (email, password, role) VALUES
+('admin1@hcmut.edu.vn', '$2a$10$MVH7lqOh6kCkHimpuIEyg.0ABo/QcHWO0eNQcVtamRNk7OpWcC22y', 'admin'), 
+('user1@hcmut.edu.vn', '$2a$10$MVH7lqOh6kCkHimpuIEyg.0ABo/QcHWO0eNQcVtamRNk7OpWcC22y', 'user');
