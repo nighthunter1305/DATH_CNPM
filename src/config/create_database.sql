@@ -1,143 +1,135 @@
-DROP DATABASE IF EXISTS user_db;
-CREATE DATABASE user_db;
-USE user_db;
+DROP TABLE IF EXISTS `cart_items`, `carts`, `delivery`, `deliveried_by`, `shippers`, `coupons`, `reviews`, `orders`, `bills`, `buyers`, `sellers`, `products`, `categories`, `users`;
 
--- CUSTOMER
-CREATE TABLE Customer (
-    customerCode CHAR(36) PRIMARY KEY DEFAULT (UUID()), 
-    firstName VARCHAR(50) NOT NULL CHECK (TRIM(firstName) <> ''), 
-    lastName VARCHAR(50) NOT NULL CHECK (TRIM(lastName) <> ''), 
-    homeAddress VARCHAR(255) NOT NULL CHECK (TRIM(homeAddress) <> ''),
-    officeAddress VARCHAR(255), 
-    phoneNumber VARCHAR(15) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'), 
-    dob DATE NOT NULL,
-    guardianConfirmation BOOLEAN
+-- Create table for users (includes both buyers and sellers)
+CREATE TABLE `users` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `address_street` VARCHAR(255),
+  `address_town` VARCHAR(255),
+  `address_district` VARCHAR(255),
+  `address_city` VARCHAR(255),
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `search_history` TEXT,
+  `phone_number` VARCHAR(20),
+  `bank_name` VARCHAR(255),
+  `account_number` VARCHAR(50)
 );
 
-DELIMITER //
-CREATE TRIGGER CHK_dob
-BEFORE INSERT ON Customer
-FOR EACH ROW
-BEGIN
-    IF NEW.dob > CURRENT_DATE() THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Ngày sinh không thể lớn hơn ngày hiện tại.';
-    END IF;
 
-    IF YEAR(CURRENT_DATE()) - YEAR(NEW.dob) < 16 THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Khách hàng phải từ đủ 16 tuổi trở lên.';
-    END IF;
-END;
-//
-DELIMITER ;
-
-CREATE TABLE CustomerPhoneNumber (
-    phoneNumber VARCHAR(15) NOT NULL CHECK (LENGTH(phoneNumber) > 0 AND LENGTH(phoneNumber) <= 11 AND (phoneNumber REGEXP '^[0-9]+$')),
-    customerCode CHAR(36),
-    PRIMARY KEY (phoneNumber, customerCode),
-    FOREIGN KEY (customerCode) REFERENCES Customer(customerCode) ON DELETE CASCADE
+CREATE TABLE `sellers` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `user_id` VARCHAR(36) NOT NULL,
+  `tax_code` VARCHAR(50) NOT NULL,
+  `description` TEXT,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
 );
 
--- ACCOUNT
-DELIMITER //
-CREATE TRIGGER CHK_account_open_date
-BEFORE INSERT ON Account
-FOR EACH ROW
-BEGIN
-    IF NEW.openDate IS NULL THEN
-        SET NEW.openDate = CURRENT_DATE;
-    END IF;
 
-    IF NEW.openDate > CURRENT_DATE() THEN
-        SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Ngày tạo tài khoản không thể lớn hơn ngày hiện tại.';
-    END IF;
-END;
-//
-DELIMITER ;
-
--- Tạm thời tắt kiểm tra khoá ngoại
-SET FOREIGN_KEY_CHECKS = 0;
-
-CREATE TABLE Branch (
-    branchName VARCHAR(255) PRIMARY KEY,
-    branchNo INT UNSIGNED NOT NULL,
-    street VARCHAR(255) NOT NULL,
-    district VARCHAR(255) NOT NULL,
-    city VARCHAR(255) NOT NULL,
-    region VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
+CREATE TABLE `buyers` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `user_id` VARCHAR(36) NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
 );
 
-CREATE TABLE BranchPhone(
-    branchName VARCHAR(255) NOT NULL,
-    phoneNumber CHAR(10) NOT NULL,
-    PRIMARY KEY (branchName, phoneNumber),
-    FOREIGN KEY (branchName) REFERENCES Branch(branchName)
+
+CREATE TABLE `categories` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT
 );
 
-CREATE TABLE BranchFax(
-    branchName VARCHAR(255) NOT NULL,
-    faxNumber CHAR(10) NOT NULL,
-    PRIMARY KEY (branchName, faxNumber),
-    FOREIGN KEY (branchName) REFERENCES Branch(branchName)
+
+CREATE TABLE `products` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `quantity` INT NOT NULL,
+  `description` LONGTEXT,
+  `price` DECIMAL(10, 2) NOT NULL,
+  `seller_id` VARCHAR(36),
+  `category_id` VARCHAR(36),
+  FOREIGN KEY (`seller_id`) REFERENCES `sellers`(`id`),
+  FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`)
 );
 
-SET FOREIGN_KEY_CHECKS = 1;
 
--- Thêm dữ liệu mẫu cho Branch
-SET FOREIGN_KEY_CHECKS = 0;
-
-INSERT INTO Branch (
-        branchName,
-        branchNo,
-        street,
-        district,
-        city,
-        region,
-        email
-    )
-VALUES (
-        'Branch A',
-        1,
-        '123 Main St',
-        'District 1',
-        'City A',
-        'Region 1',
-        'branchA@example.com'
-    ),
-    (
-        'Branch B',
-        2,
-        '456 Market St',
-        'District 2',
-        'City B',
-        'Region 2',
-        'branchB@example.com'
-    );
-
-INSERT INTO BranchPhone (branchName, phoneNumber)
-VALUES ('Branch A', '1234567890'),
-    ('Branch B', '0987654321');
-
-INSERT INTO BranchFax (branchName, faxNumber)
-VALUES ('Branch A', '1112223333'),
-    ('Branch B', '4445556666');
-
-SET FOREIGN_KEY_CHECKS = 1;
-
--- USER
-CREATE TABLE user (
-	id 			int not null auto_increment,
-    email 		varchar(50) not null UNIQUE CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    password 	varchar(128) not null,
-    role		varchar(50) not null default 'user',
-    primary 	key (id)
+CREATE TABLE `orders` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `buyer_id` VARCHAR(36) NOT NULL,
+  `date` DATE NOT NULL,
+  `status` ENUM('Pending', 'Accepted', 'Delivered') DEFAULT 'Pending',
+  `number_of_products` INT NOT NULL,
+  `total_price` DECIMAL(10, 2) NOT NULL,
+  FOREIGN KEY (`buyer_id`) REFERENCES `buyers`(`id`)
 );
 
--- Tài khoản mẫu cho bảng user
-INSERT INTO user (email, password, role) VALUES
-('admin1@hcmut.edu.vn', '$2a$10$MVH7lqOh6kCkHimpuIEyg.0ABo/QcHWO0eNQcVtamRNk7OpWcC22y', 'admin'), 
-('user1@hcmut.edu.vn', '$2a$10$MVH7lqOh6kCkHimpuIEyg.0ABo/QcHWO0eNQcVtamRNk7OpWcC22y', 'user');
+
+CREATE TABLE `bills` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `order_id` VARCHAR(36) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`)
+);
+
+
+CREATE TABLE `reviews` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `order_id` VARCHAR(36) NOT NULL,
+  `rate` INT CHECK (`rate` BETWEEN 1 AND 5),
+  `comment` TEXT,
+  `image` VARCHAR(255),
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`)
+);
+
+
+CREATE TABLE `coupons` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT,
+  `discount_percent` DECIMAL(5, 2) CHECK (`discount_percent` BETWEEN 0 AND 100),
+  `due_date` DATE NOT NULL,
+  `quantity` INT NOT NULL
+);
+
+
+CREATE TABLE `shippers` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `phone_number` VARCHAR(20)
+);
+
+
+CREATE TABLE `deliveried_by` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `order_id` VARCHAR(36) NOT NULL,
+  `expected_date` DATE,
+  `arrival_date` DATE,
+  `departure_date` DATE,
+  `shipper_id` VARCHAR(36) NOT NULL,
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`),
+  FOREIGN KEY (`shipper_id`) REFERENCES `shippers`(`id`)
+);
+
+
+CREATE TABLE `delivery` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `deliveried_by_id` VARCHAR(36) NOT NULL,
+  FOREIGN KEY (`deliveried_by_id`) REFERENCES `deliveried_by`(`id`)
+);
+
+
+CREATE TABLE `carts` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `buyer_id` VARCHAR(36) NOT NULL,
+  FOREIGN KEY (`buyer_id`) REFERENCES `buyers`(`id`)
+);
+
+
+CREATE TABLE `cart_items` (
+  `cart_id` VARCHAR(36),
+  `product_id` VARCHAR(36),
+  `quantity` INT NOT NULL,
+  PRIMARY KEY (`cart_id`, `product_id`),
+  FOREIGN KEY (`cart_id`) REFERENCES `carts`(`id`),
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`id`)
+);
