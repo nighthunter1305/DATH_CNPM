@@ -5,15 +5,16 @@ import fish from "../../assets/fish.png";
 import nuts from "../../assets/nuts.png";
 import fishsauce from "../../assets/fishsauce.png";
 import chung from "../../assets/chung-cake.png";
+import different from "../../assets/different.png";
 const Menu = () => {
   return (
-    <div class="dropdown-container">
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={broccoli} alt="Danh mục" class="button-icon" />
+    <div className="dropdown-container">
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={broccoli} alt="Danh mục" className="button-icon" />
           RAU CỦ
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Rau</a>
           <a href="#">Củ</a>
           <a href="#">Quả</a>
@@ -21,12 +22,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={beef} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={beef} alt="Danh mục" className="button-icon" />
           THỊT
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Thịt</a>
           <a href="#">Cá</a>
           <a href="#">Hải Sản</a>
@@ -36,12 +37,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={fish} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={fish} alt="Danh mục" className="button-icon" />
           ĐỒ KHÔ
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Cá khô</a>
           <a href="#">Khô gà</a>
           <a href="#">Khô mực</a>
@@ -51,12 +52,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={nuts} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={nuts} alt="Danh mục" className="button-icon" />
           HOA QUẢ SẤY
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Hạt điều</a>
           <a href="#">Macca</a>
           <a href="#">Hạnh nhân</a>
@@ -66,12 +67,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={fishsauce} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={fishsauce} alt="Danh mục" className="button-icon" />
           MẮM
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Mắm cá</a>
           <a href="#">Mắm nêm</a>
           <a href="#">Mắm tôm</a>
@@ -79,13 +80,12 @@ const Menu = () => {
           <a href="#">Khác</a>
         </div>
       </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={chung} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={chung} alt="Danh mục" className="button-icon" />
           BÁNH
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Bánh chưng</a>
           <a href="#">Bánh giò</a>
           <a href="#">Bánh tét</a>
@@ -93,12 +93,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">
-          <img src={fish} alt="Danh mục" class="button-icon" />
+      <div className="dropdown">
+        <button className="dropbtn">
+          <img src={different} alt="Danh mục" className="button-icon" />
           KHÁC
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <a href="#">Mật ong</a>
           <a href="#">Trà</a>
           <a href="#">Gạo sạch</a>

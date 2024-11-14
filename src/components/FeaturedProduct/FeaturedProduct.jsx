@@ -1,56 +1,63 @@
-// FeaturedProducts.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './FeatureProduct.scss';
 
-const FeaturedProducts = () => {
-  // Sample product data
-  const products = [
-    { name: "Sản phẩm 1", price: "500,000" },
-    { name: "Sản phẩm 2", price: "650,000" },
-    { name: "Sản phẩm 3", price: "750,000" },
-    { name: "Sản phẩm 4", price: "550,000" },
-    { name: "Sản phẩm 5", price: "620,000" },
-    { name: "Sản phẩm 6", price: "780,000" },
-    { name: "Sản phẩm 7", price: "400,000" },
-    { name: "Sản phẩm 8", price: "520,000" },
-    { name: "Sản phẩm 9", price: "640,000" },
-    { name: "Sản phẩm 10", price: "580,000" },
-    { name: "Sản phẩm 11", price: "720,000" },
-    { name: "Sản phẩm 12", price: "900,000" },
-    // Add more products as needed
-  ];
+const FeaturedProducts = ({ products }) => {
+  const navigate = useNavigate();
+  const productsPerPage = 30;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
-  // Constants for pagination
-  const productsPerPage = 3;
-  const rowsPerPage = 2;
-
-  // State to manage the current index of loaded products
-  const [currentIndex, setCurrentIndex] = useState(
-    productsPerPage * rowsPerPage
-  );
-
-  // Function to load more products
-  const loadMoreProducts = () => {
-    setCurrentIndex((prevIndex) =>
-      Math.min(prevIndex + productsPerPage * rowsPerPage, products.length)
-    );
+  const handleProductClick = (product) => {
+    navigate(`/product/${product.id}`, { state: { product } });
   };
+
+  const changePage = (page) => {
+    if (page >= 1 && page <= totalPages) setCurrentPage(page);
+  };
+
+  const currentProducts = products.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
   return (
     <section className="featured-products">
       <h2>Tất Cả Sản Phẩm</h2>
       <div className="product-grid" id="productGrid">
-        {products.slice(0, currentIndex).map((product, index) => (
-          <div key={index} className="product">
-            <h3>{product.name}</h3>
-            <p>{product.price} VNĐ</p>
-          </div>
+        {currentProducts.map((product) => (
+            <button
+                key={product.id}
+                className="product"
+                onClick={() => handleProductClick(product)}
+            >
+
+              <img src={product.image} alt={product.name}/>
+              <h3>{product.name}</h3>
+              <div className="price-sold">
+                <p1>{product.price}₫</p1>
+                <p>Đã bán:</p>
+              </div>
+            </button>
         ))}
       </div>
-      {currentIndex < products.length && (
-        <button id="loadMore" onClick={loadMoreProducts}>
-          Tải Thêm Sản Phẩm
+      <div className="pagination">
+        <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
+          Trang trước
         </button>
-      )}
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            className={currentPage === index + 1 ? "active" : ""}
+            onClick={() => changePage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === totalPages}>
+          Trang sau
+        </button>
+      </div>
     </section>
   );
 };

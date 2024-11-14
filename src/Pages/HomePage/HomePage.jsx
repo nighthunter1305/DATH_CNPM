@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "../../components/Menu/Menu";
-import Slider from "../../components/Slider/Slider";
 import Location from "../../components/Location/Location";
 import BestSelling from "../../components/BestSeller/BestSeller";
 import FeaturedProducts from "../../components/FeaturedProduct/FeaturedProduct";
-import Footer from "../../components/Footer/Footer";
+import { useProducts } from '../../ProductContext';
 
 const HomePage = () => {
+  // Trạng thái để lưu thông tin sản phẩm được chọn
+  const [ setSelectedProduct] = useState(null);
+
+  // Lấy dữ liệu sản phẩm từ context
+  const { products } = useProducts();
+
+  // Hàm để chọn sản phẩm (nếu cần)
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  };
   return (
     <div>
       <Menu />
       <Location />
-      <BestSelling />
-      <FeaturedProducts />
-      <Footer />
+      <BestSelling products={products} onProductClick={handleProductClick}/>
+      <FeaturedProducts products={products} onProductClick={handleProductClick} />
+
+
     </div>
   );
 };

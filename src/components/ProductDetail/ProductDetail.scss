@@ -1,0 +1,232 @@
+.product-detail-container {
+  display: flex;
+  flex-direction: column; /* Thay đổi thành cột để sản phẩm và thông tin nằm trên cùng một trục */
+  gap: 24px; /* Khoảng cách giữa các phần tử */
+  padding: 24px;
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-image-section {
+  display: flex;
+  flex-direction: column; /* Căn giữa hình ảnh chính và các hình thu nhỏ */
+  align-items: center; /* Căn giữa hình ảnh và nút điều hướng */
+  max-width: 1000px; /* Đặt chiều rộng tối đa cho phần hình ảnh */
+  margin: 0 auto; /* Căn giữa phần trong container */
+  padding: 16px; /* Thêm khoảng cách bên trong */
+}
+
+.product-main-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.product-thumbnail-container {
+  display: flex;
+  align-items: center; /* Căn giữa các nút và hình thu nhỏ */
+  overflow: hidden; /* Ẩn các hình thu nhỏ tràn ra ngoài */
+}
+
+.product-thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+}
+
+.product-thumbnail:hover {
+  border-color: #ff5722;
+}
+
+.product-thumbnail.selected {
+  border: 2px solid #ff5722;
+}
+
+.thumbnail-nav {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 8px;
+}
+
+.prev {
+  margin-right: 8px; /* Thêm khoảng cách bên phải cho nút trước */
+}
+
+.next {
+  margin-left: 8px; /* Thêm khoảng cách bên trái cho nút sau */
+}
+
+.product-info-section {
+  flex: 2;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.star-rating {
+  color: #FFD700;
+}
+
+.product-price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff5722;
+  margin-bottom: 20px;
+}
+
+.buy-now-button,
+.add-to-cart-button {
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.buy-now-button {
+  background-color: #ff5722;
+  color: white;
+  border-radius: 10px;
+}
+
+.add-to-cart-button {
+  background-color: #ff5722;
+  color: white;
+  border-radius: 10px;
+}
+
+.seller-info-section,
+.product-info-section,
+.product-reviews-section {
+  border: 1px solid #ddd; /* Thêm đường viền để tách biệt các phần */
+  padding: 16px;
+  border-radius: 4px; /* Bo góc cho các phần */
+}
+.quantity-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.quantity-section span {
+  font-weight: bold; /* Thêm kiểu cho chữ "Số lượng" */
+  font-size: 16px;
+}
+
+.quantity-input {
+  width: 80px; /* Điều chỉnh chiều rộng */
+  height: 36px; /* Điều chỉnh chiều cao */
+  padding: 4px; /* Thêm khoảng cách bên trong */
+  font-size: 16px; /* Thay đổi kích thước font chữ */
+  border: 1px solid #ddd; /* Đường viền */
+  border-radius: 4px; /* Bo góc */
+  outline: none; /* Bỏ viền khi có focus */
+  transition: border-color 0.3s; /* Hiệu ứng chuyển đổi */
+}
+
+.quantity-input:focus {
+  border-color: #ff5722; /* Đổi màu đường viền khi focus */
+}
+.share-buttons {
+  margin-top: 16px; /* Khoảng cách phía trên */
+}
+
+.share-button {
+  margin-right: 8px; /* Khoảng cách giữa các nút */
+  padding: 8px; /* Khoảng cách bên trong */
+  background-color: transparent; /* Nền trong suốt */
+  border: none; /* Bỏ viền */
+  cursor: pointer; /* Con trỏ chuột */
+}
+
+.share-button img {
+  width: 24px; /* Chiều rộng của logo */
+  height: auto; /* Chiều cao tự động để giữ tỷ lệ */
+  transition: transform 0.3s; /* Hiệu ứng chuyển đổi */
+}
+
+.share-button:hover img {
+  transform: scale(1.1); /* Phóng to logo khi hover */
+}
+.seller-name {
+  font-weight: bold; /* Đặt chữ in đậm */
+  font-size: 16px; /* Bạn có thể điều chỉnh kích thước chữ nếu cần */
+  color : red;
+}
+
+.call-link {
+  display: inline-block; /* Hiển thị như một khối nội tuyến */
+  text-decoration: none; /* Bỏ gạch chân cho liên kết */
+}
+
+.call-icon {
+  width: 32px; /* Đặt kích thước cho hình ảnh */
+  height: 32px; /* Đặt kích thước cho hình ảnh */
+  cursor: pointer; /* Đổi con trỏ khi di chuột */
+}
+.message-button {
+  border: none; /* Bỏ viền */
+  background: none; /* Bỏ nền */
+  cursor: pointer; /* Đổi con trỏ khi di chuột */
+  padding: 0; /* Bỏ khoảng cách bên trong */
+  display: inline-flex; /* Để căn chỉnh hình ảnh bên trong */
+  align-items: center; /* Căn giữa hình ảnh */
+}
+.message-icon {
+  width: 32px; /* Đặt kích thước cho biểu tượng tin nhắn */
+  height: 32px; /* Đặt kích thước cho biểu tượng tin nhắn */
+}
+.seller-info {
+  display: flex; /* Sử dụng flexbox */
+  justify-content: space-between; /* Đặt khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.seller-details {
+  display: flex;
+  flex-direction: column; /* Để tên và thông tin liên lạc nằm theo chiều dọc */
+  gap: 4px; /* Khoảng cách giữa các phần tử trong seller-details */
+}
+
+.info-item {
+  display: flex; /* Sử dụng flexbox cho phần thông tin */
+  flex-direction: column; /* Để các phần tử trong info-item nằm theo chiều dọc */
+  align-items: flex-end; /* Căn phải các phần tử */
+}
+
+/* Xóa margin cho phần tử cuối cùng để không có khoảng cách dư */
+.info-item:last-child {
+  margin-right: 0;
+}
+.seller-image {
+  width: 100px; /* Đặt chiều rộng cho ảnh */
+  height: 100px; /* Đặt chiều cao cho ảnh */
+  border-radius: 50%; /* Bo tròn ảnh */
+  object-fit: cover; /* Cắt ảnh để vừa với kích thước đã định */
+  border: 2px solid #ddd; /* Thêm đường viền nếu cần thiết */
+}
+
+

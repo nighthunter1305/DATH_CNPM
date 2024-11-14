@@ -1,53 +1,68 @@
+import { useNavigate } from 'react-router-dom';
 import React from "react";
-import "./Navbar.scss";
-import logo from "../../assets/trolley.png";
-import bell from "../../assets/bell.png";
-import email from "../../assets/email.png";
-import grocery from "../../assets/grocery-store.png";
+import styles from "./Navbar.module.css";
+import { Icon } from '@iconify/react';
+import { Link } from "react-router-dom";
+
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
-    <div className="header">
-      <div className="logo">
-        <button
-          className="logo-button"
-          onClick={() => window.location.reload()}
-        >
-          <a href="#"><img src={logo} alt="Logo" className="logo-image" /></a> CleanFoods
-        </button>
-      </div>
-
-      <div className="search-bar">
-        <input type="text" placeholder="Tìm kiếm" />
-        <button>🔎</button>
-      </div>
-
-      <div className="user-options">
-        <div className="notification-icon">
-          <a href="#">
-            <img src={bell} alt="notification" className="notification-icon" />
-            <span className="notification-count">3</span>
-          </a>
+      <div className={styles.header}>
+        <div className={styles.logo}>
+          <button
+              className={styles.logoButton}
+              onClick={() => navigate('/')}
+          >
+            {/* eslint-disable-next-line */}
+            <a href="#">
+              <Icon className={styles.logo} icon="noto:leafy-green" />
+            </a>{" "}
+            <p className={styles.shopName}>GreenFood</p>
+          </button>
         </div>
 
-        <div className="message-icon">
-          <a href="#">
-            <img src={email} alt="message" className="message-icon" />
-            <span className="message-count">5</span>
-          </a>
+        <div className={styles.searchBar}>
+          <input type="text" placeholder="Nhập từ khoá..." />
+          <button className={styles.searchBtn}>
+            <Icon icon="fe:search" />
+          </button>
         </div>
 
-        <div className="cart">
-          <a href="#">
-            <img src={grocery} alt="cart" className="cart-icon" />
-          </a>
-          <span className="cart-count">10</span>
-        </div>
+        <div className={styles.userOptions}>
+          <div className={styles.notificationIcon}>
+            {/* eslint-disable-next-line */}
+            <a href="#">
+              <Icon
+                  icon="mingcute:notification-fill"
+                  className={styles.iconify}
+              />
+              <span className={styles.notificationCount}>3</span>
+            </a>
+          </div>
 
-        <a href="#">Đăng nhập</a>
-        <a href="#">Đăng ký</a>
+          <div className={styles.messageIcon}>
+            {/* eslint-disable-next-line */}
+            <a href="#" onClick={() => navigate('/status')}>
+
+              <Icon icon="tabler:mail-filled" className={styles.iconify} />
+              <span className={styles.messageCount}>5</span>
+            </a>
+          </div>
+
+          <div className={styles.cart}>
+            {/* eslint-disable-next-line */}
+            <a href="#" onClick={() => navigate('/cart')}>
+              <Icon icon="mdi:cart" className={styles.iconify} />
+              <span className={styles.cartCount}>10</span>
+            </a>
+          </div>
+          {/* eslint-disable-next-line */}
+          <Link to="/login">Đăng nhập</Link>
+          {/* eslint-disable-next-line */}
+          <Link to="/signup">Đăng ký</Link>
+        </div>
       </div>
-    </div>
   );
 }
 export default Navbar;
