@@ -9,6 +9,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import SellerChannel from "./pages/sellerChannel/SellerChannel";
 function App() {
   return (
     <Router>
@@ -17,8 +18,7 @@ function App() {
         <Route path="/login" element={<LogInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/cart" element={<Cart />} />
-
-        {/* Route cho dashboard */}
+        <Route path="/seller" element={<SellerChannel />} />
       </Routes>
     </Router>
   );
