@@ -1,9 +1,10 @@
-import { ProductModel } from "~/models/ProductModel";
-import { StatusCodes } from "http-status-codes";
+import { ProductModel } from '~/models/ProductModel';
+import { StatusCodes } from 'http-status-codes';
 
 async function getProduct(req, res) {
   try {
-    const product = await ProductModel.getProduct(req.params.id);
+    let { id } = req.params;
+    const product = await ProductModel.getProduct(id);
 
     res.status(StatusCodes.OK).json(product);
   } catch (error) {
@@ -13,8 +14,8 @@ async function getProduct(req, res) {
 
 async function createProduct(req, res) {
   try {
-    await ProductModel.createProduct(req.body);
-    res.status(StatusCodes.CREATED).json("Created");
+    await ProductModel.createProduct(req.body, req.params.sellerId);
+    res.status(StatusCodes.CREATED).json('Created');
 
   } catch (error) {
     throw new Error(error);
@@ -23,7 +24,8 @@ async function createProduct(req, res) {
 
 async function editProduct(req, res) {
   try {
-    let editedProduct = await ProductModel.editProduct(req.params.id, req.body);
+    let { id } = req.params;
+    let editedProduct = await ProductModel.editProduct(id, req.body);
 
     res.status(StatusCodes.OK).json(editedProduct);
 
@@ -34,8 +36,9 @@ async function editProduct(req, res) {
 
 async function deleteProduct(req, res) {
   try {
-    await ProductModel.deleteProduct(req.params.id);
-    res.status(StatusCodes.OK).json("Deleted");
+    let { id } = req.params;
+    await ProductModel.deleteProduct(id);
+    res.status(StatusCodes.OK).json('Deleted');
 
   } catch (error) {
     throw new Error(error);
