@@ -66,3 +66,4 @@ export async function deleteRow(id, table) {
     if (err) throw err;
   });
 }
+
