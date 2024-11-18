@@ -6,7 +6,6 @@ const Aboutus = () => {
 
     return (
         <>
-
             <div className="image-company">
                 <img
                     src="https://c4.wallpaperflare.com/wallpaper/491/30/324/nature-landscape-green-plants-wallpaper-preview.jpg"
@@ -113,7 +112,6 @@ const Aboutus = () => {
                         <div  className="count">1 Vị trí đang mở</div>
                     </li>
                 </ul>
-
             </div>
         </>
     );

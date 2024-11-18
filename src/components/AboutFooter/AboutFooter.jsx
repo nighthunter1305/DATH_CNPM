@@ -36,7 +36,7 @@ const AboutFooter = () => {
                     <div className="link-diff">
                         <span className={styles.shopName}>GreenFood Career</span>
                         <a href="/about" className="return">Trang chủ</a>
-                        <a href="/about/info" className="return">Về GreenFood</a>
+                        <a href="/about/intro" className="return">Về GreenFood</a>
                         <a href="/about/why-greenfood" className="return">Tại sao nên chọn GreenFood</a>
                         <a href="/about/career" className="return">Liên hệ</a>
                         <a href="/about/event" className="return">Sự kiện</a>

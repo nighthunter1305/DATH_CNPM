@@ -73,36 +73,37 @@
   font-family : 'Roboto', sans-serif;
   color: #54c392;
   text-align: center;
-  padding: 70px;
+  padding: 50px;
+}
+.rate-in4 {
+  width: 240px;
+  height: 70px;
+  font-weight: bold;
+  font-family : 'Roboto', sans-serif;
+  color: #54c392;
+  text-align: center;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+.rate-detail{
+  width: 240px;
+  height: 70px;
+  font-weight: bold;
+  font-family : 'Roboto', sans-serif;
+  text-align: center;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 .oustanding-in4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.rate-in4 {
-  width: 240px;
-  height: 60px;
-  font-size: 20px;
-  font-family: 'Roboto', sans-serif;
-  color: #54c392;
-  text-align: center;
 }
 .oustanding-detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.rate-detail {
-  width: 240px;
-  height: 50px;
-  font-size: 20px;
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
+  padding: 10px;
 }
 .h3career {
   text-align: center;

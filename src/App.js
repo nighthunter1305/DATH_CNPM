@@ -9,13 +9,14 @@ import './App.css';
 import { ProductProvider } from './ProductContext';
 import Statusbar from './components/Statusbar/Statusbar';
 import AboutNavbar from './components/AboutNavbar/AboutNavbar';
+import AboutWhy from "./components/AboutWhy/AboutWhy";
 import AboutFooter from './components/AboutFooter/AboutFooter';
-import Aboutus from "./components/Aboutus/Aboutus";
+import Aboutus from './components/Aboutus/Aboutus';
+import AboutIntro from "./components/AboutIntro/AboutIntro";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
   const isAboutPage = location.pathname.startsWith('/about');
-
 
   return (
       <>
@@ -44,9 +45,9 @@ const App = () => {
               <Route path="/return-refund" element={<Statusbar />} />
 
               {/* Trang Aboutus */}
-
-              <Route path="/about" element={<Aboutus />}>
-              </Route >
+              <Route path="/about" element={<Aboutus />} />
+              <Route path="/about/intro" element={<AboutIntro />} />
+              <Route path="/about/why-greenfood" element={<AboutWhy />} />
             </Routes>
           </AppLayout>
         </Router>

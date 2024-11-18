@@ -58,7 +58,7 @@ const Footer = () => {
                 <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="Momo" className="payment-icon"/>
                 <img src="https://image.bnews.vn/MediaUpload/Org/2022/04/26/logo-bidv-20220426071253.jpg" alt="BIDV" className="payment-icon"/>
                 <img src="https://inkythuatso.com/uploads/images/2021/09/logo-vietinbank-inkythuatso-10-13-22-06.jpg" alt="Viettinbank" className="payment-icon"/>
-                <img src="https://static.wixstatic.com/media/9d8ed5_810e9e3b7fad40eca3ec5087da674662~mv2.png/v1/fit/w_500,h_500,q_90/file.png" alt="VCB " className="payment-icon" />
+                <img src="https://static.wixstatic.com/media/9d8ed5_810e9e3b7fad40eca3ec5087da674662~mv2.png/v1/fit/w_500,h_500,q_90/file.png" alt="VCB " className="payment-icon" style={{ backgroundColor: 'white' }} />
               </div>
             </div>
 
