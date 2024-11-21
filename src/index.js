@@ -4,12 +4,16 @@ import { env } from '~/config/env';
 import { API } from '~/routes/index';
 import { connectToDB } from '~/config/connectDatabase';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const SERVER = () => {
   const app = express();
-
+  app.use(cookieParser());
   app.use(express.json());
-  app.use(cors());
+  app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+  }));
   app.use('/api', API);
 
   if (env.BUILD_MODE == 'dev') {

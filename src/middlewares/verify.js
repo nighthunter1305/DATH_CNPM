@@ -3,14 +3,9 @@ import { getOne } from '~/database/query';
 import jwt from 'jsonwebtoken';
 import { env } from '~/config/env';
 
-export const auth = (permission) => {
-  return async (req, res) => {
-    const { userId } = req.body;
-    if (!userId) {
-      return res.status(StatusCodes.FORBIDDEN).json('You must login first.');
-    }
-
-    const user = await getOne('users', userId);
+export const authorization = (permission) => {
+  return async (req, res, next) => {
+    const { user } = req.user;
 
     if (!user) {
       return res.status(StatusCodes.FORBIDDEN).json('You must login first.');
@@ -21,26 +16,30 @@ export const auth = (permission) => {
     if (!permission.include(role)) {
       return res.status(StatusCodes.UNAUTHORIZED).json('You dont have permission to do this action.');
     }
+
+    next();
   };
 };
 
-export const verify = async (req, res, next) => {
+export const authentication = async (req, res, next) => {
   try {
-    console.log(req.headers);
+    const authCookie = req.cookies.SessionID;
 
-    const authHeader = req.headers['cookie'];
+    if (!authCookie) return res.status(401).json({ message: 'You must login first' });
 
-    if (!authHeader) return res.sendStatus(401);
-    const cookie = authHeader.split('=')[1];
-
-    jwt.verify(cookie, env.SECRET_ACCESS_TOKEN, async (err, decoded) => {
+    jwt.verify(authCookie, env.SECRET_ACCESS_TOKEN, async (err, decoded) => {
       if (err) {
         return res
           .status(401)
           .json({ message: 'This session has expired. Please login' });
       }
 
-      console.log(decoded);
+
+      const { id } = decoded;
+      const user = await getOne('users', id);
+      // eslint-disable-next-line no-unused-vars
+      const { password, ...data } = user;
+      req.user = data;
       next();
     });
   } catch (err) {
@@ -51,5 +50,4 @@ export const verify = async (req, res, next) => {
       message: err
     });
   }
-}
-
+};

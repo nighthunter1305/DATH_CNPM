@@ -1,10 +1,9 @@
 import express from 'express';
 import { ProductController } from '~/controllers/ProductController';
-import { auth } from '~/middlewares/verify';
 
 const router = express.Router();
 
-router.post('/:sellerId/add', auth(['SELLER']), ProductController.createProduct);
+router.post('/:sellerId/add', ProductController.createProduct);
 
 // for 1 seller
 router.route('/:id')

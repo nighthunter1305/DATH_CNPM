@@ -30,8 +30,13 @@ const createUser = async (data) => {
   return { status: true, message: 'Create new user successfully!' };
 };
 
-const logout = async (req) => {
-
+const logout = async (res) => {
+  res.clearCookie('SessionID', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None'
+  });
+  res.json({ message: 'You have been logged out.' });
 };
 
 const login = async (data, res) => {

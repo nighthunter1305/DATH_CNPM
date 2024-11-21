@@ -1,15 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { AuthModel } from '~/models/AuthModel';
 
-const check = async (req, res) => {
-  try {
-    const result = await AuthModel.check(req);
-    return res.status(200).send(result);
-  } catch (err) {
-    return res.status(200).json({ status: false, error: err });
-  }
-};
-
 const createUser = async (req, res) => {
   try {
     const result = await AuthModel.createUser(req.body);
