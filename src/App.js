@@ -13,6 +13,10 @@ import AboutWhy from "./components/AboutWhy/AboutWhy";
 import AboutFooter from './components/AboutFooter/AboutFooter';
 import Aboutus from './components/Aboutus/Aboutus';
 import AboutIntro from "./components/AboutIntro/AboutIntro";
+import AboutCareer from "./components/AboutCareer/AboutCareer";
+import AboutEvent from "./components/AboutEvent/AboutEvent";
+import Payment from "./components/Payment/Payment";
+
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -43,11 +47,14 @@ const App = () => {
               <Route path="/completed" element={<Statusbar />} />
               <Route path="/canceled" element={<Statusbar />} />
               <Route path="/return-refund" element={<Statusbar />} />
+              <Route path="/payment/:id" element={<Payment />} />
 
               {/* Trang Aboutus */}
               <Route path="/about" element={<Aboutus />} />
               <Route path="/about/intro" element={<AboutIntro />} />
               <Route path="/about/why-greenfood" element={<AboutWhy />} />
+              <Route path="/about/career" element={<AboutCareer />} />
+              <Route path="/about/event" element={<AboutEvent />} />
             </Routes>
           </AppLayout>
         </Router>

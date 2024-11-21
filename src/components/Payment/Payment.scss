@@ -1,0 +1,121 @@
+h2 {
+  text-align: center;
+}
+.payment-pro {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: whitesmoke;
+  border-top: 3px dashed #12977a ;
+  padding: 30px;
+}
+.cus-in4-detail {
+  justify-content: space-between;
+  gap: 50px;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 40%;
+  height: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h3 {
+    border-bottom: 1px hidden #ccc;
+    padding-bottom: 10px;
+  }
+}
+.address-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+.modal-content button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:first-of-type {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.modal-content button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+.new-address-form {
+  width: 40%;
+  height: 500px;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.new-address-form h3 {
+  margin-bottom: 20px;
+}
+
+.new-address-form input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.new-address-form button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-address-form button:first-of-type {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.new-address-form button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+.name-phone {
+  width: 93.5%;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+}

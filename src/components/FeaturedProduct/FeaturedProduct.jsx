@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './FeatureProduct.scss';
+import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import { TbPlayerTrackPrevFilled } from "react-icons/tb";
+
 
 const FeaturedProducts = ({ products }) => {
   const navigate = useNavigate();
@@ -43,7 +46,7 @@ const FeaturedProducts = ({ products }) => {
       </div>
       <div className="pagination">
         <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
-          Trang trước
+          <TbPlayerTrackPrevFilled/>
         </button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
@@ -55,7 +58,7 @@ const FeaturedProducts = ({ products }) => {
           </button>
         ))}
         <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === totalPages}>
-          Trang sau
+         <TbPlayerTrackNextFilled/>.
         </button>
       </div>
     </section>
