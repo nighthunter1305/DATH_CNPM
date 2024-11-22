@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useProducts } from '../../ProductContext';
-import facebookLogo from '../../image/facebook.png';
-import messengerLogo from '../../image/messenger.png';
-import zaloLogo from '../../image/zalo.png';
-import copyLinkLogo from '../../image/link.png';
-import callLogo from '../../image/call.png';
-import messageLogo from '../../image/mesage.png';
+import { useProducts } from '../../Context/ProductContext';
+import facebookLogo from '../../assets/images/facebook.png';
+import messengerLogo from '../../assets/images/messenger.png';
+import zaloLogo from '../../assets/images/zalo.png';
+import copyLinkLogo from '../../assets/images/link.png';
+import callLogo from '../../assets/images/call.png';
+import messageLogo from '../../assets/images/mesage.png';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {

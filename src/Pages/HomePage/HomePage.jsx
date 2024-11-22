@@ -3,7 +3,7 @@ import Menu from "../../components/Menu/Menu";
 import Location from "../../components/Location/Location";
 import BestSelling from "../../components/BestSeller/BestSeller";
 import FeaturedProducts from "../../components/FeaturedProduct/FeaturedProduct";
-import { useProducts } from '../../ProductContext';
+import { useProducts } from '../../Context/ProductContext';
 
 const HomePage = () => {
   // Trạng thái để lưu thông tin sản phẩm được chọn

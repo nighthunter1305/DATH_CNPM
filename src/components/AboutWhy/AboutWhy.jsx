@@ -1,7 +1,7 @@
 import './AboutWhy.scss';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import why from "../../image/companyroom.webp";
+import why from "../../assets/images/companyroom.webp";
 
 const AboutWhy = () => {
     const navigate = useNavigate();

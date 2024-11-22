@@ -2,7 +2,7 @@ import './AboutCareer.scss';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdSearch } from 'react-icons/md';
-import career from "../../image/career.jfif";
+import career from "../../assets/images/career.jfif";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { FaBriefcase } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";

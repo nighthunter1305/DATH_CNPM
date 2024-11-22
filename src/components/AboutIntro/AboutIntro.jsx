@@ -1,6 +1,6 @@
 import './AboutIntro.scss';
 import React from 'react';
-import infoimage from "../../image/companyroom.webp";
+import infoimage from "../../assets/images/companyroom.webp";
 import { useNavigate } from 'react-router-dom';
 const AboutIntro = () => {
     const navigate = useNavigate();

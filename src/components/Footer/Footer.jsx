@@ -1,7 +1,7 @@
 import React from "react";
-import facebook from "../../assets/facebook.png";
-import instagram from "../../assets/instagram.png";
-import tik from "../../assets/tik-tok.png";
+import facebook from "../../assets/images/facebook.png";
+import instagram from "../../assets/images/instagram.png";
+import tik from "../../assets/images/tik-tok.png";
 import "./Footer.scss";
 
 const Footer = () => {

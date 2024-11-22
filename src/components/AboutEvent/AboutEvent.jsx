@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdSearch } from 'react-icons/md';
-import career from "../../image/event.png";
+import career from "../../assets/images/event.png";
 import './AboutEvent.scss';
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";

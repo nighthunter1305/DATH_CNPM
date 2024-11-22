@@ -4,7 +4,7 @@ import './Payment.scss';
 import styles from "./Payment.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
-import { useProducts } from '../../ProductContext';
+import { useProducts } from '../../Context/ProductContext';
 
 const Payment = () => {
     const navigate = useNavigate();

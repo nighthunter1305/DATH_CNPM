@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import HomePage from './Pages/HomePage/HomePage';
+import HomePage from './pages/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Footer from "./components/Footer/Footer";
 import './App.css';
-import { ProductProvider } from './ProductContext';
+import { ProductProvider } from './Context/ProductContext';
 import Statusbar from './components/Statusbar/Statusbar';
 import AboutNavbar from './components/AboutNavbar/AboutNavbar';
 import AboutWhy from "./components/AboutWhy/AboutWhy";

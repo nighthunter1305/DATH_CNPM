@@ -1,11 +1,11 @@
 import React from "react";
-import broccoli from "../../assets/broccoli.png";
-import beef from "../../assets/beef.png";
-import fish from "../../assets/fish.png";
-import nuts from "../../assets/nuts.png";
-import fishsauce from "../../assets/fishsauce.png";
-import chung from "../../assets/chung-cake.png";
-import different from "../../assets/different.png";
+import broccoli from "../../assets/images/broccoli.png";
+import beef from "../../assets/images/beef.png";
+import fish from "../../assets/images/fish.png";
+import nuts from "../../assets/images/nuts.png";
+import fishsauce from "../../assets/images/fishsauce.png";
+import chung from "../../assets/images/chung-cake.png";
+import different from "../../assets/images/different.png";
 const Menu = () => {
   return (
     <div className="dropdown-container">
