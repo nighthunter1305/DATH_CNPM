@@ -1,10 +1,23 @@
 import InputField from "../../components/InputField/InputField";
 import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import styles from "./LogInForm.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginPic from "../../assets/images/login_pic.png";
+import { useState } from "react";
 
 function LogInForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (username && password) {
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/seller");
+    } else {
+      alert("Vui lòng nhập tên đăng nhập và mật khẩu!");
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -23,7 +36,11 @@ function LogInForm() {
             Quên mật khẩu?
           </a>
 
-          <button type="submit" className={styles.button}>
+          <button
+            onSubmit={handleLogin}
+            type="submit"
+            className={styles.button}
+          >
             ĐĂNG NHẬP
           </button>
 

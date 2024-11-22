@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SellerNavbar from "../sellerChannel/components/SellerNavBar";
+import SellerNavbar from "../seller/components/SellerNavBar";
 import styles from "./AddProduct.module.css";
 import { Icon } from "@iconify/react";
 

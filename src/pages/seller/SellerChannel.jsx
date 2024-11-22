@@ -6,8 +6,27 @@ import SellerNavbar from "./components/SellerNavBar";
 import Tabs from "./components/Tabs";
 import Chart from "./components/Chart";
 import MyCalendar from "./components/Calendar";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SellerChannel() {
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!isLoggedIn) {
+      setShowPopup(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  }, [navigate]);
+
+  if (!localStorage.getItem("isLoggedIn")) {
+    return showPopup && <div style={{ color: "red" }}>Bạn chưa đăng nhập!</div>;
+  }
+
   return (
     <>
       <SellerNavbar title={"Kênh Người Bán"} />
