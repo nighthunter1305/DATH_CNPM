@@ -41,6 +41,19 @@
   color: #15b392;
 }
 
+.menuList li a {
+  text-decoration: none;
+  font-size: 14px;
+  padding-left: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  color: #333;
+}
+
+.menuList li a:hover {
+  color: #15b392;
+}
+
 .iconify {
   margin-top: 4px;
   cursor: pointer;

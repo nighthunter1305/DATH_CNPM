@@ -2,6 +2,7 @@ import "./App.css";
 import LogInForm from "./pages/login/LogInForm";
 import SignUpForm from "./pages/signup/SignUpForm";
 import Cart from "./pages/cart/Cart";
+import AddProduct from "./pages/addProduct/AddProduct";
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/seller" element={<SellerChannel />} />
+        <Route path="/add-product" element={<AddProduct />} />
       </Routes>
     </Router>
   );

@@ -10,7 +10,7 @@ import MyCalendar from "./components/Calendar";
 function SellerChannel() {
   return (
     <>
-      <SellerNavbar />
+      <SellerNavbar title={"Kênh Người Bán"} />
       <div className={styles.mainContent}>
         <div className={styles.sidebar}>
           <Menu
@@ -26,6 +26,7 @@ function SellerChannel() {
           <Menu
             title="Quản Lý Sản Phẩm"
             items={["Tất Cả Sản Phẩm", "Thêm Sản Phẩm"]}
+            links={["/all-products", "/add-product"]}
           />
           <Menu
             title="Kênh Marketing"
@@ -146,7 +147,7 @@ function SellerChannel() {
               <MyCalendar />
               <div className={styles.calendarDesc}>
                 <Icon
-                  icon="material-symbols:no-sim"
+                  icon="hugeicons:wallet-not-found-01"
                   className={styles.noEventIcon}
                 />
                 <p className={styles.text}>
@@ -309,7 +310,7 @@ function SellerChannel() {
           </div>
           <div className={styles.subContentSection}>
             <div className={styles.sectionHeader}>
-              <div className={styles.title}>Nhiệm vụ người bán</div>
+              <div className={styles.title}>Nhiệm vụ</div>
               {/* eslint-disable-next-line */}
               <a href="#" className={styles.viewMore}>
                 Xem thêm

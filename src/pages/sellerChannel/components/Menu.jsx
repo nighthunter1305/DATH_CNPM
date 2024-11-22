@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import styles from "./Menu.module.css";
 
-const Menu = ({ title, items }) => {
+const Menu = ({ title, items, links = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +25,13 @@ const Menu = ({ title, items }) => {
         className={`${styles.menuList} ${isOpen ? styles.open : styles.closed}`}
       >
         {items.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>
+            {links[index] ? (
+              <Link to={links[index]}>{item}</Link>
+            ) : (
+              <span>{item}</span>
+            )}
+          </li>
         ))}
       </ul>
     </div>

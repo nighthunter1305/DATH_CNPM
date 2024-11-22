@@ -1,4 +1,4 @@
-import Navbar from "../../components/NavBar/NavBar";
+import Navbar from "../../components/Navbar/Navbar";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import ModalBox from "../../components/ModalBox/ModalBox";
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
@@ -10,6 +10,7 @@ import corn from "../../assets/images/corn.jpg";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import EmptyCart from "../../components/EmptyCart/EmptyCart";
 
 const initialCart = [
   {
@@ -143,85 +144,93 @@ function Cart() {
         </p>
       </section>
 
-      <section className={styles.product}>
-        <div className={styles.productInfo}>
-          <div>
-            <input
-              type="checkbox"
-              onChange={handleCheckAll}
-              checked={products.every((product) => product.checked)}
-              className={styles.selectAllCheckbox}
-            />
-          </div>
-          <div>Sản phẩm </div>
-          <div>Đơn giá</div>
-          <div>Số lượng</div>
-          <div>Số tiền</div>
-          <div>Thao tác</div>
-        </div>
-        {products.map((product) => (
-          <ProductDetail
-            key={product.id}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-            quantity={product.quantity}
-            checked={product.checked}
-            onCheck={() => handleCheck(product.id)}
-            onQuantityChange={(newQuantity) =>
-              handleQuantityChange(product.id, newQuantity)
-            }
-            onRemove={() => handleRemove(product.id)}
-            shopName={product.shopName}
-            category={product.category}
-            onShopCheck={handleShopCheck}
-            isShopChecked={products.some(
-              (item) => item.shopName === product.shopName && item.checked
-            )}
-          />
-        ))}
-      </section>
-      <section className={styles.coupon}>
-        <div className={styles.voucherGroup}>
-          <div className={styles.icon}>
-            <span class="material-symbols-rounded">confirmation_number</span>
-          </div>
-          <div className={styles.voucher}>GreenFood voucher</div>
-        </div>
-        <button className={styles.voucherButton} onClick={handleOpenModal}>
-          Chọn hoặc nhập mã
-        </button>
-        <ModalBox
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          vouchers={vouchers}
-        >
-          <div className={styles.inputContainer}>
-            <input
-              type="text"
-              placeholder="Mã GreenFood Voucher"
-              className={styles.input}
-            />
-            <button className={styles.applyButton}>ÁP DỤNG</button>
-          </div>
-          <div className={styles.voucherList}>
-            {vouchers.map((voucher) => (
-              <div key={voucher.id} className={styles.voucherItem}>
-                <div className={styles.voucherCode}>{voucher.code}</div>
-                <div className={styles.voucherDescription}>
-                  {voucher.description}
-                </div>
+      {products.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <>
+          <section className={styles.product}>
+            <div className={styles.productInfo}>
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={handleCheckAll}
+                  checked={products.every((product) => product.checked)}
+                  className={styles.selectAllCheckbox}
+                />
               </div>
+              <div>Sản phẩm </div>
+              <div>Đơn giá</div>
+              <div>Số lượng</div>
+              <div>Số tiền</div>
+              <div>Thao tác</div>
+            </div>
+            {products.map((product) => (
+              <ProductDetail
+                key={product.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                quantity={product.quantity}
+                checked={product.checked}
+                onCheck={() => handleCheck(product.id)}
+                onQuantityChange={(newQuantity) =>
+                  handleQuantityChange(product.id, newQuantity)
+                }
+                onRemove={() => handleRemove(product.id)}
+                shopName={product.shopName}
+                category={product.category}
+                onShopCheck={handleShopCheck}
+                isShopChecked={products.some(
+                  (item) => item.shopName === product.shopName && item.checked
+                )}
+              />
             ))}
-          </div>
-        </ModalBox>
-      </section>
-      <CartSummary
-        totalPrice={totalPrice}
-        onCheckout={handleCheckout}
-        shippingFee={shippingFee}
-        products={products}
-      />
+          </section>
+          <section className={styles.coupon}>
+            <div className={styles.voucherGroup}>
+              <div className={styles.icon}>
+                <span class="material-symbols-rounded">
+                  confirmation_number
+                </span>
+              </div>
+              <div className={styles.voucher}>GreenFood voucher</div>
+            </div>
+            <button className={styles.voucherButton} onClick={handleOpenModal}>
+              Chọn hoặc nhập mã
+            </button>
+            <ModalBox
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              vouchers={vouchers}
+            >
+              <div className={styles.inputContainer}>
+                <input
+                  type="text"
+                  placeholder="Mã GreenFood Voucher"
+                  className={styles.input}
+                />
+                <button className={styles.applyButton}>ÁP DỤNG</button>
+              </div>
+              <div className={styles.voucherList}>
+                {vouchers.map((voucher) => (
+                  <div key={voucher.id} className={styles.voucherItem}>
+                    <div className={styles.voucherCode}>{voucher.code}</div>
+                    <div className={styles.voucherDescription}>
+                      {voucher.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ModalBox>
+          </section>
+          <CartSummary
+            totalPrice={totalPrice}
+            onCheckout={handleCheckout}
+            shippingFee={shippingFee}
+            products={products}
+          />
+        </>
+      )}
     </div>
   );
 }

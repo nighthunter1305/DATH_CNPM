@@ -153,6 +153,7 @@
   justify-content: center;
   padding: 10px;
   position: relative;
+  text-align: center;
 }
 
 .todoItem:nth-child(4n + 1) {
@@ -258,7 +259,7 @@
 
 .noEventIcon {
   color: #999;
-  font-size: 40px;
+  font-size: 32px;
   margin-bottom: 16px;
 }
 
@@ -356,7 +357,7 @@
 }
 
 .text {
-  font-size: 14px;
+  font-size: 12px;
   width: 46%;
   text-align: center;
   color: #999;
