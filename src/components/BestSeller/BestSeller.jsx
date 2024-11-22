@@ -31,6 +31,7 @@ const BestSelling = ({ products }) => {
         navigate(`/product/${product.id}`, { state: { product } });
     };
 
+
     return (
         <div className="best-sellers-carousel">
             <h2>Sản phẩm bán chạy</h2>
@@ -67,7 +68,7 @@ const BestSelling = ({ products }) => {
                                 <p className="product-price">{product.price}₫</p>
                                 <button className="buy-now" onClick={(e) => {
                                     e.stopPropagation();
-                                    navigate(`/payment/${product.id}`);
+                                    navigate(`payment/${product.id}`, { state: { product } });
                                 }}>Mua ngay</button>
                             </div>
                         ))}
