@@ -1,9 +1,16 @@
 import React from "react";
 import styles from "./SellerNavBar.module.css";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SellerNavbar({ title }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+
+    navigate("/login");
+  };
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -19,12 +26,9 @@ function SellerNavbar({ title }) {
           <p className={styles.title}>{title}</p>
         </button>
       </div>
-      <div className={styles.authLinks}>
-        {/* eslint-disable-next-line */}
-        <Link to="/login">Đăng nhập</Link>
-        {/* eslint-disable-next-line */}
-        <Link to="/signup">Đăng ký</Link>
-      </div>
+      <button className={styles.logoutBtn} onClick={handleLogout}>
+        Đăng xuất
+      </button>
     </div>
   );
 }

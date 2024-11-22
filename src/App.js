@@ -2,7 +2,8 @@ import "./App.css";
 import LogInForm from "./pages/login/LogInForm";
 import SignUpForm from "./pages/signup/SignUpForm";
 import Cart from "./pages/cart/Cart";
-import AddProduct from "./pages/addProduct/AddProduct";
+import AddProduct from "./pages/addproduct/AddProduct";
+import SellerChannel from "./pages/seller/SellerChannel";
 
 import {
   BrowserRouter as Router,
@@ -10,7 +11,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import SellerChannel from "./pages/sellerChannel/SellerChannel";
 function App() {
   return (
     <Router>

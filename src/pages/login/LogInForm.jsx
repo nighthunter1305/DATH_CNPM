@@ -14,8 +14,6 @@ function LogInForm() {
     if (username && password) {
       localStorage.setItem("isLoggedIn", "true");
       navigate("/seller");
-    } else {
-      alert("Vui lòng nhập tên đăng nhập và mật khẩu!");
     }
   };
   return (
@@ -25,22 +23,30 @@ function LogInForm() {
         <h2 className={styles.title}>Đăng nhập</h2>
         <p className={styles.subTitle}>Truy cập vào tài khoản của bạn</p>
 
-        <form action="#">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+        >
           <InputField
             type="email"
             placeholder="Tên đăng nhập, email hoặc số điện thoại"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           ></InputField>
-          <InputField type="password" placeholder="Mật khẩu"></InputField>
+          <InputField
+            type="password"
+            placeholder="Mật khẩu"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></InputField>
           {/* eslint-disable-next-line */}
           <a href="#" className={styles.forgot}>
             Quên mật khẩu?
           </a>
 
-          <button
-            onSubmit={handleLogin}
-            type="submit"
-            className={styles.button}
-          >
+          <button type="submit" className={styles.button}>
             ĐĂNG NHẬP
           </button>
 
