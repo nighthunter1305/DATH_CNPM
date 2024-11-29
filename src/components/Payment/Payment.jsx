@@ -383,11 +383,11 @@ const Payment = () => {
                             />
                             <span>{product.name}</span>
                         </div>
-                        <div className={styles.productPrice}>{product.price} VNĐ</div>
+                        <div className={styles.productPrice}>{product.price}₫</div>
                         <div className={styles.productQuantity}>
                             <span>1</span>
                         </div>
-                        <div className={styles.productTotal}>{product.price * product.quantity} VNĐ</div>
+                        <div className={styles.productTotal}>{product.price * product.quantity}₫</div>
                     </div>
                 </section>
             )}
@@ -418,7 +418,7 @@ const Payment = () => {
                     <label htmlFor="bank">Chuyển khoản ngân hàng</label>
                 </div>
             </section>
-            <div className="payment-mothod">
+            <div className="payment-method">
                 {selectedPaymentMethod === "cod" && (
                     <div className="tab-cod">
                         <p>Thanh toán khi nhận hàng (COD), phí thu hộ 0.</p>
@@ -452,6 +452,30 @@ const Payment = () => {
                         </ul>
                     </div>
                 )}
+            </div>
+
+            <div className="bill">
+                <h3>Thông tin đơn hàng</h3>
+                <div className="bill-info">
+                    <div>
+                        <span>Tổng tiền hàng : </span>
+                        <span>{product.price}₫</span>
+                    </div>
+                    <div>
+                        <span>Phí vận chuyển : </span>
+                        <span>{37000}₫</span>
+                    </div>
+
+                    <div>
+                        <span>Tổng cộng Voucher giảm giá : </span>
+                        <span>{17000}₫</span>
+                    </div>
+                    <div>
+                        <span>Tổng cộng : </span>
+                        <span>{product.price + 37000 - 17000} VNĐ</span>
+                    </div>
+                    <button>Mua hàng</button>
+                </div>
             </div>
 
 

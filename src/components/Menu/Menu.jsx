@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from '@iconify/react';
 import broccoli from "../../assets/images/broccoli.png";
 import beef from "../../assets/images/beef.png";
 import fish from "../../assets/images/fish.png";
@@ -11,7 +12,7 @@ const Menu = () => {
     <div className="dropdown-container">
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={broccoli} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon" style={{color:'#b2dd74'}} icon="fluent-emoji:leafy-green" />
           RAU CỦ
         </button>
         <div className="dropdown-content">
@@ -24,7 +25,7 @@ const Menu = () => {
 
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={beef} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon" icon="fluent-emoji:cut-of-meat" />
           THỊT
         </button>
         <div className="dropdown-content">
@@ -39,7 +40,7 @@ const Menu = () => {
 
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={fish} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon" icon="fluent-emoji:lobster" />
           ĐỒ KHÔ
         </button>
         <div className="dropdown-content">
@@ -54,7 +55,7 @@ const Menu = () => {
 
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={nuts} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon"  icon="fluent-emoji:beans" />
           HOA QUẢ SẤY
         </button>
         <div className="dropdown-content">
@@ -82,7 +83,7 @@ const Menu = () => {
       </div>
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={chung} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon" icon="fluent-emoji:baguette-bread" />
           BÁNH
         </button>
         <div className="dropdown-content">
@@ -95,7 +96,7 @@ const Menu = () => {
 
       <div className="dropdown">
         <button className="dropbtn">
-          <img src={different} alt="Danh mục" className="button-icon" />
+          <Icon className="button-icon" icon="basil:other-1-outline" />
           KHÁC
         </button>
         <div className="dropdown-content">

@@ -27,15 +27,16 @@
 }
 
 .product-item {
+  width: 100%;
   flex: 1 1 10%;
   box-sizing: border-box;
   padding: 10px;
 }
 .product-item:first-child {
-  margin-left: 65px;
+  margin-left: 55px;
 }
 .product-item:last-child {
-  margin-right: 65px;
+  margin-right: 55px;
 }
 
 
@@ -43,8 +44,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: black;
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -65,16 +65,7 @@
 
 
 }
-.buy-now {
-  color : white;
-  background-color: #ff5722;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.buy-now:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+
 .active {
   display: flex;
 }
@@ -88,19 +79,24 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
-  width: calc(33.333% - 20px); /* 3 cột với khoảng cách 20px giữa */
+  width: calc(33.333% - 20px);
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .product-image {
-  width: 100%;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   margin-bottom: 15px;
 }
 
-.product-title {
+.product-name {
   font-size: 15px;
   margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 
 .product-price {
@@ -108,4 +104,13 @@
   font-weight: bold;
   color: #e74c3c;
   margin-bottom: 15px;
+}
+.buy-now {
+  width: 70%;
+  margin-left: 15%;
+  color : white;
+  background-color: #12977a;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px;
 }

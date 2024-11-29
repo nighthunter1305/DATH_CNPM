@@ -1,38 +1,32 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../../Context/ProductContext';
-import facebookLogo from '../../assets/images/facebook.png';
-import messengerLogo from '../../assets/images/messenger.png';
-import zaloLogo from '../../assets/images/zalo.png';
-import copyLinkLogo from '../../assets/images/link.png';
-import callLogo from '../../assets/images/call.png';
-import messageLogo from '../../assets/images/mesage.png';
+import { FaFacebook, FaShare, FaFacebookMessenger } from 'react-icons/fa';
+import { SiZalo } from "react-icons/si";
+import { FaPhone, FaMessage, FaStore } from "react-icons/fa6";
 import './ProductDetail.scss';
+import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from "react-icons/tb";
 
 const ProductDetail = () => {
     const { id } = useParams();
     const { products } = useProducts();
     const product = products.find((prod) => prod.id.toString() === id);
-
+    const [currentPage, setCurrentPage] = useState(1);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     if (!product) {
-        return <h1>Product not found</h1>;
+        return <h1>Không tìm thấy sản phẩm</h1>;
     }
 
-    // Đặt ảnh mẫu tạm thời nếu product.images không có giá trị
-    const images = product.images && product.images.length > 0 ? product.images : ["https://via.placeholder.com/400"];
+    // Chuyển chuỗi ảnh thành mảng URL ảnh
+    const images = product.image.split(',');
 
     const handlePrevClick = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : images.length - 1
-        );
+        setCurrentImageIndex((prevIndex) => prevIndex > 0 ? prevIndex - 1 : images.length - 1);
     };
 
     const handleNextClick = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex < images.length - 1 ? prevIndex + 1 : 0
-        );
+        setCurrentImageIndex((prevIndex) => prevIndex < images.length - 1 ? prevIndex + 1 : 0);
     };
 
     const handleShare = (platform) => {
@@ -61,21 +55,60 @@ const ProductDetail = () => {
     const handleCopyLink = () => {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-            alert('Đã sao chép liên kết!');
+            alert('Đã sao chép liên kết vào clipboard!');
         });
     };
 
     const handleMessageClick = (seller) => {
-        alert(`Nhắn tin cho ${seller.name}`);
+        alert(`Gửi tin nhắn tới ${seller.name}`);
     };
+
+    const comments = [
+        {
+            id: 1,
+            userImage: "https://via.placeholder.com/100",
+            userName: "Nguyễn Văn A",
+            voteTime: "14/10/2024",
+            rating: 5,
+            content: "Sản phẩm tuyệt vời, đáng đồng tiền"
+        },
+        {
+            id: 2,
+            userImage: "https://via.placeholder.com/100",
+            userName: "Trần Thị B",
+            voteTime: "3 giờ trước",
+            rating: 4,
+            content: "Chất lượng tốt, giao hàng nhanh"
+        },
+        {
+            id: 3,
+            userImage: "https://via.placeholder.com/100",
+            userName: "Lê Văn C",
+            voteTime: "5 giờ trước",
+            rating: 3,
+            content: "Tạm ổn, cần cải thiện"
+        }
+    ];
+
+    const cmtsPerPage = 10;
+    const changePage = (page) => {
+        if (page >= 1 && page <= totalPages) setCurrentPage(page);
+    };
+
+    const currentcmts = comments.slice(
+        (currentPage - 1) * cmtsPerPage,
+        currentPage * cmtsPerPage
+    );
+
+    const totalPages = Math.ceil(comments.length / cmtsPerPage);
 
     return (
         <div className="product-detail-container">
-            {/* Phần hình ảnh sản phẩm */}
+            {/* Phần ảnh sản phẩm */}
             <div className="product-image-section">
                 <img
                     src={images[currentImageIndex]}
-                    alt="Main Product"
+                    alt="Ảnh sản phẩm chính"
                     className="product-main-image"
                 />
                 <div className="product-thumbnail-container">
@@ -84,7 +117,7 @@ const ProductDetail = () => {
                         <img
                             key={index}
                             src={image}
-                            alt={`Thumbnail ${index + 1}`}
+                            alt={`Ảnh nhỏ ${index + 1}`}
                             className={`product-thumbnail ${index === currentImageIndex ? 'selected' : ''}`}
                             onClick={() => setCurrentImageIndex(index)}
                         />
@@ -93,11 +126,11 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            {/* Phần thông tin sản phẩm */}
+            {/* Thông tin sản phẩm */}
             <div className="product-info-section">
                 <h2 className="product-title">{product.name}</h2>
                 <div className="product-rating">
-                    <span className="star-rating">⭐{product.rating}</span>
+                    <span className="star-rating">⭐4.7 {product.rating}</span>
                     <span>({product.comments} bình luận)</span>
                     <span>Đã bán {product.sold}</span>
                 </div>
@@ -105,49 +138,56 @@ const ProductDetail = () => {
                 <div className="quantity-section">
                     <span>Số lượng:</span>
                     <input type="number" defaultValue={1} min={1} className="quantity-input" />
-                    <span className="available-stock">Có sẵn: {product.availableStock}</span>
+                    <span className="available-stock">Kho: {product.availableStock}</span>
                 </div>
                 <button className="buy-now-button">Mua ngay</button>
-                <button className="add-to-cart-button">Thêm vào giỏ</button>
+                <button className="add-to-cart-button">Thêm vào giỏ hàng</button>
 
-                {/* Phần chia sẻ sản phẩm */}
+                {/* Chia sẻ sản phẩm */}
                 <div className="share-buttons">
                     <h3>Chia sẻ:</h3>
                     <button className="share-button" onClick={() => handleShare('facebook')}>
-                        <img src={facebookLogo} alt="Chia sẻ Facebook" />
+                        <FaFacebook size={32} style={{ color: '#006AFF' }} />
                     </button>
                     <button className="share-button" onClick={() => handleShare('messenger')}>
-                        <img src={messengerLogo} alt="Chia sẻ Messenger" />
+                        <FaFacebookMessenger size={32} style={{ color: '#006AFF' }} />
                     </button>
                     <button className="share-button" onClick={() => handleShare('zalo')}>
-                        <img src={zaloLogo} alt="Chia sẻ Zalo" />
+                        <SiZalo size={32} style={{ color: '#00B2FF' }} />
                     </button>
                     <button className="share-button" onClick={handleCopyLink}>
-                        <img src={copyLinkLogo} alt="Sao chép liên kết" />
+                        <FaShare size={32} style={{ color: '#0068ff' }} />
                     </button>
                 </div>
             </div>
 
-            {/* Phần thông tin người bán */}
+            {/* Thông tin người bán */}
             <div className="seller-info-section">
                 <h3>Thông tin người bán</h3>
                 <div className="seller-info">
                     <div className="seller-details">
-                        <img 
+                        <img
                             src="https://via.placeholder.com/100"
-                            alt="Seller"
-                            className="seller-image" 
+                            alt="Người bán"
+                            className="seller-image"
                         />
                         <p className="seller-name">Nguyễn Văn A</p>
                         <p className="seller-contact">
-                            <a href="tel:0123456789" className="call-link" aria-label="Gọi điện cho người bán">
-                                <img src={callLogo} alt="Gọi điện" className="call-icon" />
-                            </a>
-                            <button className="message-button" onClick={() => handleMessageClick({ name: 'Người bán tạm thời' })}>
-                                <img src={messageLogo} alt="Tin nhắn" className="message-icon" />
+                            <button className="call-bt">
+                                <a href="tel:+84817727460" className="call-link">
+                                    <FaPhone size={32} />
+                                </a>
+                            </button>
+                            <button className="message-bt" onClick={() => handleMessageClick({ name: 'Người bán' })}>
+                                <FaMessage size={32} />
+                            </button>
+                            <button className="view-shop-bt">
+                                <a href="https://exampleshop.com" className="call-link">
+                                    <FaStore size={32} />
+                                </a>
+                                <span>Xem gian hàng</span>
                             </button>
                         </p>
-                        <a href="https://example.com/shop" target="_blank" rel="noopener noreferrer" className="view-shop-button">Xem shop</a>
                     </div>
                     <div className="info-item">
                         <p>Số lượng sản phẩm: {product.sold}</p>
@@ -155,22 +195,59 @@ const ProductDetail = () => {
                     </div>
                     <div className="info-item">
                         <p>Tham gia: 1 năm</p>
-                        <p>Người theo dõi: 150</p>
+                        <p>Người theo dõi: 15K</p>
                     </div>
                 </div>
             </div>
 
-            {/* Phần chi tiết sản phẩm */}
+            {/* Chi tiết sản phẩm */}
             <div className="product-info-section">
                 <h3>Chi tiết sản phẩm</h3>
-                <h4>Thông tin chi tiết về sản phẩm sẽ được đặt ở đây</h4>
                 <p>{product.description}</p>
             </div>
 
-            {/* Phần đánh giá sản phẩm */}
+            {/* Đánh giá sản phẩm */}
             <div className="product-reviews-section">
                 <h3>Đánh giá sản phẩm</h3>
-                {/* Thêm các đánh giá ở đây */}
+                <div className="vote-bar">
+                    <div className="star">
+                        <span>4.8 trên 5 sao</span>
+                        <span>⭐⭐⭐⭐</span>
+                    </div>
+                    <div className="star-detail">
+                        <button className="star-bt">Tất cả</button>
+                        <button className="star-bt">5 sao</button>
+                        <button className="star-bt">4 sao</button>
+                        <button className="star-bt">3 sao</button>
+                        <button className="star-bt">2 sao</button>
+                        <button className="star-bt">1 sao</button>
+                        <button className="star-bt">Có ảnh/video</button>
+                    </div>
+                </div>
+                <div className="vote-comments">
+                    {currentcmts.map((cmt) => (
+                        <div key={cmt.id} className="cmt-item">
+                            <img src={cmt.userImage} alt="Người dùng" />
+                            <div>
+                                <p>{cmt.userName}</p>
+                                <p>{cmt.voteTime}</p>
+                                <p>Đánh giá: {cmt.rating}</p>
+                                <p>{cmt.content}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="pagination">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                            key={page}
+                            className={`page-button ${currentPage === page ? 'active' : ''}`}
+                            onClick={() => changePage(page)}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );

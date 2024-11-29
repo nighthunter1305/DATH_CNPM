@@ -120,13 +120,6 @@ h2 {
   background-color: #4CAF50;
   color: white;
 }
-.tab-cod, .tab-bank {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-}
 
 .new-address-form button:last-of-type {
   background-color: #f44336;
@@ -223,7 +216,7 @@ button.change {
     accent-color: #12977a;
   }
 }
-.payment-method {
+.payment-method,.bill {
   margin-left: 300px;
   margin-right: 300px;
   display: flex;
@@ -233,9 +226,38 @@ button.change {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 0;
   margin-bottom: 10px;
+  justify-content: center;
+  align-content: center;
   div {
     text-align: center;
     padding: 10px;
+  }
+}
+.tab-cod, .tab-bank {
+  margin-top: 20px;
+  border-radius: 4px;
+}
+.bill {
+  align-content: flex-end;
+  justify-content: right;
+  div {
+    text-align: left;
+  }
+  button {
+    background-color: #12977a;
+    width: 150px;
+    height: auto;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  button:hover {
+    background-color: #0f866d;
   }
 }
 

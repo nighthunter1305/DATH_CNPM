@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './BestSeller.scss'
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 
 const BestSelling = ({ products }) => {
     const navigate = useNavigate();
@@ -38,12 +40,12 @@ const BestSelling = ({ products }) => {
 
             {/* Left Button */}
             <button className="carousel-btn left-btn" onClick={prevSlide}>
-                &#10094;
+                <AiOutlineDoubleLeft/>
             </button>
 
             {/* Right Button */}
             <button className="carousel-btn right-btn" onClick={nextSlide}>
-                &#10095;
+                <AiOutlineDoubleRight/>
             </button>
 
             <div className="product-container">
@@ -60,7 +62,7 @@ const BestSelling = ({ products }) => {
                                 onClick={() => handleProductClick(product)}
                             >
                                 <img
-                                    src={product.image}
+                                    src={product.image.split(',')[0]}
                                     alt={product.name}
                                     className="product-image"
                                 />
