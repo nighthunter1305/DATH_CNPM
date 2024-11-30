@@ -1,5 +1,5 @@
 -- Drop tables if they already exist to avoid duplication
-DROP TABLE IF EXISTS `cart_items`, `carts`, `delivery`, `deliveried_by`, `shippers`, `coupons`, `reviews`, `bills`, `orders`, `buyers`, `sellers`, `products`, `categories`, `addresses`, `search_histories`, `users`;
+DROP TABLE IF EXISTS `cart_items`, `carts`, `delivery`, `deliveried_by`, `shippers`, `coupons`, `reviews`, `bills`, `orders`, `sellers`, `buyers`, `products`, `categories`, `addresses`, `search_histories`, `users`;
 
 -- Create table for users (includes both buyers and sellers)
 CREATE TABLE `users` (
@@ -15,37 +15,35 @@ CREATE TABLE `users` (
 -- Create table for addresses (separate table linked to users)
 CREATE TABLE `addresses` (
   `id` VARCHAR(36) PRIMARY KEY,
-  `user_id` VARCHAR(36) NOT NULL,
   `street` VARCHAR(255),
   `town` VARCHAR(255),
   `district` VARCHAR(255),
   `city` VARCHAR(255),
+  `user_id` VARCHAR(36) NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
 -- Create table for search histories (separate table linked to users)
 CREATE TABLE `search_histories` (
   `id` VARCHAR(36) PRIMARY KEY,
-  `user_id` VARCHAR(36) NOT NULL,
   `search_term` TEXT NOT NULL,
   `searched_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `user_id` VARCHAR(36) NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
--- Create table for sellers
+-- Create table for sellers (linked to users)
 CREATE TABLE `sellers` (
   `id` VARCHAR(36) PRIMARY KEY,
-  `user_id` VARCHAR(36) NOT NULL,
   `tax_code` VARCHAR(50) NOT NULL,
   `description` TEXT,
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+  FOREIGN KEY (`id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
--- Create table for buyers
+-- Create table for buyers (linked to users)
 CREATE TABLE `buyers` (
   `id` VARCHAR(36) PRIMARY KEY,
-  `user_id` VARCHAR(36) NOT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+  FOREIGN KEY (`id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
 -- Create table for categories
