@@ -1,5 +1,5 @@
 -- Drop tables if they already exist to avoid duplication
-DROP TABLE IF EXISTS `cart_items`, `carts`, `delivery`, `deliveried_by`, `shippers`, `coupons`, `reviews`, `bills`, `orders`, `buyers`, `sellers`, `products`, `categories`, `users`;
+DROP TABLE IF EXISTS `cart_items`, `carts`, `delivery`, `deliveried_by`, `shippers`, `coupons`, `reviews`, `bills`, `orders`, `buyers`, `sellers`, `products`, `categories`, `addresses`, `search_histories`, `users`;
 
 -- Create table for users (includes both buyers and sellers)
 CREATE TABLE `users` (
@@ -9,13 +9,27 @@ CREATE TABLE `users` (
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `phone_number` VARCHAR(20),
   `bank_name` VARCHAR(255),
-  `account_number` VARCHAR(50),
-  -- Address information
-  `address_street` VARCHAR(255),
-  `address_town` VARCHAR(255),
-  `address_district` VARCHAR(255),
-  `address_city` VARCHAR(255),
-  `search_history` TEXT
+  `account_number` VARCHAR(50)
+);
+
+-- Create table for addresses (separate table linked to users)
+CREATE TABLE `addresses` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `user_id` VARCHAR(36) NOT NULL,
+  `street` VARCHAR(255),
+  `town` VARCHAR(255),
+  `district` VARCHAR(255),
+  `city` VARCHAR(255),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+);
+
+-- Create table for search histories (separate table linked to users)
+CREATE TABLE `search_histories` (
+  `id` VARCHAR(36) PRIMARY KEY,
+  `user_id` VARCHAR(36) NOT NULL,
+  `search_term` TEXT NOT NULL,
+  `searched_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 );
 
 -- Create table for sellers
