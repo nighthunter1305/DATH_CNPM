@@ -1,5 +1,4 @@
-const db = require('../config/db'); // Kết nối cơ sở dữ liệu
-
+const db = require('../config/db');
 // delete product
 exports.deleteProduct = async (req, res) => {
   const { productId } = req.params;
@@ -26,7 +25,7 @@ exports.banUser = async (req, res) => {
       return res.status(404).json({ message: 'Người dùng không tồn tại!' });
     }
 
-    await db.execute('UPDATE users SET banned = 1 WHERE id = ?', [userId]); // 'banned' là cột trong bảng users
+    await db.execute('UPDATE users SET banned = 1 WHERE id = ?', [userId])
     res.status(200).json({ message: 'Người dùng đã bị ban thành công!' });
   } catch (error) {
     console.error(error);
