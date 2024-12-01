@@ -16,6 +16,7 @@ const ProductDetail = ({
   onShopCheck,
   isShopChecked,
   category,
+  showShopInfo,
 }) => {
   const formattedPrice = price.toLocaleString();
   const formattedTotal = (price * quantity).toLocaleString();
@@ -39,19 +40,21 @@ const ProductDetail = ({
 
   return (
     <>
-      <div className={styles.shopInfo}>
-        <input
-          type="checkbox"
-          checked={isShopChecked}
-          onChange={() => onShopCheck(shopName)}
-          className={styles.shopCheckbox}
-        />
-        <button className={styles.shopCategory}>{category}</button>
-        <span>
-          <p>{shopName}</p>
-        </span>
-        <Icon icon="ph:chat-text-fill" className={styles.iconify} />
-      </div>
+      {showShopInfo && (
+        <div className={styles.shopInfo}>
+          <input
+            type="checkbox"
+            checked={isShopChecked}
+            onChange={() => onShopCheck(shopName)}
+            className={styles.shopCheckbox}
+          />
+          <button className={styles.shopCategory}>{category}</button>
+          <span>
+            <p>{shopName}</p>
+          </span>
+          <Icon icon="ph:chat-text-fill" className={styles.iconify} />
+        </div>
+      )}
       <div className={styles.productDetail}>
         <div>
           <input

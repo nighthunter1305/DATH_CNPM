@@ -2,6 +2,12 @@ import { useState } from "react";
 import SellerNavbar from "../seller/components/SellerNavBar";
 import styles from "./AddProduct.module.css";
 import { Icon } from "@iconify/react";
+import {
+  mockBrands,
+  mockExpirations,
+  mockOrigins,
+  mockWeights,
+} from "../../apis/mock-data";
 
 const maxCharInput = 120;
 const minCharText = 100;
@@ -83,14 +89,15 @@ function AddProduct() {
               <span>*</span>
               <p>Hình ảnh sản phẩm</p>
             </div>
-
-            <div className={styles.imageButton}>
-              <Icon icon="mage:image-plus" className={styles.addIcon} />
-              <p>Thêm hình ảnh (0/9)</p>
-            </div>
-            <div className={styles.imageDesc}>
-              Tải lên hình ảnh 1:1. Những hình ảnh này sẽ được hiển thị khi xem
-              chi tiết sản phẩm
+            <div className={styles.imageWrapper}>
+              <div className={styles.imageButton}>
+                <Icon icon="mage:image-plus" className={styles.addIcon} />
+                <p>Thêm hình ảnh (0/9)</p>
+              </div>
+              <div className={styles.imageDesc}>
+                Tải lên hình ảnh 1:1. Những hình ảnh này sẽ được hiển thị khi
+                xem chi tiết sản phẩm
+              </div>
             </div>
           </div>
           <div className={styles.imageSection}>
@@ -98,15 +105,15 @@ function AddProduct() {
               <span>*</span>
               <p>Ảnh bìa</p>
             </div>
-
-            <div className={styles.imageButton}>
-              <Icon icon="mage:image-plus" className={styles.addIcon} />
-              <p>(0/1)</p>
-            </div>
-            <div className={styles.imageDesc}>
-              Tải lên hình ảnh 1:1. Ảnh bìa sẽ được hiển thị tại các trang Kết
-              quả tìm kiếm, Gợi ý hôm nay,... Việc sử dụng ảnh bìa đẹp sẽ thu
-              hút thêm lượt truy cập vào sản phẩm của bạn
+            <div className={styles.imageWrapper}>
+              <div className={styles.imageButton}>
+                <Icon icon="mage:image-plus" className={styles.addIcon} />
+                <p>(0/1)</p>
+              </div>
+              <div className={styles.imageDesc}>
+                Tải lên hình ảnh 1:1. Ảnh bìa sẽ được hiển thị tại các trang Kết
+                quả tìm kiếm, Gợi ý hôm nay,...
+              </div>
             </div>
           </div>
           <div className={styles.imageSection}>
@@ -114,13 +121,14 @@ function AddProduct() {
               <span>*</span>
               <p>Video sản phẩm</p>
             </div>
-
-            <div className={styles.imageButton}>
-              <Icon icon="mage:image-plus" className={styles.addIcon} />
-              <p>Thêm video</p>
-            </div>
-            <div className={styles.imageDesc}>
-              Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px.
+            <div className={styles.imageWrapper}>
+              <div className={styles.imageButton}>
+                <Icon icon="mage:image-plus" className={styles.addIcon} />
+                <p>Thêm video</p>
+              </div>
+              <div className={styles.imageDesc}>
+                Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px.
+              </div>
             </div>
           </div>
           <div className={styles.productSection}>
@@ -181,10 +189,11 @@ function AddProduct() {
                   <option value="" disabled selected hidden>
                     Vui lòng chọn
                   </option>
-                  <option value="1">No brand</option>
-                  <option value="2">Xtra Mart</option>
-                  <option value="3">Big Market</option>
-                  <option value="4">Dalat FreshFruit</option>
+                  {mockBrands.map((brand) => (
+                    <option key={brand.id} value={brand.id}>
+                      {brand.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className={styles.formGroup}>
@@ -205,10 +214,11 @@ function AddProduct() {
                   <option value="" disabled selected hidden>
                     Vui lòng chọn
                   </option>
-                  <option value="1">1 tháng</option>
-                  <option value="3">3 tháng</option>
-                  <option value="6">6 tháng</option>
-                  <option value="12">12 tháng</option>
+                  {mockExpirations.map((expiration) => (
+                    <option key={expiration.id} value={expiration.id}>
+                      {expiration.label}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className={styles.formGroup}>
@@ -233,10 +243,11 @@ function AddProduct() {
                   <option value="" disabled selected hidden>
                     Vui lòng chọn
                   </option>
-                  <option value="VN">Việt Nam</option>
-                  <option value="CN">Trung Quốc</option>
-                  <option value="US">Mỹ</option>
-                  <option value="JP">Nhật Bản</option>
+                  {mockOrigins.map((origin) => (
+                    <option key={origin.id} value={origin.id}>
+                      {origin.label}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className={styles.formGroup}>
@@ -257,10 +268,11 @@ function AddProduct() {
                   <option value="" disabled selected hidden>
                     Vui lòng chọn
                   </option>
-                  <option value="1">500g</option>
-                  <option value="2">1kg</option>
-                  <option value="3">2kg</option>
-                  <option value="4">5kg</option>
+                  {mockWeights.map((weight) => (
+                    <option key={weight.id} value={weight.id}>
+                      {weight.label}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className={styles.formGroup}>
@@ -273,6 +285,44 @@ function AddProduct() {
                   </option>
                 </select>
               </div>
+            </div>
+          </div>
+          <div className={styles.divider}></div>
+          <p className={styles.sellForm}>Thông tin bán hàng</p>
+          <div className={styles.sellContainer}>
+            <div className={styles.label}>
+              <span>*</span>
+              <p>Giá bán</p>
+            </div>
+            <div className={styles.productPrice}>
+              <input
+                className={styles.priceInput}
+                type="text"
+                placeholder="Nhập vào"
+              />
+            </div>
+
+            <div className={styles.label}>
+              <span>*</span>
+              <p>Số lượng trong kho</p>
+            </div>
+            <div className={styles.productPrice}>
+              <input
+                className={styles.priceInput}
+                type="text"
+                placeholder="Nhập vào"
+              />
+            </div>
+            <div className={styles.label}>
+              <span>*</span>
+              <p>Phí vận chuyển</p>
+            </div>
+            <div className={styles.productPrice}>
+              <input
+                className={styles.priceInput}
+                type="text"
+                placeholder="Nhập vào"
+              />
             </div>
           </div>
           <div className={styles.actions}>

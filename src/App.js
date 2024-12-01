@@ -11,6 +11,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
 function App() {
   return (
     <Router>
@@ -19,8 +21,23 @@ function App() {
         <Route path="/login" element={<LogInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/seller" element={<SellerChannel />} />
-        <Route path="/add-product" element={<AddProduct />} />
+        <Route
+          path="/seller"
+          element={
+            <ProtectedRoute>
+              <SellerChannel />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/seller/add-product"
+          element={
+            <ProtectedRoute>
+              <AddProduct />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
