@@ -84,13 +84,13 @@
 }
 
 .star-rating {
-  color: #FFD700;
+  color: #ffd700;
 }
 
 .product-price {
-  font-size: 28px;
-  font-weight: bold;
-  color: #ff5722;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
   margin-bottom: 20px;
 }
 
@@ -112,7 +112,6 @@
   cursor: pointer;
   border: none;
 }
-
 
 .seller-info-section,
 .product-info-section,
@@ -177,15 +176,17 @@
   gap: 20px;
 }
 
-.call-bt, .message-bt, .view-shop-bt {
+.call-bt,
+.message-bt,
+.view-shop-bt {
   display: flex;
-  color: #4EEE94;
+  color: #4eee94;
   background-color: white;
   border: none;
   cursor: pointer;
 
   a {
-    color: #4EEE94;
+    color: #4eee94;
   }
 
   span {
@@ -223,7 +224,6 @@
   align-items: flex-end;
 }
 
-
 .info-item:last-child {
   margin-right: 0;
 }
@@ -241,13 +241,11 @@
   align-items: center;
   gap: 50px;
   margin-bottom: 8px;
-  background-color: #c7e8d6;
   padding: 20px;
 }
 .star {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
   font-size: 20px;
 }
 .star-detail {
@@ -262,7 +260,12 @@
 }
 .cmt-item {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 20px;
+  display: flex;
+}
+
+.user-cmt {
+  margin-left: 20px;
 }
 .vote-header {
   display: flex;
@@ -283,4 +286,3 @@
   justify-content: center;
   gap: 10px;
 }
-

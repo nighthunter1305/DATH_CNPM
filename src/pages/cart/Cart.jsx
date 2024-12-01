@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar/Navbar";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import ModalBox from "../../components/ModalBox/ModalBox";
 
@@ -72,7 +71,6 @@ function Cart() {
   };
   return (
     <div className={styles.wrapper}>
-      <Navbar />
       <section className={styles.container}>
         <h2 className={styles.title}>GIỎ HÀNG</h2>
         <p className={styles.nav}>

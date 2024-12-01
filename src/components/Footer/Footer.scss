@@ -1,55 +1,54 @@
 .payment .image-payment,
 .logistic .image-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Chia thành 3 cột đều */
-  gap: 15px; /* Khoảng cách giữa các ảnh */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
 }
 .logistic .image-item img {
-  width: 52px; /* Đảm bảo ảnh chiếm hết chiều rộng của cell */
+  width: 52px;
   height: auto;
-  border-radius: 8px; /* Thêm bo góc cho ảnh (tuỳ chọn) */
+  border-radius: 8px;
 }
-.payment-icon{
+.payment-icon {
   width: 52px;
   height: 52px;
   border-radius: 8px;
-
 }
 .main-footer {
-   background-color: rgba(21, 179, 146, 0.9); /* Màu nền cho footer */
-   padding: 20px;
- }
+  background-color: rgba(21, 179, 146, 0.9);
+  padding: 20px;
+  margin-top: 4rem;
+}
 
 .footer-container {
-  display: grid; /* Sử dụng grid để căn chỉnh các phần tử */
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Tạo lưới có các cột có kích thước tối thiểu là 250px */
-  gap: 20px; /* Khoảng cách giữa các cột */
-  justify-items: center; /* Căn giữa các phần tử theo chiều ngang */
-  align-items: flex-start; /* Căn các phần tử theo chiều dọc */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: flex-start;
 }
 .quick-link {
   text-decoration: none;
   color: inherit;
 }
 .footer-item {
-  border-radius: 8px; /* Bo góc cho các item */
+  border-radius: 8px;
   padding: 20px;
-  width: 100%; /* Đảm bảo các phần tử chiếm toàn bộ chiều rộng của cột */
+  width: 100%;
   box-sizing: border-box;
 }
 
-.footer-item h3{
-
-  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+.footer-item h3 {
+  margin-bottom: 10px;
 }
 
 .footer-item ul {
-  list-style-type: none; /* Loại bỏ dấu chấm trong danh sách */
-  padding: 0; /* Loại bỏ padding */
+  list-style-type: none;
+  padding: 0;
 }
 
 .footer-item ul li {
-  margin: 5px 0; /* Khoảng cách giữa các mục danh sách */
+  margin: 5px 0;
 }
 
 .footer-bottom-main {
@@ -58,16 +57,15 @@
 }
 
 .social-icon {
-  width: 24px; /* Kích thước biểu tượng */
-  height: auto; /* Giữ tỷ lệ cho biểu tượng */
-  margin: 0 10px; /* Khoảng cách giữa các biểu tượng */
+  width: 24px;
+  height: auto;
+  margin: 0 10px;
 }
 
 .social-media a {
-  text-decoration: none; /* Bỏ gạch chân */
+  text-decoration: none;
 }
 
 .social-media a:hover .social-icon {
-  opacity: 0.8; /* Thay đổi độ trong suốt khi di chuột qua */
+  opacity: 0.8;
 }
-

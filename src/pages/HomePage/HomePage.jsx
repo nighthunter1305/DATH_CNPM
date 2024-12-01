@@ -6,13 +6,10 @@ import FeaturedProducts from "../../components/FeaturedProduct/FeaturedProduct";
 import { useProducts } from "../../contexts/ProductContext";
 
 const HomePage = () => {
-  // Trạng thái để lưu thông tin sản phẩm được chọn
   const [setSelectedProduct] = useState(null);
 
-  // Lấy dữ liệu sản phẩm từ context
   const { products } = useProducts();
 
-  // Hàm để chọn sản phẩm (nếu cần)
   const handleProductClick = (product) => {
     setSelectedProduct(product);
   };

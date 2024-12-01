@@ -13,7 +13,7 @@ function LogInForm() {
   const handleLogin = () => {
     if (username && password) {
       localStorage.setItem("isLoggedIn", "true");
-      navigate("/seller");
+      navigate("/");
     }
   };
   return (

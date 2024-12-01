@@ -290,39 +290,44 @@ function AddProduct() {
           <div className={styles.divider}></div>
           <p className={styles.sellForm}>Thông tin bán hàng</p>
           <div className={styles.sellContainer}>
-            <div className={styles.label}>
-              <span>*</span>
-              <p>Giá bán</p>
+            <div className={styles.sellWrapper}>
+              <div className={styles.label}>
+                <span>*</span>
+                <p>Giá bán</p>
+              </div>
+              <div className={styles.productPrice}>
+                <input
+                  className={styles.priceInput}
+                  type="text"
+                  placeholder="Nhập vào"
+                />
+              </div>
             </div>
-            <div className={styles.productPrice}>
-              <input
-                className={styles.priceInput}
-                type="text"
-                placeholder="Nhập vào"
-              />
+            <div className={styles.sellWrapper}>
+              <div className={styles.label}>
+                <span>*</span>
+                <p>Số lượng trong kho</p>
+              </div>
+              <div className={styles.productPrice}>
+                <input
+                  className={styles.priceInput}
+                  type="text"
+                  placeholder="Nhập vào"
+                />
+              </div>
             </div>
-
-            <div className={styles.label}>
-              <span>*</span>
-              <p>Số lượng trong kho</p>
-            </div>
-            <div className={styles.productPrice}>
-              <input
-                className={styles.priceInput}
-                type="text"
-                placeholder="Nhập vào"
-              />
-            </div>
-            <div className={styles.label}>
-              <span>*</span>
-              <p>Phí vận chuyển</p>
-            </div>
-            <div className={styles.productPrice}>
-              <input
-                className={styles.priceInput}
-                type="text"
-                placeholder="Nhập vào"
-              />
+            <div className={styles.sellWrapper}>
+              <div className={styles.label}>
+                <span>*</span>
+                <p>Phí vận chuyển</p>
+              </div>
+              <div className={styles.productPrice}>
+                <input
+                  className={styles.priceInput}
+                  type="text"
+                  placeholder="Nhập vào"
+                />
+              </div>
             </div>
           </div>
           <div className={styles.actions}>

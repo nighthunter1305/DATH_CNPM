@@ -1,13 +1,12 @@
 import "./App.css";
-import ReactDOM from "react-dom/client";
 import HomePage from "./pages/homepage/HomePage";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Footer from "./components/Footer/Footer";
 import LogInForm from "./pages/login/LogInForm";
 import SignUpForm from "./pages/signup/SignUpForm";
 import Cart from "./pages/cart/Cart";
-import AddProduct from "./pages/addproduct/AddProduct";
+import AddProduct from "./pages/addProduct/AddProduct";
 import SellerChannel from "./pages/seller/SellerChannel";
 import { ProductProvider } from "./contexts/ProductContext";
 import Statusbar from "./components/Statusbar/Statusbar";
@@ -24,19 +23,21 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
   useLocation,
+  Outlet,
 } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-const AppLayout = ({ children }) => {
+const AppLayout = () => {
   const location = useLocation();
   const isAboutPage = location.pathname.startsWith("/about");
 
   return (
     <>
       {isAboutPage ? <AboutNavbar /> : <Navbar />}
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
       {isAboutPage ? <AboutFooter /> : <Footer />}
     </>
   );
@@ -46,9 +47,8 @@ function App() {
   return (
     <ProductProvider>
       <Router>
-        <AppLayout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+        <Routes>
+          <Route element={<AppLayout />}>
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/status" element={<Statusbar />} />
             <Route path="/all" element={<Statusbar />} />
@@ -60,39 +60,36 @@ function App() {
             <Route path="/return-refund" element={<Statusbar />} />
             <Route path="/payment/:id" element={<Payment />} />
 
-            {/* Trang Aboutus */}
-            <Route path="/about" element={<Aboutus />} />
             <Route path="/about/intro" element={<AboutIntro />} />
             <Route path="/about/why-greenfood" element={<AboutWhy />} />
             <Route path="/about/career" element={<AboutCareer />} />
             <Route path="/about/event" element={<AboutEvent />} />
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<LogInForm />} />
-            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/about" element={<Aboutus />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<Cart />} />
-            <Route
-              path="/seller"
-              element={
-                <ProtectedRoute>
-                  <SellerChannel />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/seller/add-product"
-              element={
-                <ProtectedRoute>
-                  <AddProduct />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </AppLayout>
+          </Route>
+          <Route path="/login" element={<LogInForm />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route
+            path="/seller"
+            element={
+              <ProtectedRoute>
+                <SellerChannel />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/add-product"
+            element={
+              <ProtectedRoute>
+                <AddProduct />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </Router>
     </ProductProvider>
   );
 }
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
 
 export default App;

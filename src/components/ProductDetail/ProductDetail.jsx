@@ -261,7 +261,7 @@ const ProductDetail = () => {
           {currentcmts.map((cmt) => (
             <div key={cmt.id} className="cmt-item">
               <img src={cmt.userImage} alt="Người dùng" />
-              <div>
+              <div className="user-cmt">
                 <p>{cmt.userName}</p>
                 <p>{cmt.voteTime}</p>
                 <p>Đánh giá: {cmt.rating}</p>

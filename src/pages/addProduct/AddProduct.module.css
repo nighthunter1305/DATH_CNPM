@@ -9,8 +9,6 @@
   position: fixed;
   top: 80px;
   left: 20px;
-  /* display: flex;
-  flex-direction: column; */
   width: 400px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -307,6 +305,32 @@ input[type="date"] {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 16px;
+}
+
+.sellContainer {
+  padding: 20px 0;
+}
+
+.sellWrapper {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.productPrice {
+  flex: 2;
+}
+
+.priceInput {
+  width: 40%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: #e5e5e5 1px solid;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .actions {
