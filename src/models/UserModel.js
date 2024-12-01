@@ -70,5 +70,5 @@ export const UserModel = {
   updateUser,
   banUser,
   deleteUser,
-  getUsersByCondition, // Hàm mở rộng để tìm kiếm người dùng theo điều kiện
+  getUsersByCondition,
 };
