@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const adminController = require('../controllers/admin.controller');
+const AdminController = require('./AdminController');
 
-router.delete('/product/:id', adminController.deleteProduct);
+router.delete('/products/:id', AdminController.deleteProduct);
 
-router.patch('/user/:id/ban', adminController.banUser);
+router.put('/users/:id/ban', AdminController.banUser);
 
 module.exports = router;
