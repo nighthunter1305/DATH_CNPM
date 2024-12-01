@@ -8,7 +8,6 @@
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 15px 10px;
   margin-bottom: 2px;
-  margin-top: 12px;
 }
 
 .shopCheckbox {
@@ -52,7 +51,7 @@
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  margin-bottom: 2px;
+  margin-bottom: 16px;
 }
 
 .productDetail div {

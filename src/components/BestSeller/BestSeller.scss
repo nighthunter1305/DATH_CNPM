@@ -1,0 +1,116 @@
+.product-container {
+  display: flex; /* Sử dụng flexbox để sắp xếp các slide */
+  transition: transform 0.5s ease; /* Hiệu ứng chuyển động mượt mà khi chuyển đổi giữa các slide */
+}
+
+.product-slide {
+  min-width: 100%; /* Chiều rộng của mỗi slide sẽ chiếm toàn bộ chiều rộng của container */
+  display: none; /* Ẩn tất cả các slide mặc định */
+  justify-content: flex-start; /* Bắt đầu từ lề trái */
+}
+
+.product-slide.active {
+  display: flex; /* Hiển thị slide đang hoạt động */
+}
+
+.best-sellers-carousel {
+  position: relative; /* Giúp định vị các nút bấm */
+
+  max-width: 1200px; /* Chiều rộng tối đa của carousel */
+  margin: auto; /* Căn giữa carousel trên trang */
+  overflow: hidden; /* Giấu các phần tử ra ngoài vùng nhìn thấy */
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.product-item {
+  width: 100%;
+  flex: 1 1 10%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.product-item:first-child {
+  margin-left: 55px;
+}
+.product-item:last-child {
+  margin-right: 55px;
+}
+
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 32px;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.left-btn {
+  left: 0;
+  z-index: 1;
+
+}
+
+.right-btn {
+  right: 0;
+  z-index: 1;
+
+
+}
+
+.active {
+  display: flex;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.product-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product-name {
+  font-size: 15px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.product-price {
+  font-size: 5px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+.buy-now {
+  width: 70%;
+  margin-left: 15%;
+  color : white;
+  background-color: #12977a;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
