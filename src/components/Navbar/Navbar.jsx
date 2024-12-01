@@ -1,11 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
+
+  // Kiểm tra trạng thái đăng nhập khi component được render
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    if (loggedInStatus === "true") {
+      setIsLoggedIn(true);
+      setUsername(localStorage.getItem("username"));
+      setAvatar(localStorage.getItem("avatar"));
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+
+    navigate("/login");
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -52,10 +71,22 @@ function Navbar() {
             <span className={styles.cartCount}>10</span>
           </Link>
         </div>
-        {/* eslint-disable-next-line */}
-        <Link to="/login">Đăng nhập</Link>
-        {/* eslint-disable-next-line */}
-        <Link to="/signup">Đăng ký</Link>
+        {isLoggedIn ? (
+          <>
+            <div className={styles.userAvatar}>
+              <img src={avatar} alt="avatar" className={styles.avatar} />
+              <span className={styles.username}>{username}</span>
+            </div>
+            <button className={styles.logoutBtn} onClick={handleLogout}>
+              Đăng xuất
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Đăng nhập</Link>
+            <Link to="/signup">Đăng ký</Link>
+          </>
+        )}
       </div>
     </div>
   );

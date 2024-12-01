@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Payment.scss";
 import styles from "./Payment.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
 
 const Payment = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const { products } = useProducts();
   const product = products.find((prod) => prod.id.toString() === id);

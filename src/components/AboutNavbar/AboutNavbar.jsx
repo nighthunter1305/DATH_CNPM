@@ -2,19 +2,17 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import React, { useState, useEffect } from "react";
 import "./AboutNavbar.scss";
-import styles from "../NavBar/Navbar.module.css";
+import styles from "../Navbar/Navbar.module.css";
 
 const AboutNavbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [visitedLink, setVisitedLink] = useState(null);
 
-  // Hàm để xử lý khi người dùng nhấp vào liên kết
   const handleLinkClick = (link) => {
     setVisitedLink(link);
   };
 
-  // Đặt lại trạng thái visitedLink khi điều hướng đến trang about
   useEffect(() => {
     if (location.pathname === "/about") {
       setVisitedLink(null);

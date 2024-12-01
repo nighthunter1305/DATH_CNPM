@@ -107,3 +107,33 @@
   top: -10px;
   right: -10px;
 }
+
+.userAvatar {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 12px;
+  margin-left: 16px;
+}
+
+.username {
+  color: #fff;
+  font-weight: 500;
+}
+
+.logoutBtn {
+  padding: 8px;
+  border: none;
+  background-color: #54c392;
+  color: #fff;
+  font-weight: 500;
+}
+
+.logoutBtn:hover {
+  background-color: #50b98c;
+}

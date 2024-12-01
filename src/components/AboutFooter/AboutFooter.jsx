@@ -2,7 +2,7 @@ import React from "react";
 import "./AboutFooter.scss";
 import { Icon } from "@iconify/react";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
-import styles from "../NavBar/Navbar.module.css";
+import styles from "../Navbar/Navbar.module.css";
 
 const AboutFooter = () => {
   return (
