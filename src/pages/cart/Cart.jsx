@@ -1,13 +1,13 @@
 import Navbar from "../../components/Navbar/Navbar";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import ModalBox from "../../components/ModalBox/ModalBox";
-import ProductDetail from "../../components/ProductDetail/ProductDetail";
 
 import styles from "./Cart.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import EmptyCart from "../../components/EmptyCart/EmptyCart";
 import { mockCartData, mockVouchers } from "../../apis/mock-data";
+import ProductInfo from "../../components/ProductInfo/ProductInfo";
 
 function Cart() {
   const [products, setProducts] = useState(mockCartData);
@@ -108,7 +108,7 @@ function Cart() {
                   shopSet.add(product.shopName);
                 }
                 return (
-                  <ProductDetail
+                  <ProductInfo
                     key={product.id}
                     image={product.image}
                     name={product.name}

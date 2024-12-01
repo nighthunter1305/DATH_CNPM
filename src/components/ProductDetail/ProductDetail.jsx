@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProducts } from "../../Context/ProductContext";
+import { useProducts } from "../../contexts/ProductContext";
 import { FaFacebook, FaShare, FaFacebookMessenger } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 import { FaPhone, FaMessage, FaStore } from "react-icons/fa6";
 import "./ProductDetail.scss";
-import {
-  TbPlayerTrackNextFilled,
-  TbPlayerTrackPrevFilled,
-} from "react-icons/tb";
+// import {
+//   TbPlayerTrackNextFilled,
+//   TbPlayerTrackPrevFilled,
+// } from "react-icons/tb";
 
 const ProductDetail = () => {
   const { id } = useParams();

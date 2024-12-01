@@ -1,6 +1,6 @@
 import "./App.css";
 import ReactDOM from "react-dom/client";
-import HomePage from "./pages/homepage/homepage";
+import HomePage from "./pages/homepage/HomePage";
 import Navbar from "./components/Navbar/Navbar";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Footer from "./components/Footer/Footer";
@@ -9,7 +9,7 @@ import SignUpForm from "./pages/signup/SignUpForm";
 import Cart from "./pages/cart/Cart";
 import AddProduct from "./pages/addproduct/AddProduct";
 import SellerChannel from "./pages/seller/SellerChannel";
-import { ProductProvider } from "./Context/ProductContext";
+import { ProductProvider } from "./contexts/ProductContext";
 import Statusbar from "./components/Statusbar/Statusbar";
 import AboutNavbar from "./components/AboutNavbar/AboutNavbar";
 import AboutWhy from "./components/AboutWhy/AboutWhy";
