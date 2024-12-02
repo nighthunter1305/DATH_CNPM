@@ -62,21 +62,16 @@ async function removeProduct(req, res) {
   const { buyer_id, product_id } = req.body;
 
   try {
-    // Lấy thông tin giỏ hàng của người mua
+
     const cart = await CartModel.getCartIDbyBuyerID(buyer_id);
     if (!cart) {
       return res.status(StatusCodes.NOT_FOUND).json({ error: 'Cart not found for this buyer' });
     }
-
     const cart_id = cart.id;
-
-    // Kiểm tra xem sản phẩm có trong giỏ hàng hay không
     const existingProduct = await CartModel.getProductInCart(cart_id, product_id);
     if (!existingProduct) {
       return res.status(StatusCodes.NOT_FOUND).json({ error: 'Product not found in the cart' });
     }
-
-    // Xóa sản phẩm khỏi giỏ hàng
     await CartModel.removeProductFromCart(cart_id, product_id);
 
     res.status(StatusCodes.OK).json({ message: 'Product removed from cart successfully' });
@@ -85,9 +80,29 @@ async function removeProduct(req, res) {
   }
 }
 
+async function getTotal(req, res) {
+  const { buyer_id } = req.params;
+  try {
+    const cart = await CartModel.getCartIDbyBuyerID(buyer_id);
+    if (!cart) {
+      return res.status(StatusCodes.NOT_FOUND).json({ error: 'Cart not found for this buyer' });
+    }
+    const cart_id = cart.id;
+    const products = await CartModel.getProductsInCart(cart_id);
+    let total = 0;
+    for (const product of products) {
+      const productPrice = product.price; 
+      total += productPrice * product.quantity;
+    }
+    res.status(StatusCodes.OK).json({ total });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
+  }
+}
 export const CartController = {
   getCartIDbyBuyerID,
   addProducttoCart,
   updateQuantity,
-  removeProduct
+  removeProduct,
+  getTotal
 };

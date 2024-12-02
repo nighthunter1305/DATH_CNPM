@@ -1,5 +1,5 @@
 
-import { insertSingleRow, updateRow, getOne, deleteRow } from '~/database/query';
+import { insertSingleRow, updateRow, getOne, deleteRow, getAll } from '~/database/query';
 async function getCartIDbyBuyerID(buyer_id) {
   try {
     const cart = await getOne('carts', { buyer_id: buyer_id });
@@ -35,6 +35,19 @@ async function removeProductFromCart(cart_id, product_id) {
   return await deleteRow('cart_product', where);
 }
 
+async function getProductsInCart(cart_id) {
+  try {
+    const rows = await getAll('cart_product', { cart_id });
+
+    for (const row of rows) {
+      const productDetails = await getOne('products', { product_id: row.product_id });
+      row.price = productDetails[0].price;
+    }
+    return rows;
+  } catch (error) {
+    throw new Error(`Failed to get products in cart: ${error.message}`);
+  }
+}
 
 export const CartModel = {
   createCart,
@@ -42,5 +55,6 @@ export const CartModel = {
   getProductInCart,
   addProductToCart,
   updateProductQuantity,
-  removeProductFromCart
+  removeProductFromCart,
+  getProductsInCart
 };
