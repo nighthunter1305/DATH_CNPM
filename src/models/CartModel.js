@@ -40,7 +40,7 @@ async function getProductsInCart(cart_id) {
     const rows = await getAll('cart_product', { cart_id });
 
     for (const row of rows) {
-      const productDetails = await getOne('products', { product_id: row.product_id });
+      const productDetails = await getAll('products', { id: row.product_id });
       row.price = productDetails[0].price;
     }
     return rows;
