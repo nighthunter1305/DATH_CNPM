@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 02, 2024 lúc 11:05 AM
+-- Thời gian đã tạo: Th12 02, 2024 lúc 07:34 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -63,8 +63,8 @@ CREATE TABLE `buyers` (
 --
 
 INSERT INTO `buyers` (`user_id`) VALUES
-('user3'),
-('user1');
+('user1'),
+('user3');
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ INSERT INTO `buyers` (`user_id`) VALUES
 --
 
 CREATE TABLE `carts` (
-  `id` INT AUTO_INCREMENT NOT NULL,
+  `id` varchar(36) NOT NULL,
   `buyer_id` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -82,6 +82,7 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `buyer_id`) VALUES
+('cart1733153953092', 'user1'),
 ('cart1', 'user3');
 
 -- --------------------------------------------------------
