@@ -17,13 +17,18 @@ const ProductDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
   };
 
   const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
+    setQuantity(Number(e.target.value));
   };
 
   if (!product) {
@@ -171,10 +176,12 @@ const ProductDetail = () => {
           />
           <span className="available-stock">Kho: {product.availableStock}</span>
         </div>
-        <button className="buy-now-button">Mua ngay</button>
-        <button className="add-to-cart-button" onClick={handleAddToCart}>
-          Thêm vào giỏ hàng
-        </button>
+        <div className="button-area">
+          <button className="buy-now-button">Mua ngay</button>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            Thêm vào giỏ hàng
+          </button>
+        </div>
 
         {/* Chia sẻ sản phẩm */}
         <div className="share-buttons">
@@ -199,6 +206,12 @@ const ProductDetail = () => {
           </button>
         </div>
       </div>
+
+      {showPopup && (
+        <div className="popup-message">
+          <p>Sản phẩm đã được thêm vào giỏ hàng!</p>
+        </div>
+      )}
 
       {/* Thông tin người bán */}
       <div className="seller-info-section">

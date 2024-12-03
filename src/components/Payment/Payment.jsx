@@ -125,15 +125,23 @@ const Payment = () => {
   };
 
   const handleSaveAddress = () => {
-    if (
-      !selectedProvinceName ||
-      !selectedDistrictName ||
-      !selectedWardName ||
-      !newName ||
-      !newPhone ||
-      !newAddressDetail
-    ) {
-      alert("Vui lòng điền đầy đủ thông tin!");
+    let errorMessage = "";
+
+    if (!newName) {
+      errorMessage += "Vui lòng nhập họ tên.\n";
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!newPhone || !phoneRegex.test(newPhone)) {
+      errorMessage += "Vui lòng nhập số điện thoại hợp lệ (10 chữ số).\n";
+    }
+
+    if (!newAddressDetail) {
+      errorMessage += "Vui lòng nhập địa chỉ chi tiết.\n";
+    }
+
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
@@ -231,7 +239,7 @@ const Payment = () => {
       <div className="payment-pro">
         <div className="cus-in4">
           <label>
-            <FaLocationDot /> Địa chỉ nhận hàng
+            <FaLocationDot size={24} /> Địa chỉ nhận hàng
           </label>
           <div className="cus-in4-detail">
             {selectedAddress ? (
@@ -400,7 +408,7 @@ const Payment = () => {
       {product && (
         <section className={styles.product}>
           <div className={styles.productInfo}>
-            <div>Sản phẩm</div>
+            <div className="pay-bar">Sản phẩm</div>
             <div>Đơn giá</div>
             <div>Số lượng</div>
             <div>Số tiền</div>
@@ -414,20 +422,18 @@ const Payment = () => {
               />
               <span>{product.name}</span>
             </div>
-            <div className={styles.productPrice}>{product.price}₫</div>
+            <div className={styles.productPrice}>{product.price} VNĐ</div>
             <div className={styles.productQuantity}>
               <span>1</span>
             </div>
-            <div className={styles.productTotal}>
-              {product.price * product.quantity}₫
-            </div>
+            <div className={styles.productTotal}>{product.price * 1} VNĐ</div>
           </div>
         </section>
       )}
       {/* Payment Method Section */}
       <section className={styles.productInfo}>
-        <h3>Hình thức thanh toán</h3>
-        <div>
+        <p className="method">Hình thức thanh toán</p>
+        <div className="paycod">
           <input
             type="radio"
             id="cod"
@@ -438,67 +444,11 @@ const Payment = () => {
           />
           <label htmlFor="cod">Thanh toán khi nhận hàng (COD)</label>
         </div>
-
-        <div>
-          <input
-            type="radio"
-            id="bank"
-            name="paymentMethod"
-            value="bank"
-            checked={selectedPaymentMethod === "bank"}
-            onChange={() => setSelectedPaymentMethod("bank")}
-          />
-          <label htmlFor="bank">Chuyển khoản ngân hàng</label>
-        </div>
       </section>
       <div className="payment-method">
         {selectedPaymentMethod === "cod" && (
           <div className="tab-cod">
             <p>Thanh toán khi nhận hàng (COD), phí thu hộ 0.</p>
-          </div>
-        )}
-        {selectedPaymentMethod === "bank" && (
-          <div className="tab-bank">
-            <h4>Chọn ngân hàng/ví điện tử</h4>
-            <ul>
-              <li>
-                <a
-                  href="https://www.vietcombank.com.vn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Vietcombank
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.techcombank.com.vn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Techcombank
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://momo.vn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  MoMo (Ví điện tử)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://zalopay.vn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ZaloPay
-                </a>
-              </li>
-              {/* Thêm các ngân hàng/ví khác tại đây */}
-            </ul>
           </div>
         )}
       </div>
@@ -508,16 +458,16 @@ const Payment = () => {
         <div className="bill-info">
           <div>
             <span>Tổng tiền hàng : </span>
-            <span>{product.price}₫</span>
+            <span>{product.price} VNĐ</span>
           </div>
           <div>
             <span>Phí vận chuyển : </span>
-            <span>{37000}₫</span>
+            <span>{37000} VNĐ</span>
           </div>
 
           <div>
             <span>Tổng cộng Voucher giảm giá : </span>
-            <span>{17000}₫</span>
+            <span>{17000} VNĐ</span>
           </div>
           <div>
             <span>Tổng cộng : </span>

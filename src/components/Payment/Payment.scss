@@ -1,9 +1,11 @@
 h2 {
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .payment-pro {
-  width: 70%;
+  width: 57%;
   margin: 0 auto;
   display: flex;
   gap: 20px;
@@ -30,7 +32,6 @@ h2 {
   }
 }
 
-
 .modal {
   position: fixed;
   top: 0;
@@ -44,7 +45,7 @@ h2 {
 }
 
 .modal-content {
-  width: 40%;
+  width: 45%;
   height: 500px;
   margin: 0 auto;
   background-color: #fff;
@@ -79,7 +80,7 @@ h2 {
 }
 
 .modal-content button:first-of-type {
-  background-color: #4CAF50;
+  background-color: #15b392;
   color: white;
 }
 
@@ -117,7 +118,7 @@ h2 {
 }
 
 .new-address-form button:first-of-type {
-  background-color: #4CAF50;
+  background-color: #15b392;
   color: white;
 }
 
@@ -155,7 +156,6 @@ h2 {
     border-radius: 5px;
     position: sticky;
     z-index: 10;
-
   }
 }
 
@@ -216,7 +216,8 @@ button.change {
     accent-color: #12977a;
   }
 }
-.payment-method,.bill {
+.payment-method,
+.bill {
   margin-left: 300px;
   margin-right: 300px;
   display: flex;
@@ -233,7 +234,8 @@ button.change {
     padding: 10px;
   }
 }
-.tab-cod, .tab-bank {
+.tab-cod,
+.tab-bank {
   margin-top: 20px;
   border-radius: 4px;
 }
@@ -244,7 +246,7 @@ button.change {
     text-align: left;
   }
   button {
-    background-color: #12977a;
+    background-color: #15b392;
     width: 150px;
     height: auto;
     font-weight: bold;
@@ -257,7 +259,23 @@ button.change {
     margin-left: 10px;
   }
   button:hover {
-    background-color: #0f866d;
+    background-color: #12977a;
   }
 }
 
+.method {
+  margin-left: 22px;
+  font-size: 20;
+  font-weight: 600;
+  padding-top: 10px;
+}
+.pay-bar {
+  font-size: 18px;
+  font-weight: 600;
+}
+.paycod {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -220px;
+}

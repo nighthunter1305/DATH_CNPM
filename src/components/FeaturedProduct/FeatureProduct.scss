@@ -47,12 +47,14 @@
 
 .product-grid {
   display: grid;
-  padding: 50px 160px;
+  padding: 50px;
   grid-template-columns: repeat(6, 1fr);
   gap: 20px;
   background-color: #f7f7f7;
   max-width: 90%;
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .product {
