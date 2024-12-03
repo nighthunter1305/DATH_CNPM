@@ -3,13 +3,15 @@ import ModalBox from "../../components/ModalBox/ModalBox";
 
 import styles from "./Cart.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmptyCart from "../../components/EmptyCart/EmptyCart";
-import { mockCartData, mockVouchers } from "../../apis/mock-data";
+import { mockVouchers } from "../../apis/mock-data";
 import ProductInfo from "../../components/ProductInfo/ProductInfo";
+import { useProducts } from "../../contexts/ProductContext";
 
 function Cart() {
-  const [products, setProducts] = useState(mockCartData);
+  const { cart, updateCart } = useProducts();
+  const [products, setProducts] = useState(cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -27,6 +29,10 @@ function Cart() {
       )
     );
   };
+
+  useEffect(() => {
+    updateCart(products);
+  }, [products, updateCart]);
 
   const handleRemove = (id) => {
     setProducts((prevProducts) =>

@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
+import { useProducts } from "../../contexts/ProductContext";
 
 function Navbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
+  const { cart } = useProducts();
+  const cartCount = new Set(cart.map((product) => product.id)).size;
 
-  // Kiểm tra trạng thái đăng nhập khi component được render
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     if (loggedInStatus === "true") {
@@ -60,7 +62,7 @@ function Navbar() {
           {/* eslint-disable-next-line */}
           <a href="#" onClick={() => navigate("/status")}>
             <Icon icon="tabler:mail-filled" className={styles.iconify} />
-            <span className={styles.messageCount}>5</span>
+            <span className={styles.messageCount}>10</span>
           </a>
         </div>
 
@@ -68,7 +70,9 @@ function Navbar() {
           {/* eslint-disable-next-line */}
           <Link to="/cart">
             <Icon icon="mdi:cart" className={styles.iconify} />
-            <span className={styles.cartCount}>10</span>
+            {cartCount > 0 && (
+              <span className={styles.cartCount}>{cartCount}</span>
+            )}
           </Link>
         </div>
         {isLoggedIn ? (

@@ -10,12 +10,12 @@ const ProductInfo = ({
   quantity = 1,
   onQuantityChange,
   onRemove,
-  checked,
+  checked = false,
   onCheck,
   shopName,
   onShopCheck,
   isShopChecked,
-  category,
+  category = "Sale",
   showShopInfo,
 }) => {
   const formattedPrice = price.toLocaleString();

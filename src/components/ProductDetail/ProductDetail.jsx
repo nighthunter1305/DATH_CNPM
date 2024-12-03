@@ -12,16 +12,24 @@ import "./ProductDetail.scss";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products } = useProducts();
+  const { products, addToCart } = useProducts();
   const product = products.find((prod) => prod.id.toString() === id);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity });
+  };
+
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
 
   if (!product) {
     return <h1>Không tìm thấy sản phẩm</h1>;
   }
 
-  // Chuyển chuỗi ảnh thành mảng URL ảnh
   const images = product.image.split(",");
 
   const handlePrevClick = () => {
@@ -151,19 +159,22 @@ const ProductDetail = () => {
           <span>({product.comments} bình luận)</span>
           <span>Đã bán {product.sold}</span>
         </div>
-        <div className="product-price">{product.price} đ</div>
+        <div className="product-price">{product.price} VNĐ</div>
         <div className="quantity-section">
           <span>Số lượng:</span>
           <input
             type="number"
-            defaultValue={1}
+            value={quantity}
             min={1}
+            onChange={handleQuantityChange}
             className="quantity-input"
           />
           <span className="available-stock">Kho: {product.availableStock}</span>
         </div>
         <button className="buy-now-button">Mua ngay</button>
-        <button className="add-to-cart-button">Thêm vào giỏ hàng</button>
+        <button className="add-to-cart-button" onClick={handleAddToCart}>
+          Thêm vào giỏ hàng
+        </button>
 
         {/* Chia sẻ sản phẩm */}
         <div className="share-buttons">
