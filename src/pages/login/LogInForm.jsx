@@ -25,7 +25,7 @@ function LogInForm() {
       
 
       if (response.status === true) {
-        localStorage.setItem("isLoggedIn", response.token);
+        sessionStorage.setItem("isLoggedIn", response.token);
         if (response.role === 'BUYER') {
           navigate("/");
         } else if (response.role === 'SELLER') {

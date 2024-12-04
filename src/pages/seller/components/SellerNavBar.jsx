@@ -7,7 +7,7 @@ function SellerNavbar({ title }) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    localStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
   return (

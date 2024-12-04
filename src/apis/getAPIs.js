@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode';
 import { axiosInstance } from './axiosInstance';
 
 export const checkLogin = async () => {
@@ -11,7 +12,7 @@ export const checkLogin = async () => {
   }
 }
 
-export const getHomePage = async () => {
+export const getProducts = async () => {
   const response = await axiosInstance.get(`/home`);
 
   return response.data;
@@ -19,6 +20,12 @@ export const getHomePage = async () => {
 
 export const getSellerHomePage = async () => {
   const response = await axiosInstance.get(`/home/seller`);
+
+  return response.data;
+}
+
+export const getUserData = async () => {  
+  const response = await axiosInstance.get(`/user`);
 
   return response.data;
 }

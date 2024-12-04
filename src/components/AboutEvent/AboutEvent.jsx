@@ -32,9 +32,9 @@ const AboutEvent = () => {
     const eventsPerPage = 12;
 
     useEffect(() => {
-        const locaVisited = JSON.parse(localStorage.getItem("visitedLocaButtons")) || [true, false, false, false];
-        const timeVisited = JSON.parse(localStorage.getItem("visitedTimeButtons")) || [true, false, false, false];
-        const dateVisited = JSON.parse(localStorage.getItem("visitedDateButtons")) || [true, false, false];
+        const locaVisited = JSON.parse(sessionStorage.getItem("visitedLocaButtons")) || [true, false, false, false];
+        const timeVisited = JSON.parse(sessionStorage.getItem("visitedTimeButtons")) || [true, false, false, false];
+        const dateVisited = JSON.parse(sessionStorage.getItem("visitedDateButtons")) || [true, false, false];
         setVisitedLocaButtons(locaVisited);
         setVisitedTimeButtons(timeVisited);
         setVisitedDateButtons(dateVisited);
@@ -44,21 +44,21 @@ const AboutEvent = () => {
         const newVisitedLocaButtons = [false, false, false, false];
         newVisitedLocaButtons[index] = true;
         setVisitedLocaButtons(newVisitedLocaButtons);
-        localStorage.setItem("visitedLocaButtons", JSON.stringify(newVisitedLocaButtons));
+        sessionStorage.setItem("visitedLocaButtons", JSON.stringify(newVisitedLocaButtons));
     };
 
     const handleTimeClick = (index) => {
         const newVisitedTimeButtons = [false, false, false, false];
         newVisitedTimeButtons[index] = true;
         setVisitedTimeButtons(newVisitedTimeButtons);
-        localStorage.setItem("visitedTimeButtons", JSON.stringify(newVisitedTimeButtons));
+        sessionStorage.setItem("visitedTimeButtons", JSON.stringify(newVisitedTimeButtons));
     };
 
     const handleDateClick = (index) => {
         const newVisitedDateButtons = [false, false, false];
         newVisitedDateButtons[index] = true;
         setVisitedDateButtons(newVisitedDateButtons);
-        localStorage.setItem("visitedDateButtons", JSON.stringify(newVisitedDateButtons));
+        sessionStorage.setItem("visitedDateButtons", JSON.stringify(newVisitedDateButtons));
     };
 
     const handlePageChange = (pageNumber) => {

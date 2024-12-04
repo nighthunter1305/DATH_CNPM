@@ -5,8 +5,10 @@ import styles from "./Payment.module.css";
 import { useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
+import { getUserData } from '../../apis/getAPIs';
 
 const Payment = () => {
+  const [user, setUser] = useState(null);
   const { id } = useParams();
   const { products } = useProducts();
   const product = products.find((prod) => prod.id.toString() === id);
@@ -232,6 +234,29 @@ const Payment = () => {
     }
     setIsNewAddressFormOpen(true);
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await getUserData();
+        setUser(data);
+        console.log(data);
+        
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
+  }, [])
+  
+  if (!user) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
 
   return (
     <>

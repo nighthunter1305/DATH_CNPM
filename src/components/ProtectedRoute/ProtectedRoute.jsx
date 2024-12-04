@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = !!localStorage.getItem("isLoggedIn");
+    const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
     
     setTimeout(() => {
       setIsLoading(false);

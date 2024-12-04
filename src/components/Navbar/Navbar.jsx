@@ -14,15 +14,15 @@ function Navbar() {
   const cartCount = new Set(cart.map((product) => product.id)).size;
 
   useEffect(() => {
-    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    const loggedInStatus = sessionStorage.getItem("isLoggedIn");
     if (loggedInStatus) {
       setIsLoggedIn(true);
-      setUsername(localStorage.getItem("username"));
-      setAvatar(localStorage.getItem("avatar"));
+      setUsername(sessionStorage.getItem("username"));
+      setAvatar(sessionStorage.getItem("avatar"));
     }
   }, []);
   const handleLogout = async () => {
-    localStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("isLoggedIn");
     
     navigate("/login");
   };

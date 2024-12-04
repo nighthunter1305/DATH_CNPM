@@ -1,12 +1,13 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 // import { mockCartData } from "../apis/mock-data";
-import { mockProductData } from "../apis/mock-data";
+import { getProducts } from '../apis/getAPIs';
 // Tạo context
 const ProductContext = createContext();
 
 // Tạo provider
 export const ProductProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -24,7 +25,19 @@ export const ProductProvider = ({ children }) => {
   const updateCart = (updatedCart) => {
     setCart(updatedCart);
   };
-  const [products, setProducts] = useState(mockProductData);
+  
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <ProductContext.Provider
