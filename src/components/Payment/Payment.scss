@@ -234,8 +234,7 @@ button.change {
     padding: 10px;
   }
 }
-.tab-cod,
-.tab-bank {
+.tab-cod {
   margin-top: 20px;
   border-radius: 4px;
 }
@@ -265,7 +264,7 @@ button.change {
 
 .method {
   margin-left: 22px;
-  font-size: 20;
+  font-size: 16px;
   font-weight: 600;
   padding-top: 10px;
 }
@@ -277,5 +276,4 @@ button.change {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -220px;
 }

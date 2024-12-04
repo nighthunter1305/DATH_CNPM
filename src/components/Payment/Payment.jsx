@@ -444,11 +444,26 @@ const Payment = () => {
           />
           <label htmlFor="cod">Thanh toán khi nhận hàng (COD)</label>
         </div>
+        <div className="payzalopay">
+          <input
+            type="radio"
+            id="zalopay"
+            name="paymentMethod"
+            value="zalopay"
+            checked={selectedPaymentMethod === "zalopay"}
+          />
+          <label htmlFor="zalopay">Thanh toán qua ZaloPay</label>
+        </div>
       </section>
       <div className="payment-method">
         {selectedPaymentMethod === "cod" && (
           <div className="tab-cod">
             <p>Thanh toán khi nhận hàng (COD), phí thu hộ 0.</p>
+          </div>
+        )}
+        {selectedPaymentMethod === "zalopay" && (
+          <div className="tab-zalopay">
+            <p>Thanh toán qua ZaloPay, phí thu hộ 0.</p>
           </div>
         )}
       </div>
