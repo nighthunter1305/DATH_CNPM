@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../../contexts/ProductContext";
 import { FaFacebook, FaShare, FaFacebookMessenger } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
@@ -18,6 +18,7 @@ const ProductDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });
@@ -177,7 +178,15 @@ const ProductDetail = () => {
           <span className="available-stock">Kho: {product.availableStock}</span>
         </div>
         <div className="button-area">
-          <button className="buy-now-button">Mua ngay</button>
+          <button
+            className="buy-now-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/payment/${product.id}`, { state: { product } });
+            }}
+          >
+            Mua ngay
+          </button>
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Thêm vào giỏ hàng
           </button>

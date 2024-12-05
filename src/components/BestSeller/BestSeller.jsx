@@ -66,6 +66,7 @@ const BestSelling = ({ products }) => {
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(`payment/${product.id}`, { state: { product } });
+                    console.log("clicked");
                   }}
                 >
                   Mua ngay
