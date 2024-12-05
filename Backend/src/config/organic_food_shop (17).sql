@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 05, 2024 lúc 05:25 AM
+-- Thời gian đã tạo: Th12 05, 2024 lúc 11:49 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -72,6 +72,7 @@ INSERT INTO `buyers` (`user_id`) VALUES
 --
 -- Cấu trúc bảng cho bảng `carts`
 --
+
 CREATE TABLE `carts` (
   `id` varchar(36) NOT NULL,
   `buyer_id` varchar(36) NOT NULL
@@ -95,23 +96,26 @@ INSERT INTO `carts` (`id`, `buyer_id`) VALUES
 CREATE TABLE `cart_product` (
   `cart_id` varchar(36) NOT NULL,
   `product_id` varchar(36) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `checked` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `cart_product`
 --
 
-INSERT INTO `cart_product` (`cart_id`, `product_id`, `quantity`) VALUES
-('cart1', '9fa7a00d-afef-11ef-b2c3-74d4dd0c2a47', 2),
-('cart1', '9fa80770-afef-11ef-b2c3-74d4dd0c2a47', 100),
-('cart1', 'prod1', 3),
-('cart1', 'prod2', 5),
-('cart1733341880390', '9fa80770-afef-11ef-b2c3-74d4dd0c2a47', 110),
-('cart1733341880390', '9fa808e9-afef-11ef-b2c3-74d4dd0c2a47', 7),
-('cart1733341880390', '9fa80c14-afef-11ef-b2c3-74d4dd0c2a47', 1),
-('cart1733341880390', 'b1ce9a37-aff0-11ef-b2c3-74d4dd0c2a47', 100),
-('cart1733341880390', 'b1cece3f-aff0-11ef-b2c3-74d4dd0c2a47', 3);
+INSERT INTO `cart_product` (`cart_id`, `product_id`, `quantity`, `checked`) VALUES
+('cart1', '9fa7a00d-afef-11ef-b2c3-74d4dd0c2a47', 2, 0),
+('cart1', '9fa80770-afef-11ef-b2c3-74d4dd0c2a47', 100, 0),
+('cart1', 'prod1', 3, 0),
+('cart1', 'prod2', 5, 0),
+('cart1733341880390', '9fa80482-afef-11ef-b2c3-74d4dd0c2a47', 2, 0),
+('cart1733341880390', '9fa80770-afef-11ef-b2c3-74d4dd0c2a47', 112, 0),
+('cart1733341880390', '9fa808e9-afef-11ef-b2c3-74d4dd0c2a47', 7, 0),
+('cart1733341880390', '9fa80a47-afef-11ef-b2c3-74d4dd0c2a47', 1, 0),
+('cart1733341880390', '9fa80c14-afef-11ef-b2c3-74d4dd0c2a47', 3, 0),
+('cart1733341880390', 'b1ce9a37-aff0-11ef-b2c3-74d4dd0c2a47', 100, 0),
+('cart1733341880390', 'b1cece3f-aff0-11ef-b2c3-74d4dd0c2a47', 1214, 0);
 
 -- --------------------------------------------------------
 
