@@ -22,6 +22,7 @@ export const ProductProvider = ({ children }) => {
   const updateCart = (updatedCart) => {
     setCart(updatedCart);
   };
+
   const [products, setProducts] = useState(mockProductData);
 
   return (

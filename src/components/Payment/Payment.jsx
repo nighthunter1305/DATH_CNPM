@@ -7,6 +7,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
 import { mockAddresses } from "../../apis/mock-data";
 
+const shippingFee = 30000;
+
 const Payment = () => {
   const { id } = useParams();
   const { products } = useProducts();
@@ -243,6 +245,34 @@ const Payment = () => {
     setIsNewAddressFormOpen(true);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const totalPrice =
+      selectedPaymentMethod === "cod"
+        ? product.price + shippingFee
+        : product.price;
+
+    const paymentData = {
+      // userId: user.id,
+      productId: [product.id],
+      amount: totalPrice,
+    };
+
+    try {
+      const response = await axios.post("API_URL/payment", paymentData);
+
+      if (response.status === 200) {
+        alert("Thanh toán thành công!");
+      } else {
+        alert("Thanh toán thất bại! Vui lòng thử lại.");
+      }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+    }
+  };
+
   return (
     <>
       <h2>Thanh toán</h2>
@@ -468,6 +498,7 @@ const Payment = () => {
             name="paymentMethod"
             value="zalopay"
             checked={selectedPaymentMethod === "zalopay"}
+            onChange={() => setSelectedPaymentMethod("zalopay")}
           />
           <label htmlFor="zalopay">Thanh toán qua ZaloPay</label>
         </div>
@@ -492,20 +523,26 @@ const Payment = () => {
             <span>Tổng tiền hàng : </span>
             <span>{product.price} VNĐ</span>
           </div>
-          <div>
-            <span>Phí vận chuyển : </span>
-            <span>{37000} VNĐ</span>
-          </div>
+
+          {selectedPaymentMethod === "cod" && (
+            <div>
+              <span>Phí vận chuyển : </span>
+              <span>{shippingFee} VNĐ</span>
+            </div>
+          )}
 
           <div>
-            <span>Tổng cộng Voucher giảm giá : </span>
-            <span>{17000} VNĐ</span>
-          </div>
-          <div>
             <span>Tổng cộng : </span>
-            <span>{product.price + 37000 - 17000} VNĐ</span>
+            <span>
+              {selectedPaymentMethod === "cod"
+                ? product.price + shippingFee
+                : product.price}
+              VNĐ
+            </span>
           </div>
-          <button>Mua hàng</button>
+          <button type="submit" onClick={handleSubmit}>
+            Mua hàng
+          </button>
         </div>
       </div>
     </>

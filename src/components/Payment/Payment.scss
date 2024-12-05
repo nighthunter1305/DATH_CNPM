@@ -25,7 +25,7 @@ h2 {
   }
 
   button {
-    color: #007bff;
+    color: #15b392;
     border: none;
     background-color: whitesmoke;
     cursor: pointer;
@@ -85,7 +85,7 @@ h2 {
 }
 
 .modal-content button:last-of-type {
-  background-color: #f44336;
+  background-color: #15b392;
   color: white;
 }
 
@@ -123,7 +123,7 @@ h2 {
 }
 
 .new-address-form button:last-of-type {
-  background-color: #f44336;
+  background-color: #15b392;
   color: white;
 }
 
@@ -184,7 +184,7 @@ h2 {
 }
 
 button.change {
-  background-color: #007bff;
+  background-color: #15b392;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -193,7 +193,7 @@ button.change {
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #12977a;
   }
 }
 
@@ -235,6 +235,11 @@ button.change {
   }
 }
 .tab-cod {
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.tab-zalopay {
   margin-top: 20px;
   border-radius: 4px;
 }

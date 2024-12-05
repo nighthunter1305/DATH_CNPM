@@ -2,13 +2,33 @@ import InputField from "../../components/InputField/InputField";
 import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import loginPic from "../../assets/images/login_pic.png";
 import styles from "./SignUpForm.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { register } from "../../apis/postAPIs";
 
 function SignUpForm() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setErrorMessage("");
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    setErrorMessage("");
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+    setErrorMessage("");
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -20,7 +40,7 @@ function SignUpForm() {
     setErrorMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (confirmPassword !== password) {
@@ -28,7 +48,18 @@ function SignUpForm() {
       setPassword("");
       setConfirmPassword("");
     } else {
-      console.log("Đăng ký thành công.");
+      const res = await register({
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        name: name,
+        phone: phone,
+      });
+      console.log(res);
+
+      if (res.status === true) {
+        navigate("/login");
+      }
     }
   };
 
@@ -43,8 +74,19 @@ function SignUpForm() {
 
         <form action="#" onSubmit={handleSubmit}>
           <InputField
+            type="text"
+            placeholder="Họ và tên"
+            onChange={handleNameChange}
+          ></InputField>
+          <InputField
             type="email"
-            placeholder="Email hoặc số điện thoại"
+            placeholder="Email"
+            onChange={handleEmailChange}
+          ></InputField>
+          <InputField
+            type="text"
+            placeholder="Số điện thoại"
+            onChange={handlePhoneChange}
           ></InputField>
           <InputField
             type="password"
