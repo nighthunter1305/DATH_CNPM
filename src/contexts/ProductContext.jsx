@@ -1,10 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 // import { mockCartData } from "../apis/mock-data";
 import { mockProductData } from "../apis/mock-data";
-// Tạo context
 const ProductContext = createContext();
 
-// Tạo provider
 export const ProductProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -41,5 +39,4 @@ export const ProductProvider = ({ children }) => {
   );
 };
 
-// Hook để sử dụng context
 export const useProducts = () => useContext(ProductContext);

@@ -5,6 +5,7 @@ import styles from "./Payment.module.css";
 import { useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
+import { mockAddresses } from "../../apis/mock-data";
 
 const Payment = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const Payment = () => {
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [newAddressDetail, setNewAddressDetail] = useState("");
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState(mockAddresses);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -34,35 +35,41 @@ const Payment = () => {
 
   const host = "https://provinces.open-api.vn/api/";
 
+  // đưa data từ api vào phần chọn tỉnh
   useEffect(() => {
     axios.get(host + "?depth=1").then((response) => {
       setProvinces(response.data);
     });
   }, []);
 
+  // tìm trong danh sách địa chỉ -> địa chỉ có isDefault = true -> set làm địa chỉ mặc định
   useEffect(() => {
     const defaultAddress = addresses.find((address) => address.isDefault);
     if (defaultAddress) {
       setSelectedAddress(defaultAddress);
+      setSelectedFullAddress(defaultAddress);
     }
   }, [addresses]);
 
+  // set các giá trị khác về rỗng nếu chưa chọn tỉnh
   const handleProvinceChange = async (e) => {
     const provinceCode = e.target.value;
+    console.log(">>> mã tỉnh: ", provinceCode);
     if (!provinceCode) {
-      setSelectedProvince("");
+      setSelectedProvince(""); // tỉnh
       setSelectedProvinceName("");
       setDistricts([]);
-      setSelectedDistrict("");
+      setSelectedDistrict(""); // quận
       setSelectedDistrictName("");
-      setWards([]);
+      setWards([]); // huyện
       setSelectedWard("");
       setSelectedWardName("");
       return;
     }
-
+    // nếu đã chọn tỉnh -> fetch data quận của tỉnh đó
     try {
       const response = await axios.get(`${host}p/${provinceCode}?depth=2`);
+      console.log(">>> quận của tỉnh:", response.data.districts);
       const selectedProv = provinces.find(
         (p) => p.code === parseInt(provinceCode)
       );
@@ -71,7 +78,6 @@ const Payment = () => {
       setSelectedProvinceName(selectedProv ? selectedProv.name : "");
       setDistricts(response.data.districts);
 
-      // Reset district and ward
       setSelectedDistrict("");
       setSelectedDistrictName("");
       setWards([]);
@@ -82,6 +88,7 @@ const Payment = () => {
     }
   };
 
+  // tương tự province
   const handleDistrictChange = async (e) => {
     const districtCode = e.target.value;
     if (!districtCode) {
@@ -95,6 +102,7 @@ const Payment = () => {
 
     try {
       const response = await axios.get(`${host}d/${districtCode}?depth=2`);
+      console.log(">>> Xã, phường:", response.data.wards);
       const selectedDist = districts.find(
         (d) => d.code === parseInt(districtCode)
       );
@@ -148,7 +156,7 @@ const Payment = () => {
     const fullAddress = {
       name: newName,
       phone: newPhone,
-      address: `${selectedWardName}, ${selectedDistrictName}, ${selectedProvinceName}`,
+      // address: `${selectedWardName}, ${selectedDistrictName}, ${selectedProvinceName}`,
       addressDetail: newAddressDetail,
       isDefault: isDefault,
       provinceCode: selectedProvince,
@@ -177,6 +185,8 @@ const Payment = () => {
     setAddresses(updatedAddresses);
     setSelectedFullAddress(fullAddress);
     if (isDefault) {
+      setSelectedAddress(fullAddress);
+    } else if (editingAddressIndex === null) {
       setSelectedAddress(fullAddress);
     }
 
@@ -247,9 +257,13 @@ const Payment = () => {
                 <span className="np">
                   {selectedAddress.name} | {selectedAddress.phone}
                 </span>
-                <span>
+                {/* <span>
                   Địa chỉ: {selectedAddress.addressDetail},{" "}
                   {selectedAddress.address}
+                </span> */}
+                <span>
+                  Địa chỉ: {selectedAddress.addressDetail},{" "}
+                  {`${selectedAddress.wardName}, ${selectedAddress.districtName}, ${selectedAddress.provinceName}`}
                 </span>
               </>
             ) : (
@@ -273,7 +287,10 @@ const Payment = () => {
                           id={`address-${index}`}
                           name="address"
                           checked={selectedFullAddress === address}
-                          onChange={() => setSelectedFullAddress(address)}
+                          onChange={() => {
+                            setSelectedFullAddress(address);
+                            setSelectedAddress(address);
+                          }}
                         />
                         <div>
                           {address.name} | {address.phone}
@@ -288,7 +305,7 @@ const Payment = () => {
                     </div>
                     <div className="address-item2">
                       <div>{address.addressDetail}</div>
-                      <div>{address.address}</div>
+                      <div>{`${selectedAddress.wardName}, ${selectedAddress.districtName}, ${selectedAddress.provinceName}`}</div>
                       {address.isDefault && (
                         <div className="default-badge">Mặc định</div>
                       )}

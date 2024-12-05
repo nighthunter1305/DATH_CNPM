@@ -1,18 +1,16 @@
 import React from "react";
-import { Icon } from '@iconify/react';
-import broccoli from "../../assets/images/broccoli.png";
-import beef from "../../assets/images/beef.png";
-import fish from "../../assets/images/fish.png";
-import nuts from "../../assets/images/nuts.png";
+import { Icon } from "@iconify/react";
 import fishsauce from "../../assets/images/fishsauce.png";
-import chung from "../../assets/images/chung-cake.png";
-import different from "../../assets/images/different.png";
 const Menu = () => {
   return (
     <div className="dropdown-container">
       <div className="dropdown">
         <button className="dropbtn">
-          <Icon className="button-icon" style={{color:'#b2dd74'}} icon="fluent-emoji:leafy-green" />
+          <Icon
+            className="button-icon"
+            style={{ color: "#b2dd74" }}
+            icon="fluent-emoji:leafy-green"
+          />
           RAU CỦ
         </button>
         <div className="dropdown-content">
@@ -55,7 +53,7 @@ const Menu = () => {
 
       <div className="dropdown">
         <button className="dropbtn">
-          <Icon className="button-icon"  icon="fluent-emoji:beans" />
+          <Icon className="button-icon" icon="fluent-emoji:beans" />
           HOA QUẢ SẤY
         </button>
         <div className="dropdown-content">

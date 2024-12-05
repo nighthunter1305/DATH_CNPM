@@ -434,3 +434,19 @@ export const mockWeights = [
   { id: "3", label: "2kg" },
   { id: "4", label: "5kg" },
 ];
+
+// mock-data for addresses in payment
+export const mockAddresses = [
+  {
+    name: "Nguyễn Văn A",
+    phone: "0123456789",
+    isDefault: true,
+    provinceCode: 1,
+    districtCode: 2,
+    wardCode: 37,
+    provinceName: "Thành phố Hà Nội",
+    districtName: "Quận Hoàn Kiếm",
+    wardName: "Phường Phúc Tân",
+    addressDetail: "số nhà 01, ngõ 17",
+  },
+];
