@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../../contexts/ProductContext";
 import { FaFacebook, FaShare, FaFacebookMessenger } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 import { FaPhone, FaMessage, FaStore } from "react-icons/fa6";
 import "./ProductDetail.scss";
 import { getProductReview, getUserData } from '../../apis/getAPIs';
+import { axiosInstance } from '../../apis/axiosInstance';
 // import {
 //   TbPlayerTrackNextFilled,
 //   TbPlayerTrackPrevFilled,
@@ -21,6 +22,7 @@ const ProductDetail = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [user, setUser] = useState(null);
   const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -50,12 +52,38 @@ const ProductDetail = () => {
     fetchUser();
   }, [id]);
 
-  const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
-    setShowPopup(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 2000);
+  const handleAddToCart = async () => {
+    const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
+    
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+    try {
+      if (isLoggedIn) {
+        const buyerId = user?.id;
+        const response = await axiosInstance.post(
+          'http://localhost:8000/api/cart/add',
+          {
+            buyer_id: buyerId,
+            product_id: product.id,
+            quantity: quantity,
+          }
+        );
+        console.log(response);
+        
+        if (response.status === 201) {
+          addToCart({ ...product, quantity });
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 1000);
+        }
+      }
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      navigate('/login');
+    }
   };
 
   const handleQuantityChange = (e) => {

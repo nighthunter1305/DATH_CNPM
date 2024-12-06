@@ -39,7 +39,7 @@ const FeaturedProducts = ({ products }) => {
             <div className="price-sold">
               <p1>{product.price} VNĐ</p1>
             </div>
-            <button className="add-to-cart">Mua ngay</button>
+            <button className="add-to-cart">Xem chi tiết</button>
           </button>
         ))}
       </div>

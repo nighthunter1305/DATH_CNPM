@@ -14,7 +14,7 @@ function Navbar() {
   const cartCount = new Set(cart.map((product) => product.id)).size;
 
   useEffect(() => {
-    const loggedInStatus = sessionStorage.getItem("isLoggedIn");
+    const loggedInStatus = !!sessionStorage.getItem("isLoggedIn");
     if (loggedInStatus) {
       setIsLoggedIn(true);
       setUsername(sessionStorage.getItem("username"));

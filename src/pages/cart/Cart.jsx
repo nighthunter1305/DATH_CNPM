@@ -9,26 +9,53 @@ import { mockVouchers } from "../../apis/mock-data";
 import ProductInfo from "../../components/ProductInfo/ProductInfo";
 import { useProducts } from "../../contexts/ProductContext";
 import { payByZalo } from '../../apis/postAPIs';
-import { getUserData } from '../../apis/getAPIs';
+import { getUserData, totalprice } from '../../apis/getAPIs';
+import { getProductsInCartAPI } from "../../apis/postAPIs";
+import { updateQuantityAPI } from "../../apis/putAPIs";
+import { removeProductAPI } from "../../apis/deleteAPIs";
 
 function Cart() {
   const [user, setUser] = useState(null);
   const { cart, updateCart } = useProducts();
   const [products, setProducts] = useState(cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getUserData();
-        setUser(data);
 
-      } catch (error) {
-        console.error("Error fetching user:", error);
+    const checkLoginStatus = () => {
+      const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
+
+      if (isLoggedIn) {
+        const fetchUserData = async () => {
+          try {
+            const response = await getUserData();
+            setUser(response);
+
+            const fetchCart = async () => {
+              const cartResponse = await getProductsInCartAPI(response.id);
+              setProducts(cartResponse.data || []);
+            };
+
+            fetchCart();
+
+            const fetchTotalPrice = async () => {
+              const totalResponse = await totalprice(response.id);
+              setTotal(totalResponse.total || 0);
+            };
+
+            fetchTotalPrice();
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+        };
+        fetchUserData();
+      } else {
+        setProducts([]);
       }
     };
 
-    fetchUser();
+    checkLoginStatus();
   }, []);
 
   const handleOpenModal = () => {
@@ -39,22 +66,42 @@ function Cart() {
     setIsModalOpen(false);
   };
 
-  const handleQuantityChange = (id, newQuantity) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id ? { ...product, quantity: newQuantity } : product
-      )
-    );
+  const handleQuantityChange = async (id, newQuantity) => {
+    try {
+      const response = await updateQuantityAPI(user?.id, id, newQuantity);
+      if (response) {
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product.id === id ? { ...product, quantity: newQuantity } : product
+          )
+        );
+      } else {
+        console.error("Failed to update quantity:", response.data);
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    }
   };
 
   useEffect(() => {
     updateCart(products);
   }, [products, updateCart]);
 
-  const handleRemove = (id) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
-    );
+  const handleRemove = async (id) => {
+    try {
+      const response = await removeProductAPI(user?.id, id);
+
+      console.log(response);
+      if (response) {
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== id)
+        );
+      } else {
+        console.error("Failed to remove product:", response.data);
+      }
+    } catch (error) {
+      console.error("Error removing product:", error);
+    }
   };
 
   const handleCheck = (id) => {
@@ -94,11 +141,11 @@ function Cart() {
     const chosenProducts = products.filter(product => product?.checked === true);
 
     const res = await payByZalo(amount, chosenProducts, user.id);
-    
+
     if (res.return_code === 1) {
       window.location.href = res.order_url;
     }
-    
+
   };
   return (
     <div className={styles.wrapper}>
@@ -199,7 +246,7 @@ function Cart() {
             </ModalBox>
           </section>
           <CartSummary
-            totalPrice={totalPrice}
+            totalPrice={total}
             onCheckout={() => handleCheckout(totalPrice + shippingFee)}
             shippingFee={shippingFee}
             products={products}

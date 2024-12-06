@@ -40,3 +40,9 @@ export const getOrders = async (buyerId) => {
   
   return response.data;
 }
+
+export const totalprice = async (buyer_id) => {
+  const response = await axiosInstance.get(`/cart/total/${buyer_id}`);
+  console.log(response.data);
+  return response.data;
+}
