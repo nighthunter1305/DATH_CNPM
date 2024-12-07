@@ -5,10 +5,10 @@ import styles from "./Payment.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
-import { getUserData } from '../../apis/getAPIs';
-import { getUserAddress } from '../../apis/getAPIs';
-import { payByZalo, storeAddress } from '../../apis/postAPIs';
-import { deleteAddress } from '../../apis/deleteAPIs';
+import { getUserData } from "../../apis/getAPIs";
+import { getUserAddress } from "../../apis/getAPIs";
+import { payByZalo, storeAddress } from "../../apis/postAPIs";
+import { deleteAddress } from "../../apis/deleteAPIs";
 
 const shippingFee = 30000;
 
@@ -90,7 +90,6 @@ const Payment = () => {
       setWards([]);
       setSelectedWard("");
       setSelectedtown("");
-
     } catch (error) {
       console.error("Error fetching districts:", error);
     }
@@ -260,7 +259,7 @@ const Payment = () => {
       const updatedAddresses = addresses.filter((_, i) => i !== index);
       setAddresses(updatedAddresses);
     }
-  }
+  };
 
   useEffect(() => {
     const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
@@ -281,7 +280,7 @@ const Payment = () => {
     } else {
       navigate("/login");
     }
-  }, [])
+  }, []);
 
   if (!user) {
     return (
@@ -311,8 +310,8 @@ const Payment = () => {
     // };
     const chosenProduct = {
       ...product,
-      quantity: 1
-    }
+      quantity: 1,
+    };
 
     try {
       const res = await payByZalo(totalPrice, [chosenProduct], user?.id);

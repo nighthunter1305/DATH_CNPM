@@ -405,36 +405,6 @@ export const mockVouchers = [
   },
 ];
 
-// mock data for add-product
-
-export const mockBrands = [
-  { id: "1", name: "No brand" },
-  { id: "2", name: "Xtra Mart" },
-  { id: "3", name: "Big Market" },
-  { id: "4", name: "Dalat FreshFruit" },
-];
-
-export const mockExpirations = [
-  { id: "1", label: "1 tháng" },
-  { id: "3", label: "3 tháng" },
-  { id: "6", label: "6 tháng" },
-  { id: "12", label: "12 tháng" },
-];
-
-export const mockOrigins = [
-  { id: "VN", label: "Việt Nam" },
-  { id: "CN", label: "Trung Quốc" },
-  { id: "US", label: "Mỹ" },
-  { id: "JP", label: "Nhật Bản" },
-];
-
-export const mockWeights = [
-  { id: "1", label: "500g" },
-  { id: "2", label: "1kg" },
-  { id: "3", label: "2kg" },
-  { id: "4", label: "5kg" },
-];
-
 export const mockAddresses = [
   {
     name: "Nguyễn Văn A",
@@ -447,5 +417,64 @@ export const mockAddresses = [
     districtName: "Quận Hoàn Kiếm",
     wardName: "Phường Phúc Tân",
     addressDetail: "số nhà 01, ngõ 17",
+  },
+];
+
+// mock-data for orders
+// order_id, image, name, quantity, total_price, status
+export const mockOrders = [
+  {
+    order_id: 1,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
+  },
+  {
+    order_id: 2,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi ",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
+  },
+  {
+    order_id: 3,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi ",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
+  },
+  {
+    order_id: 4,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
+  },
+  {
+    order_id: 5,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
+  },
+  {
+    order_id: 6,
+    image:
+      "https://img.freepik.com/free-photo/strawberry-berry-levitating-white-background_485709-57.jpg?t=st=1733567631~exp=1733571231~hmac=57e7294723282cdd4652202b86e082edbcaa3c9c722089938f0bf5767a689b1b&w=826",
+    name: "Dâu tươi",
+    quantity: 100,
+    total_price: 36000,
+    status: "accepted",
   },
 ];

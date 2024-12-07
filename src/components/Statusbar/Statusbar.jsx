@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Statusbar.scss";
-import { getOrders, getUserData } from '../../apis/getAPIs';
+import { getOrders, getUserData } from "../../apis/getAPIs";
 
 const StatusBar = () => {
   const [user, setUser] = useState(null);
@@ -12,7 +12,7 @@ const StatusBar = () => {
     "Chờ thanh toán": [],
     "Vận chuyển": [],
     "Hoàn thành": [],
-    "Đã huỷ": []
+    "Đã huỷ": [],
   });
   const navigate = useNavigate();
 
@@ -23,6 +23,7 @@ const StatusBar = () => {
     { name: "Hoàn thành", path: "/completed" },
     { name: "Đã huỷ", path: "/canceled" },
   ];
+  console.log(currentOrders);
 
   useEffect(() => {
     setCurrentOrders(orders[activeTab]);
@@ -33,7 +34,6 @@ const StatusBar = () => {
       try {
         const data = await getUserData();
         setUser(data);
-
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -52,10 +52,10 @@ const StatusBar = () => {
           "Chờ thanh toán": [],
           "Vận chuyển": [],
           "Hoàn thành": [],
-          "Đã huỷ": []
+          "Đã huỷ": [],
         };
 
-        response.forEach(order => {
+        response.forEach((order) => {
           switch (order.status) {
             case "Pending":
               categorizedOrders["Chờ thanh toán"].push(order);
@@ -75,14 +75,13 @@ const StatusBar = () => {
         });
 
         setOrders(categorizedOrders);
-
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
-    }
+    };
 
     fetchOrders();
-  }, [user?.id])
+  }, [user?.id]);
 
   const handleTabClick = async (tab) => {
     setActiveTab(tab.name);
@@ -103,12 +102,12 @@ const StatusBar = () => {
         {tabs.map((tab) => (
           <div
             key={tab.name}
-            role="tab" // Vai trò tab cho các phần tử tab
-            tabIndex={0} // Cho phép dùng phím tab để chọn tab
+            role="tab"
+            tabIndex={0}
             aria-selected={activeTab === tab.name}
             className={`tab ${activeTab === tab.name ? "active" : ""}`}
             onClick={() => handleTabClick(tab)}
-            onKeyDown={(e) => e.key === "Enter" && handleTabClick(tab)} // Điều hướng khi nhấn Enter
+            onKeyDown={(e) => e.key === "Enter" && handleTabClick(tab)}
           >
             {tab.name}
           </div>
@@ -122,41 +121,44 @@ const StatusBar = () => {
       />
 
       {/* Vai trò tabpanel để chứa nội dung tương ứng với tab */}
-      <div className="order-list" role="tabpanel" aria-labelledby={activeTab}>
-        {currentOrders.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá tổng cộng (VND)</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentOrders.map((order) => (
-                <tr key={order.order_id}>
-                  <td>
-                    <img
-                      src={order.image}
-                      alt={order.name}
-                      style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                    />
-                  </td>
-                  <td>{order.name}</td>
-                  <td>{order.quantity}</td>
-                  <td>{order.total_price.toLocaleString("vi-VN")}</td>
-                  <td>{order.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <div className="no-orders"> 🧾 CHƯA CÓ ĐƠN HÀNG </div>
-        )}
+      <div className="order-container">
+        <div className="order-header">
+          <div className="order-header-item">Hình ảnh</div>
+          <div className="order-header-item">Tên sản phẩm</div>
+          <div className="order-header-item">Số lượng</div>
+          <div className="order-header-item">Giá tổng cộng (VNĐ)</div>
+          <div className="order-header-item">Trạng thái</div>
+        </div>
+        <div className="order-list" role="tabpanel" aria-labelledby={activeTab}>
+          {currentOrders.length > 0 ? (
+            <table>
+              <tbody>
+                {currentOrders.map((order) => (
+                  <tr key={order.order_id}>
+                    <td>
+                      <img
+                        src={order.image}
+                        alt={order.name}
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </td>
+                    <td>{order.name}</td>
+                    <td>{order.quantity}</td>
+                    <td>{order.total_price?.toLocaleString("vi-VN")}</td>
+                    <td>{order.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="no-orders"> 🧾 CHƯA CÓ ĐƠN HÀNG </div>
+          )}
+        </div>
       </div>
-
     </div>
   );
 };
