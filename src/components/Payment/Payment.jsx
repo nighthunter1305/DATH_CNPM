@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Payment.scss";
 import styles from "./Payment.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
 import { getUserData } from '../../apis/getAPIs';
-import { mockAddresses } from "../../apis/mock-data";
-import { payByZalo } from '../../apis/postAPIs';
+import { getUserAddress } from '../../apis/getAPIs';
+import { payByZalo, storeAddress } from '../../apis/postAPIs';
+import { deleteAddress } from '../../apis/deleteAPIs';
 
 const shippingFee = 30000;
 
 const Payment = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const { id } = useParams();
   const { products } = useProducts();
@@ -22,18 +24,18 @@ const Payment = () => {
   const [isNewAddressFormOpen, setIsNewAddressFormOpen] = useState(false);
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
-  const [newAddressDetail, setNewAddressDetail] = useState("");
-  const [addresses, setAddresses] = useState(mockAddresses);
+  const [newstreet, setNewstreet] = useState("");
+  const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState("");
-  const [selectedProvinceName, setSelectedProvinceName] = useState("");
+  const [selectedcity, setSelectedcity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [selectedDistrictName, setSelectedDistrictName] = useState("");
+  const [selecteddistrict, setSelecteddistrict] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
-  const [selectedWardName, setSelectedWardName] = useState("");
+  const [selectedtown, setSelectedtown] = useState("");
   const [isDefault, setIsDefault] = useState(false);
   const [editingAddressIndex, setEditingAddressIndex] = useState(null);
   const [selectedFullAddress, setSelectedFullAddress] = useState(null);
@@ -57,40 +59,37 @@ const Payment = () => {
   // set các giá trị khác về rỗng nếu chưa chọn tỉnh
 
   const handleProvinceChange = async (e) => {
-    const provinceCode = e.target.value;
-    console.log(">>> mã tỉnh: ", provinceCode);
+    const city_code = e.target.value;
 
-    if (!provinceCode) {
+    if (!city_code) {
       setSelectedProvince(""); // tỉnh
-      setSelectedProvinceName("");
+      setSelectedcity("");
       setDistricts([]);
       setSelectedDistrict(""); // quận
-      setSelectedDistrictName("");
+      setSelecteddistrict("");
       setWards([]); // huyện
       setSelectedWard("");
-      setSelectedWardName("");
+      setSelectedtown("");
 
       return;
     }
 
     // nếu đã chọn tỉnh -> fetch data quận của tỉnh đó
     try {
-      const response = await axios.get(`${host}p/${provinceCode}?depth=2`);
-      console.log(">>> quận của tỉnh:", response.data.districts);
-
+      const response = await axios.get(`${host}p/${city_code}?depth=2`);
       const selectedProv = provinces.find(
-        (p) => p.code === parseInt(provinceCode)
+        (p) => p.code === parseInt(city_code)
       );
 
-      setSelectedProvince(provinceCode);
-      setSelectedProvinceName(selectedProv ? selectedProv.name : "");
+      setSelectedProvince(city_code);
+      setSelectedcity(selectedProv ? selectedProv.name : "");
       setDistricts(response.data.districts);
 
       setSelectedDistrict("");
-      setSelectedDistrictName("");
+      setSelecteddistrict("");
       setWards([]);
       setSelectedWard("");
-      setSelectedWardName("");
+      setSelectedtown("");
 
     } catch (error) {
       console.error("Error fetching districts:", error);
@@ -98,51 +97,49 @@ const Payment = () => {
   };
 
   const handleDistrictChange = async (e) => {
-    const districtCode = e.target.value;
+    const district_code = e.target.value;
 
-    if (!districtCode) {
+    if (!district_code) {
       setSelectedDistrict("");
-      setSelectedDistrictName("");
+      setSelecteddistrict("");
       setWards([]);
       setSelectedWard("");
-      setSelectedWardName("");
+      setSelectedtown("");
       return;
     }
 
     try {
-      const response = await axios.get(`${host}d/${districtCode}?depth=2`);
-      console.log(">>> Xã, phường:", response.data.wards);
-
+      const response = await axios.get(`${host}d/${district_code}?depth=2`);
       const selectedDist = districts.find(
-        (d) => d.code === parseInt(districtCode)
+        (d) => d.code === parseInt(district_code)
       );
 
-      setSelectedDistrict(districtCode);
-      setSelectedDistrictName(selectedDist ? selectedDist.name : "");
+      setSelectedDistrict(district_code);
+      setSelecteddistrict(selectedDist ? selectedDist.name : "");
       setWards(response.data.wards);
 
       // Reset ward
       setSelectedWard("");
-      setSelectedWardName("");
+      setSelectedtown("");
     } catch (error) {
       console.error("Error fetching wards:", error);
     }
   };
 
   const handleWardChange = (e) => {
-    const wardCode = e.target.value;
-    if (!wardCode) {
+    const town_code = e.target.value;
+    if (!town_code) {
       setSelectedWard("");
-      setSelectedWardName("");
+      setSelectedtown("");
       return;
     }
 
-    const selectedW = wards.find((w) => w.code === parseInt(wardCode));
-    setSelectedWard(wardCode);
-    setSelectedWardName(selectedW ? selectedW.name : "");
+    const selectedW = wards.find((w) => w.code === parseInt(town_code));
+    setSelectedWard(town_code);
+    setSelectedtown(selectedW ? selectedW.name : "");
   };
 
-  const handleSaveAddress = () => {
+  const handleSaveAddress = async () => {
     let errorMessage = "";
 
     if (!newName) {
@@ -154,7 +151,7 @@ const Payment = () => {
       errorMessage += "Vui lòng nhập số điện thoại hợp lệ (10 chữ số).\n";
     }
 
-    if (!newAddressDetail) {
+    if (!newstreet) {
       errorMessage += "Vui lòng nhập địa chỉ chi tiết.\n";
     }
 
@@ -166,15 +163,14 @@ const Payment = () => {
     const fullAddress = {
       name: newName,
       phone: newPhone,
-      // address: `${selectedWardName}, ${selectedDistrictName}, ${selectedProvinceName}`,
-      addressDetail: newAddressDetail,
+      street: newstreet,
       isDefault: isDefault,
-      provinceCode: selectedProvince,
-      districtCode: selectedDistrict,
-      wardCode: selectedWard,
-      provinceName: selectedProvinceName,
-      districtName: selectedDistrictName,
-      wardName: selectedWardName,
+      city_code: selectedProvince,
+      district_code: selectedDistrict,
+      town_code: selectedWard,
+      city: selectedcity,
+      district: selecteddistrict,
+      town: selectedtown,
     };
 
     let updatedAddresses = [...addresses];
@@ -200,6 +196,10 @@ const Payment = () => {
       setSelectedAddress(fullAddress);
     }
 
+    const res = await storeAddress(fullAddress);
+
+    console.log(res);
+
     // Reset form
     resetForm();
     setIsNewAddressFormOpen(false);
@@ -208,13 +208,13 @@ const Payment = () => {
   const resetForm = () => {
     setNewName("");
     setNewPhone("");
-    setNewAddressDetail("");
+    setNewstreet("");
     setSelectedProvince("");
-    setSelectedProvinceName("");
+    setSelectedcity("");
     setSelectedDistrict("");
-    setSelectedDistrictName("");
+    setSelecteddistrict("");
     setSelectedWard("");
-    setSelectedWardName("");
+    setSelectedtown("");
     setIsDefault(false);
     setEditingAddressIndex(null);
   };
@@ -224,22 +224,22 @@ const Payment = () => {
       const address = addresses[index];
       setNewName(address.name);
       setNewPhone(address.phone);
-      setNewAddressDetail(address.addressDetail);
-      setSelectedProvince(address.provinceCode);
-      setSelectedProvinceName(address.provinceName);
-      setSelectedDistrict(address.districtCode);
-      setSelectedDistrictName(address.districtName);
-      setSelectedWard(address.wardCode);
-      setSelectedWardName(address.wardName);
+      setNewstreet(address.street);
+      setSelectedProvince(address.city_code);
+      setSelectedcity(address.city);
+      setSelectedDistrict(address.district_code);
+      setSelecteddistrict(address.district);
+      setSelectedWard(address.town_code);
+      setSelectedtown(address.town);
       setIsDefault(address.isDefault);
       setEditingAddressIndex(index);
 
       // Fetch districts and wards for editing
       axios
-        .get(`${host}p/${address.provinceCode}?depth=2`)
+        .get(`${host}p/${address.city_code}?depth=2`)
         .then((response) => {
           setDistricts(response.data.districts);
-          return axios.get(`${host}d/${address.districtCode}?depth=2`);
+          return axios.get(`${host}d/${address.district_code}?depth=2`);
         })
         .then((response) => {
           setWards(response.data.wards);
@@ -253,18 +253,34 @@ const Payment = () => {
     setIsNewAddressFormOpen(true);
   };
 
+  const handleDeleteAddress = async (index) => {
+    const res = await deleteAddress(addresses[index]);
+
+    if (res.status) {
+      const updatedAddresses = addresses.filter((_, i) => i !== index);
+      setAddresses(updatedAddresses);
+    }
+  }
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getUserData();
-        setUser(data);
+    const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
+    if (isLoggedIn) {
+      const fetchUser = async () => {
+        try {
+          const data = await getUserData();
+          const address = await getUserAddress();
 
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+          setUser(data);
+          setAddresses(address);
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      };
 
-    fetchUser();
+      fetchUser();
+    } else {
+      navigate("/login");
+    }
   }, [])
 
   if (!user) {
@@ -277,6 +293,11 @@ const Payment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (selectedPaymentMethod === "") {
+      alert("Vui lòng chọn phương thức thanh toán.");
+      return;
+    }
 
     const totalPrice =
       selectedPaymentMethod === "cod"
@@ -292,10 +313,10 @@ const Payment = () => {
       ...product,
       quantity: 1
     }
-    
+
     try {
       const res = await payByZalo(totalPrice, [chosenProduct], user?.id);
-      
+
       if (res.return_code === 1) {
         window.location.href = res.order_url;
       } else {
@@ -322,12 +343,12 @@ const Payment = () => {
                   {selectedAddress.name} | {selectedAddress.phone}
                 </span>
                 {/* <span>
-                  Địa chỉ: {selectedAddress.addressDetail},{" "}
+                  Địa chỉ: {selectedAddress.street},{" "}
                   {selectedAddress.address}
                 </span> */}
                 <span>
-                  Địa chỉ: {selectedAddress.addressDetail},{" "}
-                  {`${selectedAddress.wardName}, ${selectedAddress.districtName}, ${selectedAddress.provinceName}`}
+                  Địa chỉ: {selectedAddress.street},{" "}
+                  {`${selectedAddress.town}, ${selectedAddress.district}, ${selectedAddress.city}`}
                 </span>
               </>
             ) : (
@@ -362,15 +383,15 @@ const Payment = () => {
                       </div>
                       <button
                         className="change"
-                        onClick={() => handleOpenNewAddressForm(index)}
+                        onClick={() => handleDeleteAddress(index)}
                       >
-                        Cập nhật
+                        Xóa
                       </button>
                     </div>
                     <div className="address-item2">
-                      <div>{address.addressDetail}</div>
-                      <div>{`${selectedAddress.wardName}, ${selectedAddress.districtName}, ${selectedAddress.provinceName}`}</div>
-                      {address.isDefault && (
+                      <div>{address.street}</div>
+                      <div>{`${address.town}, ${address.district}, ${address.city}`}</div>
+                      {Boolean(address.isDefault) && (
                         <div className="default-badge">Mặc định</div>
                       )}
                     </div>
@@ -452,8 +473,8 @@ const Payment = () => {
               <input
                 type="text"
                 className="address-detail"
-                value={newAddressDetail}
-                onChange={(e) => setNewAddressDetail(e.target.value)}
+                value={newstreet}
+                onChange={(e) => setNewstreet(e.target.value)}
                 placeholder="Nhập địa chỉ chi tiết"
               />
 

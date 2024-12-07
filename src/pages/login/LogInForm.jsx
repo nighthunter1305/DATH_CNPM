@@ -21,7 +21,6 @@ function LogInForm() {
         email: username,
         password: password
       })
-      console.log(response)      
 
       if (response.status === true) {
         sessionStorage.setItem("isLoggedIn", response.token);

@@ -8,8 +8,8 @@
 .suggestionPanel {
   position: fixed;
   top: 80px;
-  left: 20px;
-  width: 400px;
+  left: 50px;
+  width: 300px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-top: #15b392 solid 4px;
@@ -71,12 +71,12 @@
 .formPanel {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 0.8;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-left: 415px;
+  margin-left: 360px;
 }
 
 .basicForm {
@@ -93,7 +93,7 @@
 }
 
 .label {
-  flex: 0.4;
+  flex: 0.6;
   display: flex;
   align-items: center;
   font-weight: 450;
@@ -117,6 +117,13 @@
   border-radius: 4px;
   text-align: center;
   margin-right: 16px;
+  position: relative;
+}
+
+.imageButton:hover {
+  border-color: #15b392;
+  background-color: rgb(21, 179, 146, 0.03);
+  cursor: pointer;
 }
 
 .imageButton:hover {
@@ -134,14 +141,6 @@
 .imageButton p {
   font-size: 12px;
   color: #15b392;
-}
-
-.imageDesc {
-  flex: 1.8;
-  color: #999;
-  font-size: 12px;
-  font-weight: 450;
-  line-height: 14px;
 }
 
 .addIcon {
@@ -190,7 +189,7 @@
 .nameText {
   width: 100%;
   padding: 8px 10px;
-  height: 150px;
+  height: 100px;
   font-size: 14px;
   border: #e5e5e5 1px solid;
   border-radius: 4px;
@@ -220,85 +219,6 @@
   height: 1px;
   background-color: #ccc;
   margin: 40px 0;
-}
-
-.detailForm {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.detailContainer {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  padding: 20px;
-  gap: 15px;
-}
-
-.detailSide {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.detailLabel {
-  font-weight: 500;
-  font-size: 14px;
-  color: #333;
-}
-
-.input,
-.selectBox {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  background-color: #fff;
-  transition: border-color 0.3s ease;
-}
-
-.input::placeholder {
-  color: #999;
-}
-
-.input:hover,
-.input:focus,
-.selectBox:hover,
-.selectBox:focus {
-  border-color: #b7b7b7;
-  outline: none;
-}
-
-.selectBox {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='gray'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 10.943l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0l-4.24-4.25a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;
-}
-
-.selectBox:invalid {
-  color: #999;
-}
-
-.selectBox option {
-  color: #333;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(30%);
-}
-
-input[type="date"] {
-  padding-right: 30px;
 }
 
 .sellForm {
@@ -341,8 +261,7 @@ input[type="date"] {
   margin-bottom: 15px;
 }
 
-.saveButton,
-.saveShowButton {
+.saveButton {
   background-color: #15b392;
   color: white;
   padding: 10px 20px;
@@ -362,11 +281,21 @@ input[type="date"] {
   font-weight: 500;
 }
 
-.saveButton:hover,
-.saveShowButton:hover {
+.saveButton:hover {
   background-color: #12977a;
 }
 
 .cancelButton:hover {
   background-color: rgb(245, 245, 245);
+}
+
+.error {
+  color: #ff4d4d;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+  border: 1px solid #ff4d4d;
+  text-align: center;
 }

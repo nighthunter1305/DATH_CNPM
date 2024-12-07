@@ -52,6 +52,16 @@ const ProductDetail = () => {
     fetchUser();
   }, [id]);
 
+  const handlePurchase = () => {
+    const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    navigate(`/payment/${product.id}`)
+  }
+
   const handleAddToCart = async () => {
     const isLoggedIn = !!sessionStorage.getItem("isLoggedIn");
     
@@ -208,7 +218,7 @@ const ProductDetail = () => {
           <span className="available-stock">Kho: {product.quantity}</span>
         </div>
         <div className="button-area">
-          <button className="buy-now-button">Mua ngay</button>
+          <button className="buy-now-button" onClick={handlePurchase}>Mua ngay</button>
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Thêm vào giỏ hàng
           </button>

@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "./CartSummary.module.css";
 
-const CartSummary = ({ products, totalPrice, shippingFee, onCheckout }) => {
+const CartSummary = ({ products, voucher, totalPrice, shippingFee, onCheckout }) => {
+  function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   const selectedProducts = products.filter((product) => product.checked);
   const selectedProductsTotal = products.reduce(
     (total, product) =>
@@ -9,11 +18,18 @@ const CartSummary = ({ products, totalPrice, shippingFee, onCheckout }) => {
     0
   );
   const effectiveShippingFee = selectedProducts.length > 0 ? shippingFee : 0;
+  let discount = 0;
+  if (voucher?.code === 'FREESHIP') {
+    discount = effectiveShippingFee;
+  } else {
+    discount = selectedProductsTotal * voucher?.discount_percent / 100;
+  }
 
   const formattedTotal = selectedProductsTotal.toLocaleString();
   const formattedShipping = effectiveShippingFee.toLocaleString();
+  const formattedDiscount = discount.toLocaleString();
   const finalTotal = (
-    selectedProductsTotal + effectiveShippingFee
+    selectedProductsTotal + effectiveShippingFee - (discount ? discount : 0)
   ).toLocaleString();
 
   return (
@@ -45,6 +61,11 @@ const CartSummary = ({ products, totalPrice, shippingFee, onCheckout }) => {
         <span>Phí vận chuyển:</span>
         <span>{formattedShipping} VNĐ</span>
       </div>
+      {!isEmpty(voucher) &&
+        <div className={styles.summaryRow}>
+          <span>Giảm giá:</span>
+          <span>- {formattedDiscount} VNĐ</span>
+        </div>}
       <div className={styles.summaryTotal}>
         <span>Tổng cộng:</span>
         <span>{finalTotal} VNĐ</span>

@@ -35,6 +35,12 @@ export const getUserData = async () => {
   return response.data;
 }
 
+export const getUserAddress = async () => {
+  const response = await axiosInstance.get(`/user/address`);
+  
+  return response.data;
+}
+
 export const getOrders = async (buyerId) => {
   const response = await axiosInstance.get(`/order/${buyerId}`);
   
@@ -43,6 +49,17 @@ export const getOrders = async (buyerId) => {
 
 export const totalprice = async (buyer_id) => {
   const response = await axiosInstance.get(`/cart/total/${buyer_id}`);
-  console.log(response.data);
+
   return response.data;
 }
+
+export const getCoupons = async () => {
+  const response = await axiosInstance.get(`/coupon/`);
+
+  return response.data;
+}
+
+export const ProductsByCategory = async (categoryId) => {
+  const response = await axiosInstance.get(`/cate/${categoryId}`);
+  return response;
+};

@@ -1,110 +1,132 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from '@iconify/react';
-import broccoli from "../../assets/images/broccoli.png";
-import beef from "../../assets/images/beef.png";
-import fish from "../../assets/images/fish.png";
-import nuts from "../../assets/images/nuts.png";
 import fishsauce from "../../assets/images/fishsauce.png";
-import chung from "../../assets/images/chung-cake.png";
-import different from "../../assets/images/different.png";
+import { useNavigate } from "react-router-dom"; 
+import { ProductsByCategory } from "../../apis/getAPIs";
 const Menu = () => {
+  const [products, setProducts] = useState({
+    rauCu: [],
+    thucAnNhanh: [],
+    haiSan: [],
+    giaVi: [],
+    nuocMam: [],
+    banhTet: [],
+    thucPhamKhac: [],
+  });
+  const fetchProducts = async (categoryId, categoryKey) => {
+    try {
+      const response = await ProductsByCategory(categoryId);
+      console.log(response);
+      if (response) {
+        setProducts((prevProducts) => ({
+          ...prevProducts,
+          [categoryKey]: response.data,
+        }));
+      } else {
+        console.error(`Failed to fetch products for category ${categoryId}`);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchProducts('e66abf11-afee-11ef-b2c3-74d4dd0c2a47', 'rauCu');  
+    fetchProducts('153579b0-aff0-11ef-b2c3-74d4dd0c2a47', 'thucAnNhanh');  
+    fetchProducts('1535db50-aff0-11ef-b2c3-74d4dd0c2a47', 'haiSan'); 
+    fetchProducts('e66b17be-afee-11ef-b2c3-74d4dd0c2a47', 'nuocMam');  
+    fetchProducts('e66b177d-afee-11ef-b2c3-74d4dd0c2a47', 'HoaQuaSay'); 
+    fetchProducts('e66b17f6-afee-11ef-b2c3-74d4dd0c2a47', 'Thit');  
+    fetchProducts('e66b17f6-afee-11ef-b2c3-74d4dd0c2a47', 'thucPhamKhac');  
+  }, []);
+  const navigate = useNavigate();
+
+  const renderProductLinks = (productsArray) => {
+  return (productsArray || [] ).map((product) => (
+    <a 
+      key={product.id} 
+      href={`/product/${product.id}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(`/product/${product.id}`);
+      }}
+    >
+      {product.name}
+    </a>
+  ));
+};
+
+  
   return (
     <div className="dropdown-container">
       <div className="dropdown">
         <button className="dropbtn">
           <Icon className="button-icon" style={{color:'#b2dd74'}} icon="fluent-emoji:leafy-green" />
-          RAU CỦ
+          RAU CỦ 
         </button>
         <div className="dropdown-content">
-          <a href="#">Rau</a>
-          <a href="#">Củ</a>
-          <a href="#">Quả</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.rauCu)}
         </div>
       </div>
 
       <div className="dropdown">
         <button className="dropbtn">
           <Icon className="button-icon" icon="fluent-emoji:cut-of-meat" />
-          THỊT
+          THỨC ĂN NHANH
         </button>
         <div className="dropdown-content">
-          <a href="#">Thịt</a>
-          <a href="#">Cá</a>
-          <a href="#">Hải Sản</a>
-          <a href="#">Trứng</a>
-          <a href="#">Sữa</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.thucAnNhanh)}
         </div>
       </div>
 
       <div className="dropdown">
         <button className="dropbtn">
           <Icon className="button-icon" icon="fluent-emoji:lobster" />
-          ĐỒ KHÔ
+          HẢI SẢN
         </button>
         <div className="dropdown-content">
-          <a href="#">Cá khô</a>
-          <a href="#">Khô gà</a>
-          <a href="#">Khô mực</a>
-          <a href="#">Bò khô</a>
-          <a href="#">Trâu gác bếp</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.haiSan)}
         </div>
       </div>
 
       <div className="dropdown">
         <button className="dropbtn">
-          <Icon className="button-icon"  icon="fluent-emoji:beans" />
-          HOA QUẢ SẤY
+          <Icon className="button-icon" icon="fluent-emoji:beans" />
+          HOA QUẢ SẤY KHÔ
         </button>
         <div className="dropdown-content">
-          <a href="#">Hạt điều</a>
-          <a href="#">Macca</a>
-          <a href="#">Hạnh nhân</a>
-          <a href="#">Hạt dẻ</a>
-          <a href="#">Hoa quả sấy dẻo</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.HoaQuaSay)}
         </div>
       </div>
 
       <div className="dropdown">
         <button className="dropbtn">
           <img src={fishsauce} alt="Danh mục" className="button-icon" />
-          MẮM
+          NƯỚC MẮM
         </button>
         <div className="dropdown-content">
-          <a href="#">Mắm cá</a>
-          <a href="#">Mắm nêm</a>
-          <a href="#">Mắm tôm</a>
-          <a href="#">Mắm mực</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.nuocMam)}
         </div>
       </div>
+
       <div className="dropdown">
         <button className="dropbtn">
           <Icon className="button-icon" icon="fluent-emoji:baguette-bread" />
-          BÁNH
+          BÁNH TẾT
         </button>
         <div className="dropdown-content">
-          <a href="#">Bánh chưng</a>
-          <a href="#">Bánh giò</a>
-          <a href="#">Bánh tét</a>
-          <a href="#">Khác</a>
+          {renderProductLinks(products.Thit)}
         </div>
       </div>
 
       <div className="dropdown">
         <button className="dropbtn">
           <Icon className="button-icon" icon="basil:other-1-outline" />
-          KHÁC
+          THỰC PHẨM KHÁC
         </button>
         <div className="dropdown-content">
-          <a href="#">Mật ong</a>
-          <a href="#">Trà</a>
-          <a href="#">Gạo sạch</a>
-          <a href="#">Thảo mộc</a>
-          <a href="#">Dầu</a>
+          {renderProductLinks(products.thucPhamKhac)}
         </div>
       </div>
     </div>

@@ -1,15 +1,13 @@
 import CartSummary from "../../components/CartSummary/CartSummary";
 import ModalBox from "../../components/ModalBox/ModalBox";
-
 import styles from "./Cart.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import EmptyCart from "../../components/EmptyCart/EmptyCart";
-import { mockVouchers } from "../../apis/mock-data";
 import ProductInfo from "../../components/ProductInfo/ProductInfo";
 import { useProducts } from "../../contexts/ProductContext";
-import { payByZalo } from '../../apis/postAPIs';
-import { getUserData, totalprice } from '../../apis/getAPIs';
+import { decreaseVoucherQuantity, payByZalo } from '../../apis/postAPIs';
+import { getCoupons, getUserData, totalprice } from '../../apis/getAPIs';
 import { getProductsInCartAPI } from "../../apis/postAPIs";
 import { updateQuantityAPI } from "../../apis/putAPIs";
 import { removeProductAPI } from "../../apis/deleteAPIs";
@@ -20,6 +18,9 @@ function Cart() {
   const [products, setProducts] = useState(cart);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [total, setTotal] = useState(0);
+  const [vouchers, setVouchers] = useState([]);
+  const [selectedVoucher, setSelectedVoucher] = useState({});
+  const [appliedVoucher, setAppliedVoucher] = useState({});
 
   useEffect(() => {
 
@@ -57,6 +58,16 @@ function Cart() {
 
     checkLoginStatus();
   }, []);
+
+  useEffect(() => {
+    const fetchCoupons = async () => {
+      const response = await getCoupons();
+      const availableCoupons = response.filter(coupon => coupon?.quantity > 0)
+      setVouchers(availableCoupons);
+    }
+
+    fetchCoupons();
+  }, [])
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -134,19 +145,47 @@ function Cart() {
       total + (product.checked ? product.price * product.quantity : 0),
     0
   );
+
+  const handleClickVoucher = (index) => {
+    setSelectedVoucher(vouchers[index]);
+  };
+
+  const handleApplyVoucher = () => {
+    if (selectedVoucher) {
+      setAppliedVoucher(selectedVoucher); 
+      setIsModalOpen(false);
+    }
+  };
+
   const shippingFee = 30000;
 
   const handleCheckout = async (amount) => {
     // tạm thời code cứng call api zalo pay trong hàm này
     const chosenProducts = products.filter(product => product?.checked === true);
-
+    if (chosenProducts.length === 0) {
+      alert('Vui lòng chọn ít nhất 1 sản phẩm');
+      return;
+    }
+    
     const res = await payByZalo(amount, chosenProducts, user.id);
+    if (!isEmpty(appliedVoucher)) {
+      await decreaseVoucherQuantity(appliedVoucher);
+    }
 
     if (res.return_code === 1) {
       window.location.href = res.order_url;
     }
-
   };
+
+  function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   return (
     <div className={styles.wrapper}>
       <section className={styles.container}>
@@ -215,7 +254,7 @@ function Cart() {
                   confirmation_number
                 </span>
               </div>
-              <div className={styles.voucher}>GreenFood voucher</div>
+              <div className={styles.voucher}>{!isEmpty(appliedVoucher) ? `Mã áp dụng: ${appliedVoucher.code}` : 'GreenFood voucher'}</div>
             </div>
             <button className={styles.voucherButton} onClick={handleOpenModal}>
               Chọn hoặc nhập mã
@@ -223,19 +262,20 @@ function Cart() {
             <ModalBox
               isOpen={isModalOpen}
               onClose={handleCloseModal}
-              vouchers={mockVouchers}
+              vouchers={vouchers}
             >
               <div className={styles.inputContainer}>
                 <input
                   type="text"
                   placeholder="Mã GreenFood Voucher"
                   className={styles.input}
+                  value={selectedVoucher.code}
                 />
-                <button className={styles.applyButton}>ÁP DỤNG</button>
+                <button className={styles.applyButton} onClick={handleApplyVoucher}>ÁP DỤNG</button>
               </div>
               <div className={styles.voucherList}>
-                {mockVouchers.map((voucher) => (
-                  <div key={voucher.id} className={styles.voucherItem}>
+                {vouchers.map((voucher, index) => (
+                  <div key={voucher.id} className={styles.voucherItem} onClick={() => { handleClickVoucher(index) }} style={{ cursor: "pointer" }}>
                     <div className={styles.voucherCode}>{voucher.code}</div>
                     <div className={styles.voucherDescription}>
                       {voucher.description}
@@ -247,6 +287,7 @@ function Cart() {
           </section>
           <CartSummary
             totalPrice={total}
+            voucher={appliedVoucher}
             onCheckout={() => handleCheckout(totalPrice + shippingFee)}
             shippingFee={shippingFee}
             products={products}

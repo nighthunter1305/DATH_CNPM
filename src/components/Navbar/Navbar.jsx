@@ -10,6 +10,8 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const { cart } = useProducts();
   const cartCount = new Set(cart.map((product) => product.id)).size;
 
@@ -21,53 +23,77 @@ function Navbar() {
       setAvatar(sessionStorage.getItem("avatar"));
     }
   }, []);
+
   const handleLogout = async () => {
     sessionStorage.removeItem("isLoggedIn");
-    
     navigate("/login");
+  };
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) return; 
+    try {
+      const response = await fetch(`http://localhost:8000/api/search?query=${searchQuery}`); // hmmmmmm
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Search results:", data);
+        setSearchResults(data);
+      } else {
+        console.error("Search API failed");
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value); 
+    handleSearch(); 
+  };
+
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
   };
 
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
         <button className={styles.logoButton} onClick={() => navigate("/")}>
-          {/* eslint-disable-next-line */}
-          <a href="#">
             <Icon className={styles.logo} icon="noto:leafy-green" />
-          </a>{" "}
           <p className={styles.shopName}>GreenFood</p>
         </button>
       </div>
 
       <div className={styles.searchBar}>
-        <input type="text" placeholder="Nhập từ khoá..." />
-        <button className={styles.searchBtn}>
+        <input
+          type="text"
+          placeholder="Nhập từ khoá..."
+          value={searchQuery}
+          onChange={handleInputChange}
+          onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+        />
+        <button className={styles.searchBtn} onClick={handleSearch}>
           <Icon icon="fe:search" />
         </button>
       </div>
 
       <div className={styles.userOptions}>
         <div className={styles.notificationIcon}>
-          {/* eslint-disable-next-line */}
-          <a href="#">
+          <Link to="#">
             <Icon
               icon="mingcute:notification-fill"
               className={styles.iconify}
             />
             <span className={styles.notificationCount}>3</span>
-          </a>
+          </Link>
         </div>
 
         <div className={styles.messageIcon}>
-          {/* eslint-disable-next-line */}
-          <a href="#" onClick={() => navigate("/status")}>
+          <div onClick={() => navigate("/status")}>
             <Icon icon="tabler:mail-filled" className={styles.iconify} />
             <span className={styles.messageCount}>10</span>
-          </a>
+          </div>
         </div>
 
         <div className={styles.cart}>
-          {/* eslint-disable-next-line */}
           <Link to="/cart">
             <Icon icon="mdi:cart" className={styles.iconify} />
             {cartCount > 0 && (
@@ -92,7 +118,21 @@ function Navbar() {
           </>
         )}
       </div>
+      {searchResults.length > 0 && (
+        <div className={styles.searchResultsContainer}>
+          {searchResults.map((product) => (
+            <div
+              key={product.id}
+              className={styles.searchResultItem}
+              onClick={() => handleProductClick(product.id)}
+            >
+              <span>{product.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
+
 export default Navbar;

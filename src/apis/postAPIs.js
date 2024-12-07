@@ -8,8 +8,6 @@ export const register = async (data) => {
 
 export const login = async (data) => {
   const response = await axiosInstance.post(`/auth/login`, data);
-  console.log(response);
-
 
   return response.data;
 }
@@ -47,3 +45,25 @@ export const updateCheckedStatusAPI = async (buyerId, productId) => {
   });
   return response.data;
 };
+
+export const storeAddress = async (address) => {
+  const response = await axiosInstance.post('/user/store-address', address);
+
+  return response.data;
+}
+
+export const decreaseVoucherQuantity = async (voucher) => {
+  const response = await axiosInstance.post('/coupon/decrease', voucher);
+
+  return response.data;
+}
+
+export const createProduct = async (product) => {
+  const response = await axiosInstance.post('/product/add', product, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+
+  return response;
+}

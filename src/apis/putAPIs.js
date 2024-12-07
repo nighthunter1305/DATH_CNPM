@@ -8,5 +8,4 @@ export const updateQuantityAPI = async (buyerId, productId, newQuantity) => {
   });
 
   return response.data;
-
 };

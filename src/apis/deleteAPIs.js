@@ -7,3 +7,9 @@ export const removeProductAPI = async (buyerId, productId) => {
   })
   return response.data;
 };
+
+export const deleteAddress = async (address) => {
+  const response = await axiosInstance.post('/user/delete-address', address);
+
+  return response.data;
+}
