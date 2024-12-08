@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Statusbar.scss";
 import { getOrders, getUserData } from "../../apis/getAPIs";
+import { mockOrders } from "../../apis/mock-data";
 
 const StatusBar = () => {
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState("Tất cả");
-  const [currentOrders, setCurrentOrders] = useState([]);
+  const [currentOrders, setCurrentOrders] = useState(mockOrders);
   const [orders, setOrders] = useState({
     "Tất cả": [],
     "Chờ thanh toán": [],
@@ -23,65 +24,64 @@ const StatusBar = () => {
     { name: "Hoàn thành", path: "/completed" },
     { name: "Đã huỷ", path: "/canceled" },
   ];
-  console.log(currentOrders);
 
-  useEffect(() => {
-    setCurrentOrders(orders[activeTab]);
-  }, [activeTab, orders]);
+  // useEffect(() => {
+  //   setCurrentOrders(orders[activeTab]);
+  // }, [activeTab, orders]);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getUserData();
-        setUser(data);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const data = await getUserData();
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.error("Error fetching user:", error);
+  //     }
+  //   };
 
-    fetchUser();
-  }, []);
+  //   fetchUser();
+  // }, []);
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await getOrders(user?.id);
+  // useEffect(() => {
+  //   const fetchOrders = async () => {
+  //     try {
+  //       const response = await getOrders(user?.id);
 
-        const categorizedOrders = {
-          "Tất cả": response,
-          "Chờ thanh toán": [],
-          "Vận chuyển": [],
-          "Hoàn thành": [],
-          "Đã huỷ": [],
-        };
+  //       const categorizedOrders = {
+  //         "Tất cả": response,
+  //         "Chờ thanh toán": [],
+  //         "Vận chuyển": [],
+  //         "Hoàn thành": [],
+  //         "Đã huỷ": [],
+  //       };
 
-        response.forEach((order) => {
-          switch (order.status) {
-            case "Pending":
-              categorizedOrders["Chờ thanh toán"].push(order);
-              break;
-            case "Accepted":
-              categorizedOrders["Vận chuyển"].push(order);
-              break;
-            case "Delivered":
-              categorizedOrders["Hoàn thành"].push(order);
-              break;
-            case "Canceled":
-              categorizedOrders["Đã huỷ"].push(order);
-              break;
-            default:
-              break;
-          }
-        });
+  //       response.forEach((order) => {
+  //         switch (order.status) {
+  //           case "Pending":
+  //             categorizedOrders["Chờ thanh toán"].push(order);
+  //             break;
+  //           case "Accepted":
+  //             categorizedOrders["Vận chuyển"].push(order);
+  //             break;
+  //           case "Delivered":
+  //             categorizedOrders["Hoàn thành"].push(order);
+  //             break;
+  //           case "Canceled":
+  //             categorizedOrders["Đã huỷ"].push(order);
+  //             break;
+  //           default:
+  //             break;
+  //         }
+  //       });
 
-        setOrders(categorizedOrders);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
+  //       setOrders(categorizedOrders);
+  //     } catch (error) {
+  //       console.error("Error fetching orders:", error);
+  //     }
+  //   };
 
-    fetchOrders();
-  }, [user?.id]);
+  //   fetchOrders();
+  // }, [user?.id]);
 
   const handleTabClick = async (tab) => {
     setActiveTab(tab.name);
