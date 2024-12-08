@@ -18,6 +18,8 @@ import AboutIntro from "./components/AboutIntro/AboutIntro";
 import AboutCareer from "./components/AboutCareer/AboutCareer";
 import AboutEvent from "./components/AboutEvent/AboutEvent";
 import Payment from "./components/Payment/Payment";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AllProduct from "./pages/allProduct/AllProduct";
 
 import {
   BrowserRouter as Router,
@@ -26,7 +28,6 @@ import {
   useLocation,
   Outlet,
 } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -83,6 +84,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AddProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/all-products"
+            element={
+              <ProtectedRoute>
+                <AllProduct />
               </ProtectedRoute>
             }
           />

@@ -450,3 +450,71 @@ export const mockAddresses = [
     addressDetail: "số nhà 01, ngõ 17",
   },
 ];
+
+// mock-data for seller products
+export const mockSellerProducts = [
+  {
+    id: 1,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 1",
+    price: "100,000",
+    stock: 50,
+    sold: 10,
+  },
+  {
+    id: 2,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 2",
+    price: "200,000",
+    stock: 30,
+    sold: 20,
+  },
+  {
+    id: 3,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 3",
+    price: "300,000",
+    stock: 20,
+    sold: 5,
+  },
+  {
+    id: 4,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 4",
+    price: "400,000",
+    stock: 10,
+    sold: 7,
+  },
+  {
+    id: 5,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 5",
+    price: "500,000",
+    stock: 25,
+    sold: 15,
+  },
+  {
+    id: 6,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 6",
+    price: "600,000",
+    stock: 15,
+    sold: 9,
+  },
+  {
+    id: 7,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 7",
+    price: "700,000",
+    stock: 40,
+    sold: 12,
+  },
+  {
+    id: 8,
+    image: "https://via.placeholder.com/50",
+    name: "Sản phẩm 8",
+    price: "800,000",
+    stock: 18,
+    sold: 20,
+  },
+];

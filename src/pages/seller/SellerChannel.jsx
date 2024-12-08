@@ -26,7 +26,7 @@ function SellerChannel() {
             <Menu
               title="Quản Lý Sản Phẩm"
               items={["Tất Cả Sản Phẩm", "Thêm Sản Phẩm"]}
-              links={["/all-products", "/seller/add-product"]}
+              links={["/seller/all-products", "/seller/add-product"]}
             />
             <Menu
               title="Kênh Marketing"
@@ -83,7 +83,7 @@ function SellerChannel() {
             </div>
             <div className={styles.contentSection}>
               <div className={styles.sectionHeader}>
-                <h2 className={styles.title}>Phân Tích Bán Hàng</h2>
+                <div className={styles.title}>Phân Tích Bán Hàng</div>
                 <p className={styles.time}>Hôm nay 00:00 GMT+7 - 21:00</p>
                 {/* eslint-disable-next-line */}
                 <a href="#" className={styles.viewMore}>

@@ -163,36 +163,34 @@ function AddProduct() {
           <div className={styles.divider}></div>
 
           <p className={styles.sellForm}>Thông tin bán hàng</p>
-          <div className={styles.sellContainer}>
-            <div className={styles.sellWrapper}>
-              <div className={styles.label}>
-                <span>*</span>
-                <p>Giá bán (VNĐ)</p>
-              </div>
-              <div className={styles.productPrice}>
-                <input
-                  className={styles.priceInput}
-                  type="text"
-                  placeholder="Nhập vào"
-                  value={price}
-                  onChange={handlePriceChange}
-                />
-              </div>
+          <div className={styles.sellWrapper}>
+            <div className={styles.label}>
+              <span>*</span>
+              <p>Giá bán (VNĐ)</p>
             </div>
-            <div className={styles.sellWrapper}>
-              <div className={styles.label}>
-                <span>*</span>
-                <p>Số lượng trong kho</p>
-              </div>
-              <div className={styles.productPrice}>
-                <input
-                  className={styles.priceInput}
-                  type="text"
-                  placeholder="Nhập vào"
-                  value={stock}
-                  onChange={handleStockChange}
-                />
-              </div>
+            <div className={styles.productPrice}>
+              <input
+                className={styles.priceInput}
+                type="text"
+                placeholder="Nhập vào"
+                value={price}
+                onChange={handlePriceChange}
+              />
+            </div>
+          </div>
+          <div className={styles.sellWrapper}>
+            <div className={styles.label}>
+              <span>*</span>
+              <p>Số lượng trong kho</p>
+            </div>
+            <div className={styles.productPrice}>
+              <input
+                className={styles.priceInput}
+                type="text"
+                placeholder="Nhập vào"
+                value={stock}
+                onChange={handleStockChange}
+              />
             </div>
           </div>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}

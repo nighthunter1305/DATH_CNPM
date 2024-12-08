@@ -82,7 +82,7 @@
 .basicForm {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 36px;
 }
 
 .imageSection {
@@ -93,7 +93,7 @@
 }
 
 .label {
-  flex: 0.6;
+  flex: 0.7;
   display: flex;
   align-items: center;
   font-weight: 450;
@@ -106,41 +106,10 @@
   margin-right: 4px;
 }
 
-.imageButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  border: 2px dashed #ccc;
-  border-radius: 4px;
-  text-align: center;
-  margin-right: 16px;
-  position: relative;
-}
-
-.imageButton:hover {
-  border-color: #15b392;
-  background-color: rgb(21, 179, 146, 0.03);
-  cursor: pointer;
-}
-
-.imageButton:hover {
-  border-color: #15b392;
-  background-color: rgb(21, 179, 146, 0.03);
-  cursor: pointer;
-}
-
 .imageWrapper {
   flex: 2.3;
   display: flex;
   align-items: center;
-}
-
-.imageButton p {
-  font-size: 12px;
-  color: #15b392;
 }
 
 .addIcon {
@@ -224,11 +193,7 @@
 .sellForm {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.sellContainer {
-  padding: 20px 0;
+  margin-bottom: 36px;
 }
 
 .sellWrapper {
