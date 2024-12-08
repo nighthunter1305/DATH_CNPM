@@ -58,11 +58,13 @@ function Navbar() {
           </a>
         </div>
 
-        <div className={styles.messageIcon}>
+        <div className={styles.orderIcon}>
           {/* eslint-disable-next-line */}
           <a href="#" onClick={() => navigate("/status")}>
-            <Icon icon="tabler:mail-filled" className={styles.iconify} />
-            <span className={styles.messageCount}>10</span>
+            <Icon
+              icon="material-symbols-light:order-approve-sharp"
+              className={styles.iconify}
+            />
           </a>
         </div>
 

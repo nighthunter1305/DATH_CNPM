@@ -80,14 +80,14 @@
 }
 
 .notificationIcon,
-.messageIcon,
+.orderIcon,
 .cart {
   position: relative;
   font-size: 24px;
 }
 
 .notificationIcon:hover,
-.messageIcon:hover,
+.orderIcon:hover,
 .cart:hover {
   position: relative;
   font-size: 24px;
@@ -96,7 +96,6 @@
 }
 
 .notificationCount,
-.messageCount,
 .cartCount {
   background-color: #54c392;
   color: white;
