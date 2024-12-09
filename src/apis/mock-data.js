@@ -405,36 +405,6 @@ export const mockVouchers = [
   },
 ];
 
-// mock data for add-product
-
-export const mockBrands = [
-  { id: "1", name: "No brand" },
-  { id: "2", name: "Xtra Mart" },
-  { id: "3", name: "Big Market" },
-  { id: "4", name: "Dalat FreshFruit" },
-];
-
-export const mockExpirations = [
-  { id: "1", label: "1 tháng" },
-  { id: "3", label: "3 tháng" },
-  { id: "6", label: "6 tháng" },
-  { id: "12", label: "12 tháng" },
-];
-
-export const mockOrigins = [
-  { id: "VN", label: "Việt Nam" },
-  { id: "CN", label: "Trung Quốc" },
-  { id: "US", label: "Mỹ" },
-  { id: "JP", label: "Nhật Bản" },
-];
-
-export const mockWeights = [
-  { id: "1", label: "500g" },
-  { id: "2", label: "1kg" },
-  { id: "3", label: "2kg" },
-  { id: "4", label: "5kg" },
-];
-
 // mock-data for addresses in payment
 export const mockAddresses = [
   {
@@ -459,7 +429,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 1",
     price: "100,000",
     stock: 50,
-    sold: 10,
   },
   {
     id: 2,
@@ -467,7 +436,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 2",
     price: "200,000",
     stock: 30,
-    sold: 20,
   },
   {
     id: 3,
@@ -475,7 +443,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 3",
     price: "300,000",
     stock: 20,
-    sold: 5,
   },
   {
     id: 4,
@@ -483,7 +450,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 4",
     price: "400,000",
     stock: 10,
-    sold: 7,
   },
   {
     id: 5,
@@ -491,7 +457,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 5",
     price: "500,000",
     stock: 25,
-    sold: 15,
   },
   {
     id: 6,
@@ -499,7 +464,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 6",
     price: "600,000",
     stock: 15,
-    sold: 9,
   },
   {
     id: 7,
@@ -507,7 +471,6 @@ export const mockSellerProducts = [
     name: "Sản phẩm 7",
     price: "700,000",
     stock: 40,
-    sold: 12,
   },
   {
     id: 8,
@@ -515,6 +478,164 @@ export const mockSellerProducts = [
     name: "Sản phẩm 8",
     price: "800,000",
     stock: 18,
-    sold: 20,
   },
+];
+
+// mock-data users
+export const mockUsers = [
+  {
+    id: 1,
+    name: "Nguyễn Văn A",
+    email: "a@gmail.com",
+    phone: "0948321119",
+    role: "Người bán",
+  },
+  {
+    id: 2,
+    name: "Trần Thị B",
+    email: "b@gmail.com",
+    phone: "0948322119",
+    role: "Người mua",
+  },
+  {
+    id: 3,
+    name: "Lê Văn C",
+    email: "c@gmail.com",
+    phone: "0948321119",
+    role: "Người mua",
+  },
+  {
+    id: 4,
+    name: "Phạm Văn D",
+    email: "d@gmail.com",
+    phone: "0948321119",
+    role: "Người bán",
+  },
+  {
+    id: 5,
+    name: "Nguyễn Thị E",
+    email: "e@gmail.com",
+    phone: "0948342119",
+    role: "Người mua",
+  },
+  {
+    id: 6,
+    name: "Đỗ Văn F",
+    email: "f@gmail.com",
+    phone: "0948322345",
+    role: "Người bán",
+  },
+  {
+    id: 7,
+    name: "Hoàng Văn G",
+    email: "g@gmail.com",
+    phone: "0948313267",
+    role: "Người mua",
+  },
+  {
+    id: 8,
+    name: "Trịnh Thị H",
+    email: "h@gmail.com",
+    phone: "0948890765",
+    role: "Người bán",
+  },
+  {
+    id: 9,
+    name: "Lý Văn I",
+    email: "i@gmail.com",
+    phone: "0948321889",
+    role: "Người mua",
+  },
+  {
+    id: 10,
+    name: "Hồ Thị K",
+    email: "k@gmail.com",
+    phone: "0948321113",
+    role: "Người bán",
+  },
+  {
+    id: 11,
+    name: "Nguyễn Văn A",
+    email: "a@gmail.com",
+    phone: "0942121119",
+    role: "Người bán",
+  },
+  {
+    id: 12,
+    name: "Trần Thị B",
+    email: "b@gmail.com",
+    phone: "0943211119",
+    role: "Người mua",
+  },
+  {
+    id: 13,
+    name: "Lê Văn C",
+    email: "c@gmail.com",
+    phone: "0964221119",
+    role: "Người mua",
+  },
+  {
+    id: 14,
+    name: "Phạm Văn D",
+    email: "d@gmail.com",
+    phone: "0911321119",
+    role: "Người bán",
+  },
+  {
+    id: 15,
+    name: "Nguyễn Thị E",
+    email: "e@gmail.com",
+    phone: "0911721119",
+    role: "Người mua",
+  },
+  {
+    id: 16,
+    name: "Đỗ Văn F",
+    email: "f@gmail.com",
+    phone: "0941471119",
+    role: "Người bán",
+  },
+  {
+    id: 17,
+    name: "Hoàng Văn G",
+    email: "g@gmail.com",
+    phone: "0948321119",
+    role: "Người mua",
+  },
+  {
+    id: 18,
+    name: "Trịnh Thị H",
+    email: "h@gmail.com",
+    phone: "0948321119",
+    role: "Người bán",
+  },
+  {
+    id: 19,
+    name: "Lý Văn I",
+    email: "i@gmail.com",
+    phone: "0948321119",
+    role: "Người mua",
+  },
+  {
+    id: 20,
+    name: "Hồ Thị K",
+    email: "k@gmail.com",
+    phone: "0948321119",
+    role: "Người bán",
+  },
+];
+
+// mock-data for seller orders
+export const mockOrders = [
+  { orderId: "OD001", productId: 1, quantity: 2 },
+  { orderId: "OD002", productId: 2, quantity: 1 },
+  { orderId: "OD003", productId: 3, quantity: 5 },
+  { orderId: "OD004", productId: 2, quantity: 3 },
+  { orderId: "OD005", productId: 4, quantity: 3 },
+  { orderId: "OD006", productId: 6, quantity: 3 },
+  { orderId: "OD007", productId: 8, quantity: 3 },
+  { orderId: "OD008", productId: 7, quantity: 3 },
+  { orderId: "OD009", productId: 5, quantity: 3 },
+  { orderId: "OD010", productId: 9, quantity: 3 },
+  { orderId: "OD011", productId: 10, quantity: 3 },
 ];

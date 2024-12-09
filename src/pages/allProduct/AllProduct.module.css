@@ -1,8 +1,85 @@
+.orderBox {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 36px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.searchContainer {
+  margin-bottom: 15px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #b3b3b3;
+  pointer-events: none;
+}
+
+.searchInput {
+  padding: 10px 15px 10px 40px;
+  width: 100%;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: #f3f1f1;
+}
+
+.searchInput:focus {
+  border-color: #15b392;
+  outline: none;
+}
+
+.addProductButton {
+  background-color: #15b392;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.addProductButton:hover {
+  background-color: #12977a;
+}
+
 .editButton {
   background-color: #15b392;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 10px;
   margin-right: 5px;
   cursor: pointer;
   border-radius: 4px;
@@ -16,9 +93,9 @@
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .deleteButton:hover {
@@ -27,16 +104,16 @@
 
 .orderContainer {
   margin: 0 auto;
-  width: 60%;
+  width: 100%;
 }
 
 .orderHeader {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
   padding: 15px;
   background-color: #e9ecef;
   font-weight: 550;
-  border-bottom: none;
+  border-bottom: 1px solid #919496;
   border-radius: 4px;
 }
 
@@ -80,27 +157,23 @@
 }
 
 .orderList table tr td:nth-child(1) {
-  width: calc(100% / 7);
+  width: calc(100% / 6);
 }
 
 .orderList table tr td:nth-child(2) {
-  width: calc(100% * 2 / 7);
+  width: calc(100% * 2 / 6);
 }
 
 .orderList table tr td:nth-child(3) {
-  width: calc(100% / 7);
+  width: calc(100% / 6);
 }
 
 .orderList table tr td:nth-child(4) {
-  width: calc(100% / 7);
+  width: calc(100% / 6);
 }
 
 .orderList table tr td:nth-child(5) {
-  width: calc(100% / 7);
-}
-
-.orderList table tr td:nth-child(6) {
-  width: calc(100% / 7);
+  width: calc(100% / 6);
 }
 
 .orderList table tr:last-child td {
@@ -120,60 +193,74 @@
   z-index: 1000;
 }
 
-.modalTitle {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 30px;
-  margin-top: 12px;
-}
-
 .modalContent {
   background: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   width: 420px;
   max-width: 90%;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
+}
+
+.modalTitle {
+  font-size: 22px;
+  font-weight: 550;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+  color: #333;
 }
 
 .modalField {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .fieldContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .fieldLabel {
-  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
 }
 
 .fieldInput {
-  flex: 1;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #868686;
-  border-radius: 4px;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fafafa;
+  transition: border 0.3s ease;
+}
+
+.fieldInput:focus {
+  border-color: #15b392;
   outline: none;
 }
 
 .modalActions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .saveButton {
   background-color: #15b392;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 12px 25px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .saveButton:hover {
@@ -183,12 +270,14 @@
 .cancelButton {
   background-color: white;
   color: #333;
-  border: #b7b7b7 1px solid;
-  padding: 10px 20px;
-  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  padding: 12px 25px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .cancelButton:hover {
-  background-color: rgb(245, 245, 245);
+  background-color: #f7f7f7;
 }

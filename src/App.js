@@ -28,6 +28,8 @@ import {
   useLocation,
   Outlet,
 } from "react-router-dom";
+import Admin from "./pages/admin/Admin";
+import ManageOrder from "./pages/manageOrder/ManageOrder";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -71,6 +73,7 @@ function App() {
           </Route>
           <Route path="/login" element={<LogInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/admin" element={<Admin />} />
           <Route
             path="/seller"
             element={
@@ -92,6 +95,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AllProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/manage-orders"
+            element={
+              <ProtectedRoute>
+                <ManageOrder />
               </ProtectedRoute>
             }
           />

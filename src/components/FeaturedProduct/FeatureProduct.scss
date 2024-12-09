@@ -12,12 +12,20 @@
   color: black;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .pagination button:disabled {
   background-color: white;
   cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: #15b392;
+  color: white;
+}
+
+.pagination button.active:hover {
+  background-color: #12977a;
 }
 
 .product:hover {
