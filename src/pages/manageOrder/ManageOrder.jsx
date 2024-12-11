@@ -2,6 +2,7 @@ import styles from "./ManageOrder.module.css";
 import SellerNavbar from "../seller/components/SellerNavBar";
 import { mockOrders, mockSellerProducts } from "../../apis/mock-data";
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 function ManageOrder() {
   const [currentOrders, setCurrentOrders] = useState(mockOrders);
@@ -18,7 +19,7 @@ function ManageOrder() {
         {currentOrders.length > 0 ? (
           <>
             <div className={styles.orderHeader}>
-              <div className={styles.orderHeaderItem}>Số thứ tự</div>
+              {/* <div className={styles.orderHeaderItem}>ID</div> */}
               <div className={styles.orderHeaderItem}>Hình ảnh</div>
               <div className={styles.orderHeaderItem}>Tên sản phẩm</div>
               <div className={styles.orderHeaderItem}>Số lượng</div>
@@ -31,7 +32,7 @@ function ManageOrder() {
                     const product = getProductById(order.productId);
                     return (
                       <tr key={order.orderId}>
-                        <td>{index + 1}</td>
+                        {/* <td>{index + 1}</td> */}
                         <td>
                           <img
                             src={product?.image}
@@ -46,8 +47,12 @@ function ManageOrder() {
                         <td>{product?.name || "Sản phẩm không tồn tại"}</td>
                         <td>{order.quantity}</td>
                         <td>
-                          <button className={styles.viewButton}>Xem</button>
-                          <button className={styles.deleteButton}>Xóa</button>
+                          <button className={styles.viewButton}>
+                            <Icon icon="carbon:view-filled" />
+                          </button>
+                          <button className={styles.deleteButton}>
+                            <Icon icon="mingcute:delete-fill" />
+                          </button>
                         </td>
                       </tr>
                     );

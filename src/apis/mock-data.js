@@ -13,7 +13,7 @@ export const mockProductData = [
     quantity: 1,
     shopName: "Dalat FreshFruit Store",
     shopId: 1,
-    category: "Yêu thích",
+    category: "Trái cây",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const mockProductData = [
     quantity: 3,
     shopName: "Dalat FreshFruit Store",
     shopId: 1,
-    category: "Yêu thích",
+    category: "Trái cây",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const mockProductData = [
     quantity: 3,
     shopName: "Bach Hoa Xanh Market",
     shopId: 2,
-    category: "Mall",
+    category: "Trái cây",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ export const mockProductData = [
     checked: false,
     shopName: "Coop Mart",
     shopId: 3,
-    category: "Hot sale",
+    category: "Trái cây",
   },
   {
     id: 5,
