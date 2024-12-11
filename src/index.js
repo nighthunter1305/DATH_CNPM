@@ -18,7 +18,7 @@ const SERVER = () => {
   });
 
   var corsOptions = {
-    origin: true,
+    origin: "https://fee-git-main-dang-xuan-huys-projects.vercel.app/",
     credentials: true
   };
 
