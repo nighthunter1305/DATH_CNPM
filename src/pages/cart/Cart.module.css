@@ -40,8 +40,8 @@
 }
 
 .productInfo {
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 280px;
+  margin-right: 280px;
   display: flex;
   background-color: #fbfbfb;
   border-radius: 3px;
@@ -93,8 +93,8 @@
 }
 
 .coupon {
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 280px;
+  margin-right: 280px;
   display: flex;
   background-color: #fbfbfb;
   border-radius: 3px;

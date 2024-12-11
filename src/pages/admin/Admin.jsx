@@ -22,10 +22,9 @@ function Admin() {
   );
 
   const handleDelete = (userId) => {
-    // const confirmDelete = window.confirm(
-    //   "Bạn có chắc chắn muốn xóa người dùng này?"
-    // );
-    const confirmDelete = true;
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xóa người dùng này?"
+    );
     if (confirmDelete) {
       setUsers(users.filter((user) => user.id !== userId));
       if (currentUsers.length === 1 && currentPage > 1) {
@@ -48,11 +47,11 @@ function Admin() {
       <div className={styles.header}>
         <div className={styles.adminInfo}>
           <img
-            src="https://user-images.githubusercontent.com/74038190/212747919-84b68444-0d81-46db-a338-7ec50e9dd4cd.gif"
+            src="https://demos.pixinvent.com/vuexy-html-admin-template/assets/img/avatars/7.png"
             alt="Admin Avatar"
             className={styles.avatar}
           />
-          <span className={styles.adminName}>Admin</span>
+          <span className={styles.adminName}>John Doe</span>
         </div>
         <button className={styles.logoutButton}>Đăng xuất</button>
       </div>

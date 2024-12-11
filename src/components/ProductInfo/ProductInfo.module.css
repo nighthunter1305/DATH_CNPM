@@ -1,8 +1,8 @@
 .shopInfo {
   display: flex;
   align-items: center;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 280px;
+  margin-right: 280px;
   background-color: #fbfbfb;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
@@ -46,8 +46,8 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 280px;
+  margin-right: 280px;
   background-color: #fbfbfb;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);

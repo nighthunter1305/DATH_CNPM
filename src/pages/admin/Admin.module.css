@@ -55,7 +55,7 @@
 }
 
 .logoutButton:hover {
-  background-color: #c0392b;
+  background-color: #12977a;
 }
 
 .searchWrapper {
@@ -153,14 +153,14 @@
 }
 
 .activePage {
-  background-color: #3498db;
+  background-color: #15b392;
   color: white;
-  font-weight: bold;
+  font-weight: 550;
   border: none;
 }
 
 .activePage:hover {
-  background-color: #3498db;
+  background-color: #15b392;
 }
 
 .noUser {

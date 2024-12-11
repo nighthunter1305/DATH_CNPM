@@ -3,7 +3,7 @@ import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import styles from "./LogInForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import loginPic from "../../assets/images/login_pic.png";
-import defaultAvatar from "../../assets/images/default-avatar.jpg";
+
 import { useState } from "react";
 
 function LogInForm() {
@@ -15,7 +15,10 @@ function LogInForm() {
     if (username && password) {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", "Quốc Anh");
-      localStorage.setItem("avatar", defaultAvatar);
+      localStorage.setItem(
+        "avatar",
+        "https://demos.pixinvent.com/vuexy-html-admin-template/assets/img/avatars/3.png"
+      );
       navigate("/");
     }
   };
