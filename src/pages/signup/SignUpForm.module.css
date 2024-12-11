@@ -1,0 +1,172 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  flex: 1;
+  margin: 0 auto;
+  max-width: 40%;
+  height: 100%;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 0;
+  padding-bottom: 4rem;
+  background: #fbfbfb;
+}
+
+.imageContainer {
+  background: #15b392;
+  flex: 1;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  max-width: 90%;
+  height: auto;
+}
+
+.title {
+  text-align: left;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #303030;
+}
+
+.subTitle {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #8e8e8e;
+}
+
+.button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 54px;
+  color: #fbfbfb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.2rem;
+  border-radius: 1.6rem;
+  background: #15b392;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  background: #12977a;
+}
+
+.login {
+  text-align: center;
+  font-size: 1.06rem;
+  font-weight: 500;
+  margin: 2.5rem 0 0.31rem;
+  color: #575757;
+}
+
+.error {
+  color: #ff5e62;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.link {
+  padding: 0.6rem;
+}
+
+.container a {
+  color: #15b392;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background: #fff;
+}
+
+.separator span {
+  z-index: 1;
+  font-weight: 600;
+  color: #575757;
+  position: relative;
+  background: #fbfbfb;
+  font-size: 0.9rem;
+  padding: 0 0.9rem;
+}
+
+.separator::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  width: 100%;
+  background: #dedede;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 20px; 
+  align-items: center;
+  justify-content: center;
+}
+
+.BuyerRole, .SellerRole {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.BuyerRole input[type="radio"], .SellerRole input[type="radio"] {
+  display: none;
+}
+
+.BuyerRole label, .SellerRole label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #15b392;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  color: #15b392;
+  font-size: 16px;
+}
+
+.BuyerRole input[type="radio"]:checked + label, 
+.SellerRole input[type="radio"]:checked + label {
+  background-color: #15b392;
+  color: #fff;
+  border-color: #139c7e;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+.BuyerRole label:hover, .SellerRole label:hover {
+  background-color: #139c7e;
+  color: #fff;
+}

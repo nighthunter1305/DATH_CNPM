@@ -1,0 +1,35 @@
+.emptyProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 55vh;
+}
+
+.emptyProduct p {
+  font-weight: 500;
+  color: #666;
+}
+
+.addNowButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #15b392;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 2px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.addNowNowButton:hover {
+  background-color: #12977a;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
