@@ -67,3 +67,12 @@ export const createProduct = async (product) => {
 
   return response;
 }
+
+export const addProductToCart = async (buyerId, productId, quantity) => {
+  const response = await axiosInstance.post(`/cart/add`, {
+    buyer_id: buyerId,
+    product_id: productId,
+    quantity: quantity,
+  });
+  return response;
+};

@@ -6,7 +6,7 @@ import { SiZalo } from "react-icons/si";
 import { FaPhone, FaMessage, FaStore } from "react-icons/fa6";
 import "./ProductDetail.scss";
 import { getProductReview, getUserData } from '../../apis/getAPIs';
-import { axiosInstance } from '../../apis/axiosInstance';
+import { addProductToCart } from "../../apis/postAPIs";
 // import {
 //   TbPlayerTrackNextFilled,
 //   TbPlayerTrackPrevFilled,
@@ -72,14 +72,7 @@ const ProductDetail = () => {
     try {
       if (isLoggedIn) {
         const buyerId = user?.id;
-        const response = await axiosInstance.post(
-          'http://localhost:8000/api/cart/add',
-          {
-            buyer_id: buyerId,
-            product_id: product.id,
-            quantity: quantity,
-          }
-        );
+        const response = response = await addProductToCart(buyerId, product.id, quantity);
         console.log(response);
         
         if (response.status === 201) {
