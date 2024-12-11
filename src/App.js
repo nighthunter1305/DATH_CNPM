@@ -27,6 +27,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AllProduct from "./pages/allProduct/AllProduct";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -83,6 +84,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AddProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/all-products"
+            element={
+              <ProtectedRoute>
+                <AllProduct />
               </ProtectedRoute>
             }
           />

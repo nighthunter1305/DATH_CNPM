@@ -13,7 +13,10 @@ function SellerNavbar({ title }) {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <button className={styles.logoButton} onClick={() => navigate("/")}>
+        <button
+          className={styles.logoButton}
+          onClick={() => navigate("/seller")}
+        >
           {/* eslint-disable-next-line */}
           <a href="#">
             <Icon className={styles.logo} icon="noto:leafy-green" />
