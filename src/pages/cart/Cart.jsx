@@ -250,7 +250,7 @@ function Cart() {
           <section className={styles.coupon}>
             <div className={styles.voucherGroup}>
               <div className={styles.icon}>
-                <span class="material-symbols-rounded">
+                <span className="material-symbols-rounded">
                   confirmation_number
                 </span>
               </div>

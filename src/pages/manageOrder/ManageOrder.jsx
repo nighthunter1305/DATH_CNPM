@@ -1,24 +1,37 @@
 import styles from "./ManageOrder.module.css";
 import SellerNavbar from "../seller/components/SellerNavBar";
-import { mockSellerOrders, mockSellerProducts } from "../../apis/mock-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
+import { getSoldProducts } from "../../apis/getAPIs";
+import { acceptOrder } from '../../apis/putAPIs';
 
 function ManageOrder() {
-  const [currentOrders, setCurrentOrders] = useState(mockSellerOrders);
+  const [currentOrders, setCurrentOrders] = useState([]);
 
-  const getProductById = (productId) => {
-    return mockSellerProducts.find((product) => product.id === productId);
-  };
+  useEffect(() => {
+    const fetchSoldProduct = async () => {
+      const response = await getSoldProducts();
+      
+      if (response.status === 200) {
+        setCurrentOrders(response.data);
+      }
+    }
 
-  const handleAcceptOrder = (orderId, productId) => {
+    fetchSoldProduct();
+  }, []);
+
+  const handleAcceptOrder = async (orderId, productId) => {
+    const response = await acceptOrder(orderId, productId);
+
+    console.log(response);
+    
     setCurrentOrders((prevOrders) => {
       const updatedOrders = prevOrders.map((order) =>
-        order.orderId === orderId ? { ...order, status: "Accepted" } : order
+        order.order_id === orderId ? { ...order, status: "Accepted" } : order
       );
 
       const updatedOrder = updatedOrders.find(
-        (order) => order.orderId === orderId
+        (order) => order.order_id === orderId
       );
 
       if (updatedOrder) {
@@ -51,12 +64,11 @@ function ManageOrder() {
             <div className={styles.orderList}>
               <table>
                 <tbody>
-                  {currentOrders.map((order) => {
-                    const product = getProductById(order.productId);
+                  {currentOrders.map((product) => {
                     return (
-                      <tr key={order.orderId}>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
+                      <tr key={product.order_id}>
+                        <td>{product.buyer_name}</td>
+                        <td>{`${product.street} ${product.town} ${product.district} ${product.city}`}</td>
                         <td>
                           <img
                             src={product?.image}
@@ -69,19 +81,19 @@ function ManageOrder() {
                           />
                         </td>
                         <td>{product?.name}</td>
-                        <td>{order.quantity}</td>
+                        <td>{product.quantity}</td>
                         <td>
-                          {order.status === "Pending" ? (
+                          {product.status === "Pending" ? (
                             <div className={styles.statusBox}>
                               <p className={styles.statusPending}>
-                                {order.status}
+                                {product.status}
                               </p>
                               <button
                                 className={styles.acceptButton}
                                 onClick={() =>
                                   handleAcceptOrder(
-                                    order.orderId,
-                                    order.productId
+                                    product.order_id,
+                                    product.id
                                   )
                                 }
                               >
@@ -93,7 +105,7 @@ function ManageOrder() {
                             </div>
                           ) : (
                             <p className={styles.statusAccepted}>
-                              {order.status}
+                              {product.status}
                             </p>
                           )}
                         </td>

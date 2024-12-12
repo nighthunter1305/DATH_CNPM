@@ -15,13 +15,19 @@ export const getAllProducts = async () => {
   const response = await axiosInstance.get(`/product/all`);
 
   return response;
-}
+};
 
 export const getProducts = async () => {
   const response = await axiosInstance.get(`/home`);
 
   return response.data;
-}
+};
+
+export const getSoldProducts = async () => {
+  const response = await axiosInstance.get(`/product/sold`);
+
+  return response;
+};
 
 export const getProductReview = async (id) => {
   const response = await axiosInstance.get(`/product/${id}`);

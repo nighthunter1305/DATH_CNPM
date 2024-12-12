@@ -16,7 +16,6 @@ const Menu = () => {
   const fetchProducts = async (categoryId, categoryKey) => {
     try {
       const response = await ProductsByCategory(categoryId);
-      console.log(response);
       if (response) {
         setProducts((prevProducts) => ({
           ...prevProducts,

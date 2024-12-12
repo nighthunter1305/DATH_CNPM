@@ -101,9 +101,9 @@ function App() {
           <Route
             path="/seller/manage-orders"
             element={
-              // <ProtectedRoute>
-              <ManageOrder />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <ManageOrder />
+              </ProtectedRoute>
             }
           />
         </Routes>

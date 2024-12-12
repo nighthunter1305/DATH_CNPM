@@ -9,7 +9,7 @@ function ModalBox({ isOpen, onClose, children }) {
         <header className={styles.modalHeader}>
           <h2>Chọn GreenFood Voucher</h2>
           <button className={styles.closeButton} onClick={onClose}>
-            <span class="material-symbols-rounded">close</span>
+            <span className="material-symbols-rounded">close</span>
           </button>
         </header>
         <div className={styles.modalBody}>{children}</div>

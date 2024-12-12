@@ -15,3 +15,9 @@ export const editProduct = async (product) => {
 
   return response;
 }
+
+export const acceptOrder = async (orderId, productId) => {
+  const response = await axiosInstance.put(`/product/accept`, { orderId, productId });
+
+  return response;
+}

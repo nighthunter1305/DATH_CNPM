@@ -28,7 +28,13 @@ export const payByZalo = async (amount, items, userId) => {
   const response = await axiosInstance.post('/payment', { amount, items, userId });
 
   return response.data;
-}
+};
+
+export const payByCash = async (amount, items, userId) => {
+  const response = await axiosInstance.post('/payment/cash', { amount, items, userId });
+
+  return response;
+};
 
 export const getProductsInCartAPI = async (buyerId) => {
   const response = await axiosInstance.post('/cart/products', {

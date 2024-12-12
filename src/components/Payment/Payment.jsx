@@ -7,7 +7,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useProducts } from "../../contexts/ProductContext";
 import { getUserData } from "../../apis/getAPIs";
 import { getUserAddress } from "../../apis/getAPIs";
-import { payByZalo, storeAddress } from "../../apis/postAPIs";
+import { payByCash, payByZalo, storeAddress } from "../../apis/postAPIs";
 import { deleteAddress } from "../../apis/deleteAPIs";
 
 const shippingFee = 30000;
@@ -313,17 +313,27 @@ const Payment = () => {
       quantity: 1,
     };
 
-    try {
-      const res = await payByZalo(totalPrice, [chosenProduct], user?.id);
+    if (selectedPaymentMethod === "cod") {
+      const res = await payByCash(totalPrice, [chosenProduct], user?.id);
 
-      if (res.return_code === 1) {
-        window.location.href = res.order_url;
+      if (res.status === 200) {
+        navigate("/status");
       } else {
         alert("Thanh toán thất bại! Vui lòng thử lại.");
       }
-    } catch (error) {
-      console.error("Error processing payment:", error);
-      alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+    } else {
+      try {
+        const res = await payByZalo(totalPrice, [chosenProduct], user?.id);
+
+        if (res.return_code === 1) {
+          window.location.href = res.order_url;
+        } else {
+          alert("Thanh toán thất bại! Vui lòng thử lại.");
+        }
+      } catch (error) {
+        console.error("Error processing payment:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+      }
     }
   };
 

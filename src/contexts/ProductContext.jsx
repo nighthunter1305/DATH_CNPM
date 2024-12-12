@@ -37,7 +37,7 @@ export const ProductProvider = ({ children }) => {
     };
 
     fetchProducts();
-  }, []);
+  }, [products]);
 
   return (
     <ProductContext.Provider
