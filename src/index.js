@@ -20,7 +20,7 @@ const SERVER = () => {
   const corsOptions = {
     origin: function (origin, callback) {
       console.log(origin);
-      if (temp.includes(origin)) {
+      if (temp.indexOf(origin) !== -1 || !origin) {
         callback(null, true)
       } else {
         callback(new Error('Not allowed by CORS'))
