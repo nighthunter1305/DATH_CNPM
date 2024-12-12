@@ -627,15 +627,13 @@ export const mockUsers = [
 
 // mock-data for seller orders
 export const mockOrders = [
-  { orderId: "OD001", productId: 1, quantity: 2 },
-  { orderId: "OD002", productId: 2, quantity: 1 },
-  { orderId: "OD003", productId: 3, quantity: 5 },
-  { orderId: "OD004", productId: 2, quantity: 3 },
-  { orderId: "OD005", productId: 4, quantity: 3 },
-  { orderId: "OD006", productId: 6, quantity: 3 },
-  { orderId: "OD007", productId: 8, quantity: 3 },
-  { orderId: "OD008", productId: 7, quantity: 3 },
-  { orderId: "OD009", productId: 5, quantity: 3 },
-  { orderId: "OD010", productId: 9, quantity: 3 },
-  { orderId: "OD011", productId: 10, quantity: 3 },
+  { orderId: "OD001", productId: 1, quantity: 2, status: "Accepted" },
+  { orderId: "OD002", productId: 2, quantity: 1, status: "Accepted" },
+  { orderId: "OD003", productId: 3, quantity: 5, status: "Pending" },
+  { orderId: "OD004", productId: 2, quantity: 3, status: "Pending" },
+  { orderId: "OD005", productId: 4, quantity: 3, status: "Accepted" },
+  { orderId: "OD006", productId: 6, quantity: 3, status: "Accepted" },
+  { orderId: "OD007", productId: 8, quantity: 3, status: "Pending" },
+  { orderId: "OD008", productId: 7, quantity: 3, status: "Accepted" },
+  { orderId: "OD009", productId: 5, quantity: 3, status: "Accepted" },
 ];
