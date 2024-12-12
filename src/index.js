@@ -18,8 +18,7 @@ const SERVER = () => {
   });
 
   var corsOptions = {
-    // origin: ['http://localhost:3000', 'https://green-food-shop-haloed.vercel.app'],
-    origin: true,
+    origin: ['http://localhost:3000', 'https://greenshop-haloed.vercel.app/'],
     credentials: true
   };
 
