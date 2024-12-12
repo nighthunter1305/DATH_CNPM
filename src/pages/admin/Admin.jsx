@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Admin.module.css";
 import { mockUsers } from "../../apis/mock-data";
 import { Icon } from "@iconify/react";
+import { getAllUsers, getUserData } from '../../apis/getAPIs';
+import { deleteUser } from '../../apis/deleteAPIs';
+import { logout } from '../../apis/postAPIs';
+import { useNavigate } from 'react-router-dom';
 
 const USERS_PER_PAGE = 6;
 
 function Admin() {
+  const navigate = useNavigate();
+  const [admin, setAdmin] = useState({});
   const [users, setUsers] = useState(mockUsers);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,14 +27,36 @@ function Admin() {
     currentPage * USERS_PER_PAGE
   );
 
-  const handleDelete = (userId) => {
+  useEffect(() => {
+    const fetchAdminInfor = async () => {
+      const response = await getUserData();
+
+      setAdmin(response);
+    }
+    const fetchAllUsers = async () => {
+      const response = await getAllUsers();
+
+      if (response.status === 200) {
+        setUsers(response.data);
+      }
+    }
+
+    fetchAdminInfor();
+    fetchAllUsers();
+  }, []);
+
+  const handleDelete = async (userId) => {
     const confirmDelete = window.confirm(
       "Bạn có chắc chắn muốn xóa người dùng này?"
     );
     if (confirmDelete) {
-      setUsers(users.filter((user) => user.id !== userId));
-      if (currentUsers.length === 1 && currentPage > 1) {
-        setCurrentPage(currentPage - 1);
+      const response = await deleteUser(userId);
+
+      if (response.status === 200) {
+        setUsers(users.filter((user) => user.id !== userId));
+        if (currentUsers.length === 1 && currentPage > 1) {
+          setCurrentPage(currentPage - 1);
+        }
       }
     }
   };
@@ -42,6 +70,14 @@ function Admin() {
     setCurrentPage(1);
   };
 
+  const handleLogout = async () => {
+    const response = await logout();
+    console.log(response);
+   
+    sessionStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -52,9 +88,9 @@ function Admin() {
             alt="Admin Avatar"
             className={styles.avatar}
           />
-          <span className={styles.adminName}>John Doe</span>
+          <span className={styles.adminName}>{admin.name}</span>
         </div>
-        <button className={styles.logoutButton}>Đăng xuất</button>
+        <button className={styles.logoutButton} onClick={handleLogout}>Đăng xuất</button>
       </div>
 
       <p className={styles.title}>Quản lý người dùng</p>
@@ -107,9 +143,8 @@ function Admin() {
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index}
-                className={`${styles.pageButton} ${
-                  currentPage === index + 1 ? styles.activePage : ""
-                }`}
+                className={`${styles.pageButton} ${currentPage === index + 1 ? styles.activePage : ""
+                  }`}
                 onClick={() => handlePageChange(index + 1)}
               >
                 {index + 1}

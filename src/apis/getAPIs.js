@@ -63,9 +63,15 @@ export const getCoupons = async () => {
   const response = await axiosInstance.get(`/coupon/`);
 
   return response.data;
-}
+};
 
 export const ProductsByCategory = async (categoryId) => {
   const response = await axiosInstance.get(`/cate/${categoryId}`);
   return response;
 };
+
+export const getAllUsers = async () => {
+  const response = await axiosInstance.get('/admin/all-users');
+  
+  return response;
+}

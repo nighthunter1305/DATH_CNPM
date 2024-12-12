@@ -29,6 +29,9 @@ function LogInForm() {
         } else if (response.role === 'SELLER') {
           navigate("/seller");
         }
+        if (response.role === 'ADMIN') {
+          navigate("/admin");
+        }
       } else {
         setError(response.message || "Đăng nhập thất bại");
       }

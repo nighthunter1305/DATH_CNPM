@@ -2,14 +2,19 @@ import React from "react";
 import styles from "./SellerNavBar.module.css";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import { logout } from '../../../apis/postAPIs';
 
 function SellerNavbar({ title }) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
+    const response = await logout();
+    console.log(response);
+
     sessionStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>

@@ -19,3 +19,9 @@ export const deleteProduct = async (id) => {
 
   return response;
 }
+
+export const deleteUser = async (id) => {
+  const response = await axiosInstance.delete(`/admin/delete-user/${id}`);
+
+  return response;
+}
