@@ -23,6 +23,7 @@ function SellerChannel() {
                 "Cài đặt vận chuyển",
                 "Bàn giao đơn hàng",
               ]}
+              links={["/seller/manage-orders"]}
             />
             <Menu
               title="Quản Lý Sản Phẩm"

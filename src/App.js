@@ -29,6 +29,7 @@ import {
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AllProduct from "./pages/allProduct/AllProduct";
 import Admin from "./pages/admin/Admin";
+import ManageOrder from "./pages/manageOrder/ManageOrder";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -95,6 +96,14 @@ function App() {
               <ProtectedRoute>
                 <AllProduct />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/manage-orders"
+            element={
+              // <ProtectedRoute>
+              <ManageOrder />
+              // </ProtectedRoute>
             }
           />
         </Routes>
