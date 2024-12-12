@@ -1,0 +1,184 @@
+.container {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 20px;
+  max-width: 900px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 550;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.adminInfo {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.adminName {
+  font-size: 18px;
+  font-weight: 550;
+}
+
+.logoutButton {
+  background-color: #15b392;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #12977a;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #b3b3b3;
+  pointer-events: none;
+}
+
+.searchInput {
+  padding: 10px 15px 10px 40px;
+  width: 100%;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: #f3f1f1;
+}
+
+.searchInput:focus {
+  border-color: #15b392;
+  outline: none;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.userTable th,
+.userTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.userTable th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: 550;
+}
+
+.userTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.userTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.deleteButton:hover {
+  background-color: #e53935;
+}
+
+.emptyMessage {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pageButton {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pageButton:hover {
+  background-color: #ddd;
+}
+
+.activePage {
+  background-color: #15b392;
+  color: white;
+  font-weight: 550;
+  border: none;
+}
+
+.activePage:hover {
+  background-color: #15b392;
+}
+
+.noUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 20vh;
+}
+
+.noUser p {
+  font-weight: 500;
+  color: #666;
+  font-size: 14px;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+}
