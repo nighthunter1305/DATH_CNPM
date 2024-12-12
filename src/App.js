@@ -28,6 +28,7 @@ import {
 } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AllProduct from "./pages/allProduct/AllProduct";
+import Admin from "./pages/admin/Admin";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -71,6 +72,7 @@ function App() {
           </Route>
           <Route path="/login" element={<LogInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/admin" element={<Admin />} />
           <Route
             path="/seller"
             element={
