@@ -16,9 +16,15 @@ const SERVER = () => {
     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
     next();
   });
-
-  var corsOptions = {
-    origin: true,
+  const temp = ['http://localhost:3000', 'https://greenshop-haloed.vercel.app']
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (temp.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true
   };
 
