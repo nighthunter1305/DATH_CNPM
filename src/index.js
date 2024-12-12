@@ -18,7 +18,7 @@ const SERVER = () => {
   });
 
   var corsOptions = {
-    origin: 'https://greenshop-haloed.vercel.app/',
+    origin: 'https://greenshop-haloed.vercel.app',
     credentials: true
   };
 
