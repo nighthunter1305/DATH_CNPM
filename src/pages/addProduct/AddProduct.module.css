@@ -1,0 +1,301 @@
+.container {
+  display: flex;
+  padding: 20px;
+  padding-top: 80px;
+  position: relative;
+}
+
+.suggestionPanel {
+  position: fixed;
+  top: 80px;
+  left: 50px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-top: #15b392 solid 4px;
+  border-radius: 6px;
+  margin-right: 20px;
+  align-self: flex-start;
+  z-index: 1000;
+}
+
+.suggestionTitle {
+  display: flex;
+  background-color: rgb(21, 179, 146, 0.1);
+  position: relative;
+  padding: 20px;
+  font-weight: 450;
+  align-items: center;
+}
+
+.suggestionTitle p {
+  font-size: 16px;
+}
+
+.taskList {
+  padding: 16px 0;
+}
+
+.taskItem {
+  display: flex;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 450;
+  align-items: center;
+}
+
+.taskItem p {
+  padding-left: 8px;
+}
+
+.check {
+  flex-shrink: 0;
+  color: #15b392;
+}
+
+.uncheck {
+  flex-shrink: 0;
+  color: #ccc;
+}
+
+.check {
+  flex-shrink: 0;
+  color: #15b392;
+}
+
+.taskItem:hover {
+  background-color: rgb(21, 179, 146, 0.05);
+}
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  flex: 0.8;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 360px;
+}
+
+.basicForm {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.imageSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.label {
+  flex: 0.6;
+  display: flex;
+  align-items: center;
+  font-weight: 450;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.label span {
+  color: #15b392;
+  margin-right: 4px;
+}
+
+.imageButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  text-align: center;
+  margin-right: 16px;
+  position: relative;
+}
+
+.imageButton:hover {
+  border-color: #15b392;
+  background-color: rgb(21, 179, 146, 0.03);
+  cursor: pointer;
+}
+
+.imageButton:hover {
+  border-color: #15b392;
+  background-color: rgb(21, 179, 146, 0.03);
+  cursor: pointer;
+}
+
+.imageWrapper {
+  flex: 2.3;
+  display: flex;
+  align-items: center;
+}
+
+.imageButton p {
+  font-size: 12px;
+  color: #15b392;
+}
+
+.addIcon {
+  font-size: 28px;
+  color: #15b392;
+}
+
+.productSection {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.productName {
+  flex: 2.3;
+  /* margin-left: 12px; */
+  position: relative;
+  width: 100%;
+}
+
+.nameInput {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: #e5e5e5 1px solid;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.nameInput:focus {
+  border: #b7b7b7 1px solid;
+}
+
+.inputCounter {
+  position: absolute;
+  right: 10px;
+  bottom: 50%;
+  transform: translateY(50%);
+  font-size: 12px;
+  color: #888;
+}
+
+.nameText {
+  width: 100%;
+  padding: 8px 10px;
+  height: 100px;
+  font-size: 14px;
+  border: #e5e5e5 1px solid;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.nameText:focus {
+  border: #b7b7b7 1px solid;
+}
+
+.textCounter {
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
+  font-size: 12px;
+  color: #888;
+}
+.warning {
+  color: #15b392;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 40px 0;
+}
+
+.sellForm {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.sellContainer {
+  padding: 20px 0;
+}
+
+.sellWrapper {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.productPrice {
+  flex: 2;
+}
+
+.priceInput {
+  width: 40%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: #e5e5e5 1px solid;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.saveButton {
+  background-color: #15b392;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cancelButton {
+  background-color: white;
+  color: #333;
+  padding: 10px 20px;
+  border: #b7b7b7 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.saveButton:hover {
+  background-color: #12977a;
+}
+
+.cancelButton:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.error {
+  color: #ff4d4d;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+  border: 1px solid #ff4d4d;
+  text-align: center;
+}
