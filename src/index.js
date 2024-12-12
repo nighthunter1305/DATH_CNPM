@@ -19,8 +19,7 @@ const SERVER = () => {
   const temp = ['http://localhost:3000', 'https://greenshop-haloed.vercel.app']
   const corsOptions = {
     origin: function (origin, callback) {
-      console.log(origin);
-      if (temp.indexOf(origin) !== -1 || !origin) {
+      if (temp.includes(origin) || !origin) {
         callback(null, true)
       } else {
         callback(new Error('Not allowed by CORS'))
