@@ -11,6 +11,12 @@ export const checkLogin = async () => {
   }
 };
 
+export const getAllProducts = async () => {
+  const response = await axiosInstance.get(`/product/all`);
+
+  return response;
+}
+
 export const getProducts = async () => {
   const response = await axiosInstance.get(`/home`);
 

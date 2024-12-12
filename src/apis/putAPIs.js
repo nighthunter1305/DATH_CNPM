@@ -9,3 +9,9 @@ export const updateQuantityAPI = async (buyerId, productId, newQuantity) => {
 
   return response.data;
 };
+
+export const editProduct = async (product) => {
+  const response = await axiosInstance.put(`/product/${product.id}`, product);
+
+  return response;
+}

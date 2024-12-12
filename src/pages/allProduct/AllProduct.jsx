@@ -1,34 +1,57 @@
 import styles from "./AllProduct.module.css";
 import SellerNavbar from "../seller/components/SellerNavBar";
 import EmptyProduct from "../../components/EmptyProduct/EmptyProduct";
-import { mockSellerProducts } from "../../apis/mock-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import { getAllProducts } from '../../apis/getAPIs';
+import { editProduct } from '../../apis/putAPIs';
+import { deleteProduct } from '../../apis/deleteAPIs';
 
 function AllProduct() {
   const navigate = useNavigate();
-  const [currentProducts, setCurrentProducts] = useState(mockSellerProducts);
+  const [currentProducts, setCurrentProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fecthProducts = async () => {
+      const response = await getAllProducts();
+      if (response.status === 200) {
+        setCurrentProducts(response.data);
+      }
+
+    }
+
+    fecthProducts();
+  }, []);
 
   const handleEditClick = (product) => {
     setEditingProduct(product);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setCurrentProducts((prevProducts) =>
       prevProducts.map((prod) =>
         prod.id === editingProduct.id ? editingProduct : prod
       )
     );
-    setEditingProduct(null);
+
+    const response = await editProduct(editingProduct);
+
+    if (response.status === 200) {
+      setEditingProduct(null);
+    }
   };
 
-  const handleDelete = (product) => {
-    setCurrentProducts((prevProducts) =>
-      prevProducts.filter((prod) => product.id !== prod.id)
-    );
+  const handleDelete = async (product) => {
+    const response = await deleteProduct(product.id);
+
+    if (response.status === 200) {
+      setCurrentProducts((prevProducts) =>
+        prevProducts.filter((prod) => product.id !== prod.id)
+      );
+    }
   };
 
   const handleInputChange = (e) => {
@@ -100,7 +123,7 @@ function AllProduct() {
                         </td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
-                        <td>{product.stock}</td>
+                        <td>{product.quantity}</td>
                         {/* <td>{product.sold}</td> */}
                         <td>
                           <button
@@ -161,8 +184,8 @@ function AllProduct() {
                   <p className={styles.fieldLabel}>Kho hàng:</p>
                   <input
                     type="number"
-                    name="stock"
-                    value={editingProduct.stock}
+                    name="quantity"
+                    value={editingProduct.quantity}
                     onChange={handleInputChange}
                     className={styles.fieldInput}
                   />
