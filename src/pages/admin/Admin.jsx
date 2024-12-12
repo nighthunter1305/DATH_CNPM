@@ -46,6 +46,7 @@ function Admin() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.adminInfo}>
+          {/* này được 2 thông tin lười mock quá =)) */}
           <img
             src="https://demos.pixinvent.com/vuexy-html-admin-template/assets/img/avatars/7.png"
             alt="Admin Avatar"
@@ -83,9 +84,9 @@ function Admin() {
               </tr>
             </thead>
             <tbody>
-              {currentUsers.map((user) => (
+              {currentUsers.map((user, index) => (
                 <tr key={user.id}>
-                  <td>{user.id}</td>
+                  <td>{(currentPage - 1) * USERS_PER_PAGE + index + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
