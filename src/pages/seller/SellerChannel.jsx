@@ -23,11 +23,12 @@ function SellerChannel() {
                 "Cài đặt vận chuyển",
                 "Bàn giao đơn hàng",
               ]}
+              links={["/seller/manage-orders"]}
             />
             <Menu
               title="Quản Lý Sản Phẩm"
               items={["Tất Cả Sản Phẩm", "Thêm Sản Phẩm"]}
-              links={["seller/all-products", "/seller/add-product"]}
+              links={["/seller/all-products", "/seller/add-product"]}
             />
             <Menu
               title="Kênh Marketing"

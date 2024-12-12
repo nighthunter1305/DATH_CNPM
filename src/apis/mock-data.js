@@ -682,3 +682,16 @@ export const mockUsers = [
     role: "Người bán",
   },
 ];
+
+// mock-data for seller orders
+export const mockSellerOrders = [
+  { orderId: "OD001", productId: 1, quantity: 2, status: "Accepted" },
+  { orderId: "OD002", productId: 2, quantity: 1, status: "Accepted" },
+  { orderId: "OD003", productId: 3, quantity: 5, status: "Pending" },
+  { orderId: "OD004", productId: 2, quantity: 3, status: "Pending" },
+  { orderId: "OD005", productId: 4, quantity: 3, status: "Accepted" },
+  { orderId: "OD006", productId: 6, quantity: 3, status: "Accepted" },
+  { orderId: "OD007", productId: 8, quantity: 3, status: "Pending" },
+  { orderId: "OD008", productId: 7, quantity: 3, status: "Accepted" },
+  { orderId: "OD009", productId: 5, quantity: 3, status: "Accepted" },
+];
