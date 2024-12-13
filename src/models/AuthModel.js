@@ -76,6 +76,10 @@ const login = async (data, res) => {
       return { status: false, message: 'Your password is not correct' };
     }
 
+    if (user[0].status === 'deleted') {
+      return { status: false, message: 'Your account has been deleted. Please contact the admin for more information.' };
+    }
+
     let options = {
       maxAge: 30 * 60 * 1000,
       httpOnly: true,

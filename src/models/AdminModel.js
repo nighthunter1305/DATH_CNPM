@@ -3,7 +3,11 @@ import { executeQuery, getOne } from '~/database/query';
 
 async function getAllUsers() {
   try {
-    const result = await getOne('users', 'status', 'registered');
+    const query = `
+      SELECT * FROM users
+      WHERE status = 'registered' AND role NOT LIKE 'ADMIN'
+    `;
+    const result = await executeQuery(query);
 
     const users = result.map(({ password, ...rest }) => rest);
     if (users) {
@@ -14,6 +18,7 @@ async function getAllUsers() {
     throw new Error(error);
   }
 }
+
 
 async function deleteUser(userId) {
   try {
